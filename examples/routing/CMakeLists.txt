@@ -132,3 +132,29 @@ build_example(
     ${libapplications}
     ${libinternet}
 )
+
+build_example(
+  NAME iacr-example
+  SOURCE_FILES iacr-example.cc
+  LIBRARIES_TO_LINK
+    ${libcore}
+    ${libnetwork}
+    ${libapplications}
+    ${libinternet}
+    ${libwifi}
+    ${libmobility}
+    ${libiacr_2}
+)
+
+build_example(
+  NAME iacr-interference-aware
+  SOURCE_FILES iacr-interference-aware.cc
+  LIBRARIES_TO_LINK
+    ${libcore}
+    ${libnetwork}
+    ${libapplications}
+    ${libinternet}
+    ${libwifi}
+    ${libmobility}
+    ${libiacr_2}
+)
