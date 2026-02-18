@@ -30,7 +30,8 @@ echo "nNodes,NormalizedThroughput,OutageProbability,AvgDelayMs,StdDevDelayMs,Jit
 #NODE_COUNTS=(100 120 140 160 180 200)
 
 #NODE_COUNTS=(210 220  230 240 250)
-NODE_COUNTS=(250)
+#NODE_COUNTS=(250)
+NODE_COUNTS=(100 120 140 160 180 200 210 220 230 240 250)
 
 # Run simulation for each node count
 for n in "${NODE_COUNTS[@]}"
