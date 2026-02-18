@@ -1,0 +1,2 @@
+nNodes,NormalizedThroughput,OutageProbability,AvgDelayMs,StdDevDelayMs,JitterMs,P95DelayMs,P99DelayMs,ThroughputKbps,EnergyMJ,AvgHopCount,ControlOverhead,RouteDiscoveryMs,LinkBreaks
+250,0.22695,0.77305,68.4758,175.074,64.4173,281.222,1023.53,26.2144,115.507,1.12371,0,0,0
