@@ -30,8 +30,9 @@ echo "nNodes,NormalizedThroughput,OutageProbability,AvgDelayMs,StdDevDelayMs,Jit
 #NODE_COUNTS=(100 120 140 160 180 200)
 
 #NODE_COUNTS=(210 220  230 240 250)
-#NODE_COUNTS=(250)
-NODE_COUNTS=(100 120 140 160 180 200 210 220 230 240 250)
+# NODE_COUNTS=(100 120 140 160 180)
+#NODE_COUNTS=(100 120 140 160 180 200 210 220 230 240 250)
+NODE_COUNTS=(50 60 70 80 90)
 
 # Run simulation for each node count
 for n in "${NODE_COUNTS[@]}"
@@ -40,7 +41,21 @@ do
     echo "Running simulation with $n nodes..."
     echo "=========================================="
     
-    ./ns3 run "scratch/aodv-comprehensive-test --nNodes=$n --simTime=13.0 --nFlows=3"
+    # Capture NS_LOG output directly to a file (not to console)
+    NS_LOG="AodvRoutingTable=logic:AodvRoutingProtocol=info" \
+        ./ns3 run "scratch/aodv-comprehensive-test --nNodes=$n --simTime=13.0 --nFlows=3" \
+        > /dev/null 2> "aodv-routing-table-${n}nodes-raw.log"
+    
+    # Clean the routing log to remove binary/corrupted content and write directly to final file
+    if [ -f "aodv-routing-table-${n}nodes-raw.log" ]; then
+        echo "Cleaning routing table log for $n nodes..."
+        strings "aodv-routing-table-${n}nodes-raw.log" | \
+            grep -E "ROUTE|METRIC|ICP Table updated" > "aodv-routing-table-${n}nodes.log"
+        rm -f "aodv-routing-table-${n}nodes-raw.log"
+        
+        CLEANED_LINES=$(wc -l < "aodv-routing-table-${n}nodes.log")
+        echo "✓ Routing log cleaned: $CLEANED_LINES lines"
+    fi
     
     if [ $? -eq 0 ]; then
         echo "✓ Simulation completed successfully for $n nodes"
@@ -63,6 +78,14 @@ echo "Results saved to:"
 echo "  - aodv-comprehensive-results.csv"
 echo "  - aodv-comprehensive-<N>nodes-detailed.txt"
 echo "  - aodv-comprehensive-<N>nodes-latency.csv"
+echo "  - aodv-routing-table-<N>nodes.log (clean routing table changes)"
+echo "  - aodv-icrep-<N>nodes.log (IC-REP packets)"
+echo "  - aodv-icp-entries-<N>nodes.log (ICP entries)"
+echo ""
+echo "To analyze routing logs:"
+echo "  grep 'ROUTE CREATED' aodv-routing-table-<N>nodes.log"
+echo "  grep 'ROUTE UPDATE' aodv-routing-table-<N>nodes.log"
+echo "  grep 'METRIC UPDATE' aodv-routing-table-<N>nodes.log"
 echo ""
 echo "To analyze results:"
 echo "  python3 plot-comprehensive-results.py"
