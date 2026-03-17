@@ -288,6 +288,7 @@ class RoutingProtocol : public Ipv4RoutingProtocol
         m_enableIacp = enable;
     }
 
+    double getTotalCreatedInterference();
   private:
 
   // ---------------- IACR INFORMATION COLLECTION ----------------
@@ -326,8 +327,8 @@ class RoutingProtocol : public Ipv4RoutingProtocol
     std::map<Ipv4Address, IcpEntry> m_icpTable;
     std::map<Ipv4Address, IcpEntryOWN> m_icpTableOWN;
 
-    double GetIcpMetric(double created_interference, double received_interference);
-    double GetMetricSelf(Ipv4Address sender);
+    double GetIcpMetric(double created_interference, double received_interference, double delta = 0);
+    double GetMetricSelf(Ipv4Address sender, double totalCreatedInterferenceBySender);
     double GetMetricNeighbour(Ipv4Address neighbor);
 
 

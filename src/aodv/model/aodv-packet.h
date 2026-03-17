@@ -393,9 +393,20 @@ class RreqHeader : public Header
         return m_prevMetric;
     }
 
+    void SetTotalCreatedInterference(double interference)
+    {
+        m_totalCreatedInterference = interference;
+    }
+
+    double GetTotalCreatedInterference() const
+    {
+        return m_totalCreatedInterference;
+    }
+
   private:
     double m_prevMetric{0.0};   ///< Previous metric for the route, e.g., hop count, delay, etc.
     double m_metric{0.0}; ///< Metric for the route, e.g., hop count, delay, etc.
+    double m_totalCreatedInterference{0.0}; ///< Created interference for the route
     uint8_t m_flags;        ///< |J|R|G|D|U| bit flags, see RFC
     uint8_t m_reserved;     ///< Not used (must be 0)
     uint8_t m_hopCount;     ///< Hop Count

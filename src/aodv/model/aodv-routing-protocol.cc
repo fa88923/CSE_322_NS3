@@ -1064,35 +1064,44 @@ RoutingProtocol::LoopbackRoute(const Ipv4Header& hdr, Ptr<NetDevice> oif) const
     return rt;
 }
 
-double
-RoutingProtocol::GetMinNeighborMetric(Ipv4Address& bestNeighbor)
-{
-    double delta = 0.5;
-    double minMetric = std::numeric_limits<double>::infinity();
-    bestNeighbor = Ipv4Address();
+// double
+// RoutingProtocol::GetMinNeighborMetric(Ipv4Address& bestNeighbor)
+// {
+//     double delta = 0.5;
+//     double minMetric = std::numeric_limits<double>::infinity();
+//     bestNeighbor = Ipv4Address();
 
+//     for (const auto& entry : m_icpTable)
+//     {
+//         Ipv4Address neighbor = entry.first;
+//         double created_interference = entry.second.createdInterference;
+//         double received_interference = entry.second.receivedInterference;
+//         double metric = delta * created_interference + (1 - delta) * received_interference;
+
+//         if (metric < minMetric)
+//         {
+//             minMetric = metric;
+//             bestNeighbor = neighbor;
+//         }
+//     }
+
+//     if (minMetric == std::numeric_limits<double>::infinity())
+//     {
+//         minMetric = 0.0;
+//     }
+
+//     return minMetric;
+// }
+
+double RoutingProtocol::getTotalCreatedInterference()
+{
+    double total = 0.0;
     for (const auto& entry : m_icpTable)
     {
-        Ipv4Address neighbor = entry.first;
-        double created_interference = entry.second.createdInterference;
-        double received_interference = entry.second.receivedInterference;
-        double metric = delta * created_interference + (1 - delta) * received_interference;
-
-        if (metric < minMetric)
-        {
-            minMetric = metric;
-            bestNeighbor = neighbor;
-        }
+        total += entry.second.createdInterference;
     }
-
-    if (minMetric == std::numeric_limits<double>::infinity())
-    {
-        minMetric = 0.0;
-    }
-
-    return minMetric;
+    return total;
 }
-
 
 void
 RoutingProtocol::SendRequest(Ipv4Address dst)
@@ -1114,6 +1123,7 @@ RoutingProtocol::SendRequest(Ipv4Address dst)
     // Create RREQ header
     RreqHeader rreqHeader;
     rreqHeader.SetDst(dst);
+    rreqHeader.SetTotalCreatedInterference(getTotalCreatedInterference());
     
     // Ipv4Address bestNeighbor;
     // double minMetric = GetMinNeighborMetric(bestNeighbor);
@@ -1393,14 +1403,13 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
     }
 }
 
-double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference)
+double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double delta)
 {
-    double delta = 0.5;
     return delta * createdInterference + (1 - delta) * receivedInterference;
 }
 
 
-double RoutingProtocol::GetMetricSelf(Ipv4Address sender)
+double RoutingProtocol::GetMetricSelf(Ipv4Address sender, double totalCreatedInterferenceBySender)
 {
     double createdInterference = 0.0;
     double receivedInterference = 0.0;
@@ -1408,7 +1417,7 @@ double RoutingProtocol::GetMetricSelf(Ipv4Address sender)
     auto itNeighbor = m_icpTableOWN.find(sender);
     if (itNeighbor != m_icpTableOWN.end())
     {
-        createdInterference = itNeighbor->second.createdInterference;
+        createdInterference = totalCreatedInterferenceBySender - itNeighbor->second.createdInterference;
         receivedInterference = itNeighbor->second.receivedInterference;
         metric = GetIcpMetric(createdInterference, receivedInterference);
     }
@@ -1416,6 +1425,7 @@ double RoutingProtocol::GetMetricSelf(Ipv4Address sender)
     {
         createdInterference = m_thermalNoiseW;
         receivedInterference = m_thermalNoiseW;
+        metric = GetIcpMetric(createdInterference, receivedInterference);
     }
     return metric;
 
@@ -1429,7 +1439,8 @@ double RoutingProtocol::GetMetricNeighbour(Ipv4Address neighbor)
     auto itNeighbor = m_icpTable.find(neighbor);
     if (itNeighbor != m_icpTable.end())
     {
-        createdInterference = itNeighbor->second.createdInterference;
+        createdInterference = getTotalCreatedInterference() - itNeighbor->second.createdInterference;
+        
         receivedInterference = itNeighbor->second.receivedInterference;
         metric = GetIcpMetric(createdInterference, receivedInterference);
     }
@@ -1437,6 +1448,7 @@ double RoutingProtocol::GetMetricNeighbour(Ipv4Address neighbor)
     {
         createdInterference = m_thermalNoiseW;
         receivedInterference = m_thermalNoiseW;
+        metric = GetIcpMetric(createdInterference, receivedInterference);
     }
     return metric;
 
@@ -1466,9 +1478,9 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
     uint32_t id = rreqHeader.GetId();
     Ipv4Address origin = rreqHeader.GetOrigin();
 
-
+    double totalCreatedInterferenceBySender = rreqHeader.GetTotalCreatedInterference();
     double LinkCostToPrev = GetMetricNeighbour(src);
-    double LinkCostToSelf = GetMetricSelf(src);
+    double LinkCostToSelf = GetMetricSelf(src, totalCreatedInterferenceBySender);
 
     double prevMetric = rreqHeader.GetPrevMetric() + LinkCostToPrev;
     rreqHeader.SetPrevMetric(prevMetric);
@@ -1532,6 +1544,8 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
         newEntry.SetMetric(prevMetric);
         m_routingTable.AddRoute(newEntry);
     }
+
+    //Original update of the origin route
     // else
     // {
     //     if (toOrigin.GetValidSeqNo())
@@ -1587,7 +1601,7 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
                 m_ipv4->GetAddress(m_ipv4->GetInterfaceForAddress(receiver), 0));
 
             toOrigin.SetHop(hop);              // keep for compatibility
-            toOrigin.SetMetric(prevMetric);    // 🔥 CRITICAL LINE
+            toOrigin.SetMetric(prevMetric);    // 
             toOrigin.SetLifeTime(
                 std::max(Time(2 * m_netTraversalTime - 2 * hop * m_nodeTraversalTime),
                         toOrigin.GetLifeTime()));
@@ -1676,8 +1690,8 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
             if (!rreqHeader.GetDestinationOnly() && toDst.GetFlag() == VALID)
             {
                 m_routingTable.LookupRoute(origin, toOrigin);
-                // SendReplyByIntermediateNode(toDst, toOrigin, rreqHeader.GetGratuitousRrep());
-                // return;
+                SendReplyByIntermediateNode(toDst, toOrigin, rreqHeader.GetGratuitousRrep());
+                return;
             }
             rreqHeader.SetDstSeqno(toDst.GetSeqNo());
             rreqHeader.SetUnknownSeqno(false);
@@ -1768,6 +1782,7 @@ RoutingProtocol::SendReplyByIntermediateNode(RoutingTableEntry& toDst,
                           /*dstSeqNo=*/toDst.GetSeqNo(),
                           /*origin=*/toOrigin.GetDestination(),
                           /*lifetime=*/toDst.GetLifeTime());
+    rrepHeader.SetPrevMetric(toDst.GetMetric());
     /* If the node we received a RREQ for is a neighbor we are
      * probably facing a unidirectional link... Better request a RREP-ack
      */
@@ -1805,6 +1820,8 @@ RoutingProtocol::SendReplyByIntermediateNode(RoutingTableEntry& toDst,
                                  /*dstSeqNo=*/toOrigin.GetSeqNo(),
                                  /*origin=*/toDst.GetDestination(),
                                  /*lifetime=*/toOrigin.GetLifeTime());
+        
+        gratRepHeader.SetPrevMetric(toOrigin.GetMetric());
         Ptr<Packet> packetToDst = Create<Packet>();
         SocketIpTtlTag gratTag;
         gratTag.SetTtl(toDst.GetHop());
