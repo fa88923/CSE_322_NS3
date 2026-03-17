@@ -1093,6 +1093,16 @@ RoutingProtocol::GetMinNeighborMetric(Ipv4Address& bestNeighbor)
     return minMetric;
 }
 
+double
+RoutingProtocol::ComputeTotalCreatedInterference(const std::map<Ipv4Address, IcpEntry>& icpTable)
+{
+    double total = 0.0;
+    for (const auto& entry : icpTable)
+    {
+        total += entry.second.createdInterference;
+    }
+    return total;
+}
 
 void
 RoutingProtocol::SendRequest(Ipv4Address dst)
@@ -1190,6 +1200,13 @@ RoutingProtocol::SendRequest(Ipv4Address dst)
     m_requestId++;
     rreqHeader.SetId(m_requestId);
 
+    // ── IACR: compute I_i^c = sum of created interference at all neighbours
+    // Since this is a broadcast RREQ, there is no single "next hop" to exclude.
+    // We sum over ALL neighbours in m_icpTable (the table stores how much
+    // interference WE create at each neighbour, as reported back via IC-REP).
+
+    double totalCreatedInterference = ComputeTotalCreatedInterference(m_icpTable);//////////////
+
     // Send RREQ as subnet directed broadcast from each interface used by aodv
     for (auto j = m_socketAddresses.begin(); j != m_socketAddresses.end(); ++j)
     {
@@ -1198,6 +1215,9 @@ RoutingProtocol::SendRequest(Ipv4Address dst)
 
         rreqHeader.SetOrigin(iface.GetLocal());
         m_rreqIdCache.IsDuplicate(iface.GetLocal(), m_requestId);
+
+
+        rreqHeader.SetCreatedInterference(totalCreatedInterference);////////////
 
         Ptr<Packet> packet = Create<Packet>();
         SocketIpTtlTag tag;
@@ -1393,9 +1413,8 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
     }
 }
 
-double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference)
+double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double delta=0.5)
 {
-    double delta = 0.5;
     return delta * createdInterference + (1 - delta) * receivedInterference;
 }
 

@@ -3,6 +3,7 @@ AODV COMPREHENSIVE PERFORMANCE TEST
 ========================================
 Configuration:
   Nodes: 50
+  Seed (RngRun): 1
   Area: 300m x 300m
   Simulation time: 13s
   Data start: 3s
@@ -135,6 +136,7 @@ IC-REP, ICP, and Routing Table tracing enabled
   IC-REP Log: aodv-icrep-50nodes.log
   ICP Entry Log: aodv-icp-entries-50nodes.log
   Routing Table Log: aodv-routing-table-50nodes.log
+  Routing Updates Log: aodv-routing-updates-50nodes.log
 
 Connected IC-REP and ICP traces for Node 0
 Connected IC-REP and ICP traces for Node 1
@@ -17091,7 +17093,6 @@ STARTING SIMULATION
 5.04s: [ICP UPDATE] Node: 10.1.1.25 -> Neighbor: 10.1.1.49 (Total updates: 5276)
 5.04s: [IC-REP RECV] From: 10.1.1.46 To: 10.1.1.34 (Total: 5277)
 5.04s: [ICP UPDATE] Node: 10.1.1.34 -> Neighbor: 10.1.1.46 (Total updates: 5277)
-5.04s: [RX_IP] Packet UID=110306 TTL=35 hops=29
 5.04s: [IC-REP RECV] From: 10.1.1.6 To: 10.1.1.49 (Total: 5278)
 5.04s: [ICP UPDATE] Node: 10.1.1.49 -> Neighbor: 10.1.1.6 (Total updates: 5278)
 5.04s: [IC-REP RECV] From: 10.1.1.6 To: 10.1.1.42 (Total: 5279)
@@ -27434,7 +27435,6 @@ STARTING SIMULATION
 7.95s: [ICP UPDATE] Node: 10.1.1.46 -> Neighbor: 10.1.1.28 (Total updates: 8524)
 7.96s: [IC-REP RECV] From: 10.1.1.8 To: 10.1.1.36 (Total: 8525)
 7.96s: [ICP UPDATE] Node: 10.1.1.36 -> Neighbor: 10.1.1.8 (Total updates: 8525)
-7.96s: [RX_IP] Packet UID=172906 TTL=35 hops=29
 7.96s: [IC-REP RECV] From: 10.1.1.47 To: 10.1.1.3 (Total: 8526)
 7.96s: [ICP UPDATE] Node: 10.1.1.3 -> Neighbor: 10.1.1.47 (Total updates: 8526)
 7.96s: [IC-REP SENT] From: 10.1.1.31 To: 10.1.1.8 (Total: 9997)
@@ -45534,7 +45534,10 @@ COMPREHENSIVE RESULTS
    Packets lost: 188
    Packet Delivery Ratio: 0.3333
    Normalized Throughput (τ̂): 0.3333
-   Outage Probability: 0.6667
+   PHY RX attempts (successful preamble): 234673
+   SINR drops (failed preamble): 1299313
+   Total PHY RX attempts: 1533986
+   Outage Probability P(γ≤γth): 0.8470
 
 2. THROUGHPUT:
    Actual throughput: 38.5024 kbps
@@ -45557,3021 +45560,4005 @@ COMPREHENSIVE RESULTS
    Avg discovery time: 0.0000 ms
    Std dev: 0.0000 ms
 
-5. HOP COUNT:
-   Samples: 2
-   Average hops: 29.00
-   Min hops: 29.00
-   Max hops: 29.00
-
-6. CONTROL OVERHEAD:
+5. CONTROL OVERHEAD:
    RREQ sent: 0
    RREP sent: 0
    RERR sent: 0
    Total control packets: 0
    Control overhead ratio: 0.0000
 
-7. ROUTE STABILITY:
+6. ROUTE STABILITY:
    Link breaks: 0
    Route changes: 0
 
-8. ENERGY CONSUMPTION (APPROXIMATE):
-   TX Power: 100.0000 mW
-   Total energy: 115.5072 mJ
-   Energy per node: 2.3101 mJ
+7. FLOWMONITOR STATISTICS:
+5. HOP COUNT:
+   Samples: 14330
+   Total hops (intermediate + delivery): 14330.0000
+   Average hops per packet: 1.00
+
+   DEBUG: FlowMonitor flows detected: 343
+   DEBUG: Flow 1 txPackets=65 rxPackets=65
+   DEBUG: Flow 1 TX energy: 26.62 mJ
+   DEBUG: Flow 1 RX energy: 13.31 mJ
+   DEBUG: Flow 2 txPackets=65 rxPackets=0
+   DEBUG: Flow 2 TX energy: 26.62 mJ
+   DEBUG: Flow 3 txPackets=64 rxPackets=61
+   DEBUG: Flow 3 TX energy: 26.21 mJ
+   DEBUG: Flow 3 RX energy: 12.49 mJ
+   DEBUG: Flow 4 txPackets=59 rxPackets=58
+   DEBUG: Flow 4 TX energy: 24.17 mJ
+   DEBUG: Flow 4 RX energy: 11.88 mJ
+   DEBUG: Flow 5 txPackets=55 rxPackets=55
+   DEBUG: Flow 5 TX energy: 22.53 mJ
+   DEBUG: Flow 5 RX energy: 11.26 mJ
+   DEBUG: Flow 6 txPackets=64 rxPackets=56
+   DEBUG: Flow 6 TX energy: 26.21 mJ
+   DEBUG: Flow 6 RX energy: 11.47 mJ
+   DEBUG: Flow 7 txPackets=64 rxPackets=56
+   DEBUG: Flow 7 TX energy: 26.21 mJ
+   DEBUG: Flow 7 RX energy: 11.47 mJ
+   DEBUG: Flow 8 txPackets=45 rxPackets=44
+   DEBUG: Flow 8 TX energy: 18.43 mJ
+   DEBUG: Flow 8 RX energy: 9.01 mJ
+   DEBUG: Flow 9 txPackets=57 rxPackets=57
+   DEBUG: Flow 9 TX energy: 23.35 mJ
+   DEBUG: Flow 9 RX energy: 11.67 mJ
+   DEBUG: Flow 10 txPackets=63 rxPackets=0
+   DEBUG: Flow 10 TX energy: 25.80 mJ
+   DEBUG: Flow 11 txPackets=63 rxPackets=58
+   DEBUG: Flow 11 TX energy: 25.80 mJ
+   DEBUG: Flow 11 RX energy: 11.88 mJ
+   DEBUG: Flow 12 txPackets=62 rxPackets=62
+   DEBUG: Flow 12 TX energy: 25.40 mJ
+   DEBUG: Flow 12 RX energy: 12.70 mJ
+   DEBUG: Flow 13 txPackets=63 rxPackets=60
+   DEBUG: Flow 13 TX energy: 25.80 mJ
+   DEBUG: Flow 13 RX energy: 12.29 mJ
+   DEBUG: Flow 14 txPackets=58 rxPackets=45
+   DEBUG: Flow 14 TX energy: 23.76 mJ
+   DEBUG: Flow 14 RX energy: 9.22 mJ
+   DEBUG: Flow 15 txPackets=25 rxPackets=0
+   DEBUG: Flow 15 TX energy: 10.24 mJ
+   DEBUG: Flow 16 txPackets=21 rxPackets=21
+   DEBUG: Flow 16 TX energy: 8.60 mJ
+   DEBUG: Flow 16 RX energy: 4.30 mJ
+   DEBUG: Flow 17 txPackets=22 rxPackets=21
+   DEBUG: Flow 17 TX energy: 9.01 mJ
+   DEBUG: Flow 17 RX energy: 4.30 mJ
+   DEBUG: Flow 18 txPackets=27 rxPackets=0
+   DEBUG: Flow 18 TX energy: 11.06 mJ
+   DEBUG: Flow 19 txPackets=19 rxPackets=19
+   DEBUG: Flow 19 TX energy: 7.78 mJ
+   DEBUG: Flow 19 RX energy: 3.89 mJ
+   DEBUG: Flow 20 txPackets=59 rxPackets=59
+   DEBUG: Flow 20 TX energy: 24.17 mJ
+   DEBUG: Flow 20 RX energy: 12.08 mJ
+   DEBUG: Flow 21 txPackets=60 rxPackets=60
+   DEBUG: Flow 21 TX energy: 24.58 mJ
+   DEBUG: Flow 21 RX energy: 12.29 mJ
+   DEBUG: Flow 22 txPackets=57 rxPackets=57
+   DEBUG: Flow 22 TX energy: 23.35 mJ
+   DEBUG: Flow 22 RX energy: 11.67 mJ
+   DEBUG: Flow 23 txPackets=41 rxPackets=41
+   DEBUG: Flow 23 TX energy: 16.79 mJ
+   DEBUG: Flow 23 RX energy: 8.40 mJ
+   DEBUG: Flow 24 txPackets=64 rxPackets=64
+   DEBUG: Flow 24 TX energy: 26.21 mJ
+   DEBUG: Flow 24 RX energy: 13.11 mJ
+   DEBUG: Flow 25 txPackets=63 rxPackets=63
+   DEBUG: Flow 25 TX energy: 25.80 mJ
+   DEBUG: Flow 25 RX energy: 12.90 mJ
+   DEBUG: Flow 26 txPackets=56 rxPackets=55
+   DEBUG: Flow 26 TX energy: 22.94 mJ
+   DEBUG: Flow 26 RX energy: 11.26 mJ
+   DEBUG: Flow 27 txPackets=62 rxPackets=62
+   DEBUG: Flow 27 TX energy: 25.40 mJ
+   DEBUG: Flow 27 RX energy: 12.70 mJ
+   DEBUG: Flow 28 txPackets=63 rxPackets=63
+   DEBUG: Flow 28 TX energy: 25.80 mJ
+   DEBUG: Flow 28 RX energy: 12.90 mJ
+   DEBUG: Flow 29 txPackets=62 rxPackets=62
+   DEBUG: Flow 29 TX energy: 25.40 mJ
+   DEBUG: Flow 29 RX energy: 12.70 mJ
+   DEBUG: Flow 30 txPackets=62 rxPackets=62
+   DEBUG: Flow 30 TX energy: 25.40 mJ
+   DEBUG: Flow 30 RX energy: 12.70 mJ
+   DEBUG: Flow 31 txPackets=62 rxPackets=61
+   DEBUG: Flow 31 TX energy: 25.40 mJ
+   DEBUG: Flow 31 RX energy: 12.49 mJ
+   DEBUG: Flow 32 txPackets=61 rxPackets=58
+   DEBUG: Flow 32 TX energy: 24.99 mJ
+   DEBUG: Flow 32 RX energy: 11.88 mJ
+   DEBUG: Flow 33 txPackets=65 rxPackets=65
+   DEBUG: Flow 33 TX energy: 26.62 mJ
+   DEBUG: Flow 33 RX energy: 13.31 mJ
+   DEBUG: Flow 34 txPackets=59 rxPackets=59
+   DEBUG: Flow 34 TX energy: 24.17 mJ
+   DEBUG: Flow 34 RX energy: 12.08 mJ
+   DEBUG: Flow 35 txPackets=56 rxPackets=56
+   DEBUG: Flow 35 TX energy: 22.94 mJ
+   DEBUG: Flow 35 RX energy: 11.47 mJ
+   DEBUG: Flow 36 txPackets=59 rxPackets=58
+   DEBUG: Flow 36 TX energy: 24.17 mJ
+   DEBUG: Flow 36 RX energy: 11.88 mJ
+   DEBUG: Flow 37 txPackets=59 rxPackets=59
+   DEBUG: Flow 37 TX energy: 24.17 mJ
+   DEBUG: Flow 37 RX energy: 12.08 mJ
+   DEBUG: Flow 38 txPackets=52 rxPackets=52
+   DEBUG: Flow 38 TX energy: 21.30 mJ
+   DEBUG: Flow 38 RX energy: 10.65 mJ
+   DEBUG: Flow 39 txPackets=44 rxPackets=44
+   DEBUG: Flow 39 TX energy: 18.02 mJ
+   DEBUG: Flow 39 RX energy: 9.01 mJ
+   DEBUG: Flow 40 txPackets=27 rxPackets=27
+   DEBUG: Flow 40 TX energy: 11.06 mJ
+   DEBUG: Flow 40 RX energy: 5.53 mJ
+   DEBUG: Flow 41 txPackets=56 rxPackets=54
+   DEBUG: Flow 41 TX energy: 22.94 mJ
+   DEBUG: Flow 41 RX energy: 11.06 mJ
+   DEBUG: Flow 42 txPackets=52 rxPackets=45
+   DEBUG: Flow 42 TX energy: 21.30 mJ
+   DEBUG: Flow 42 RX energy: 9.22 mJ
+   DEBUG: Flow 43 txPackets=23 rxPackets=0
+   DEBUG: Flow 43 TX energy: 9.42 mJ
+   DEBUG: Flow 44 txPackets=45 rxPackets=44
+   DEBUG: Flow 44 TX energy: 18.43 mJ
+   DEBUG: Flow 44 RX energy: 9.01 mJ
+   DEBUG: Flow 45 txPackets=16 rxPackets=0
+   DEBUG: Flow 45 TX energy: 6.55 mJ
+   DEBUG: Flow 46 txPackets=32 rxPackets=0
+   DEBUG: Flow 46 TX energy: 13.11 mJ
+   DEBUG: Flow 47 txPackets=57 rxPackets=57
+   DEBUG: Flow 47 TX energy: 23.35 mJ
+   DEBUG: Flow 47 RX energy: 11.67 mJ
+   DEBUG: Flow 48 txPackets=42 rxPackets=42
+   DEBUG: Flow 48 TX energy: 17.20 mJ
+   DEBUG: Flow 48 RX energy: 8.60 mJ
+   DEBUG: Flow 49 txPackets=64 rxPackets=64
+   DEBUG: Flow 49 TX energy: 26.21 mJ
+   DEBUG: Flow 49 RX energy: 13.11 mJ
+   DEBUG: Flow 50 txPackets=64 rxPackets=64
+   DEBUG: Flow 50 TX energy: 26.21 mJ
+   DEBUG: Flow 50 RX energy: 13.11 mJ
+   DEBUG: Flow 51 txPackets=63 rxPackets=63
+   DEBUG: Flow 51 TX energy: 25.80 mJ
+   DEBUG: Flow 51 RX energy: 12.90 mJ
+   DEBUG: Flow 52 txPackets=57 rxPackets=0
+   DEBUG: Flow 52 TX energy: 23.35 mJ
+   DEBUG: Flow 53 txPackets=55 rxPackets=55
+   DEBUG: Flow 53 TX energy: 22.53 mJ
+   DEBUG: Flow 53 RX energy: 11.26 mJ
+   DEBUG: Flow 54 txPackets=56 rxPackets=56
+   DEBUG: Flow 54 TX energy: 22.94 mJ
+   DEBUG: Flow 54 RX energy: 11.47 mJ
+   DEBUG: Flow 55 txPackets=61 rxPackets=61
+   DEBUG: Flow 55 TX energy: 24.99 mJ
+   DEBUG: Flow 55 RX energy: 12.49 mJ
+   DEBUG: Flow 56 txPackets=56 rxPackets=54
+   DEBUG: Flow 56 TX energy: 22.94 mJ
+   DEBUG: Flow 56 RX energy: 11.06 mJ
+   DEBUG: Flow 57 txPackets=22 rxPackets=22
+   DEBUG: Flow 57 TX energy: 9.01 mJ
+   DEBUG: Flow 57 RX energy: 4.51 mJ
+   DEBUG: Flow 58 txPackets=58 rxPackets=56
+   DEBUG: Flow 58 TX energy: 23.76 mJ
+   DEBUG: Flow 58 RX energy: 11.47 mJ
+   DEBUG: Flow 59 txPackets=57 rxPackets=57
+   DEBUG: Flow 59 TX energy: 23.35 mJ
+   DEBUG: Flow 59 RX energy: 11.67 mJ
+   DEBUG: Flow 60 txPackets=41 rxPackets=0
+   DEBUG: Flow 60 TX energy: 16.79 mJ
+   DEBUG: Flow 61 txPackets=28 rxPackets=28
+   DEBUG: Flow 61 TX energy: 11.47 mJ
+   DEBUG: Flow 61 RX energy: 5.73 mJ
+   DEBUG: Flow 62 txPackets=65 rxPackets=65
+   DEBUG: Flow 62 TX energy: 26.62 mJ
+   DEBUG: Flow 62 RX energy: 13.31 mJ
+   DEBUG: Flow 63 txPackets=65 rxPackets=65
+   DEBUG: Flow 63 TX energy: 26.62 mJ
+   DEBUG: Flow 63 RX energy: 13.31 mJ
+   DEBUG: Flow 64 txPackets=65 rxPackets=65
+   DEBUG: Flow 64 TX energy: 26.62 mJ
+   DEBUG: Flow 64 RX energy: 13.31 mJ
+   DEBUG: Flow 65 txPackets=62 rxPackets=62
+   DEBUG: Flow 65 TX energy: 25.40 mJ
+   DEBUG: Flow 65 RX energy: 12.70 mJ
+   DEBUG: Flow 66 txPackets=56 rxPackets=54
+   DEBUG: Flow 66 TX energy: 22.94 mJ
+   DEBUG: Flow 66 RX energy: 11.06 mJ
+   DEBUG: Flow 67 txPackets=50 rxPackets=40
+   DEBUG: Flow 67 TX energy: 20.48 mJ
+   DEBUG: Flow 67 RX energy: 8.19 mJ
+   DEBUG: Flow 68 txPackets=41 rxPackets=38
+   DEBUG: Flow 68 TX energy: 16.79 mJ
+   DEBUG: Flow 68 RX energy: 7.78 mJ
+   DEBUG: Flow 69 txPackets=49 rxPackets=48
+   DEBUG: Flow 69 TX energy: 20.07 mJ
+   DEBUG: Flow 69 RX energy: 9.83 mJ
+   DEBUG: Flow 70 txPackets=40 rxPackets=0
+   DEBUG: Flow 70 TX energy: 16.38 mJ
+   DEBUG: Flow 71 txPackets=55 rxPackets=55
+   DEBUG: Flow 71 TX energy: 22.53 mJ
+   DEBUG: Flow 71 RX energy: 11.26 mJ
+   DEBUG: Flow 72 txPackets=56 rxPackets=54
+   DEBUG: Flow 72 TX energy: 22.94 mJ
+   DEBUG: Flow 72 RX energy: 11.06 mJ
+   DEBUG: Flow 73 txPackets=56 rxPackets=54
+   DEBUG: Flow 73 TX energy: 22.94 mJ
+   DEBUG: Flow 73 RX energy: 11.06 mJ
+   DEBUG: Flow 74 txPackets=55 rxPackets=48
+   DEBUG: Flow 74 TX energy: 22.53 mJ
+   DEBUG: Flow 74 RX energy: 9.83 mJ
+   DEBUG: Flow 75 txPackets=53 rxPackets=50
+   DEBUG: Flow 75 TX energy: 21.71 mJ
+   DEBUG: Flow 75 RX energy: 10.24 mJ
+   DEBUG: Flow 76 txPackets=55 rxPackets=53
+   DEBUG: Flow 76 TX energy: 22.53 mJ
+   DEBUG: Flow 76 RX energy: 10.85 mJ
+   DEBUG: Flow 77 txPackets=50 rxPackets=49
+   DEBUG: Flow 77 TX energy: 20.48 mJ
+   DEBUG: Flow 77 RX energy: 10.04 mJ
+   DEBUG: Flow 78 txPackets=43 rxPackets=43
+   DEBUG: Flow 78 TX energy: 17.61 mJ
+   DEBUG: Flow 78 RX energy: 8.81 mJ
+   DEBUG: Flow 79 txPackets=53 rxPackets=48
+   DEBUG: Flow 79 TX energy: 21.71 mJ
+   DEBUG: Flow 79 RX energy: 9.83 mJ
+   DEBUG: Flow 80 txPackets=57 rxPackets=57
+   DEBUG: Flow 80 TX energy: 23.35 mJ
+   DEBUG: Flow 80 RX energy: 11.67 mJ
+   DEBUG: Flow 81 txPackets=58 rxPackets=58
+   DEBUG: Flow 81 TX energy: 23.76 mJ
+   DEBUG: Flow 81 RX energy: 11.88 mJ
+   DEBUG: Flow 82 txPackets=54 rxPackets=54
+   DEBUG: Flow 82 TX energy: 22.12 mJ
+   DEBUG: Flow 82 RX energy: 11.06 mJ
+   DEBUG: Flow 83 txPackets=52 rxPackets=52
+   DEBUG: Flow 83 TX energy: 21.30 mJ
+   DEBUG: Flow 83 RX energy: 10.65 mJ
+   DEBUG: Flow 84 txPackets=34 rxPackets=33
+   DEBUG: Flow 84 TX energy: 13.93 mJ
+   DEBUG: Flow 84 RX energy: 6.76 mJ
+   DEBUG: Flow 85 txPackets=32 rxPackets=32
+   DEBUG: Flow 85 TX energy: 13.11 mJ
+   DEBUG: Flow 85 RX energy: 6.55 mJ
+   DEBUG: Flow 86 txPackets=65 rxPackets=65
+   DEBUG: Flow 86 TX energy: 26.62 mJ
+   DEBUG: Flow 86 RX energy: 13.31 mJ
+   DEBUG: Flow 87 txPackets=63 rxPackets=63
+   DEBUG: Flow 87 TX energy: 25.80 mJ
+   DEBUG: Flow 87 RX energy: 12.90 mJ
+   DEBUG: Flow 88 txPackets=38 rxPackets=36
+   DEBUG: Flow 88 TX energy: 15.56 mJ
+   DEBUG: Flow 88 RX energy: 7.37 mJ
+   DEBUG: Flow 89 txPackets=39 rxPackets=38
+   DEBUG: Flow 89 TX energy: 15.97 mJ
+   DEBUG: Flow 89 RX energy: 7.78 mJ
+   DEBUG: Flow 90 txPackets=42 rxPackets=42
+   DEBUG: Flow 90 TX energy: 17.20 mJ
+   DEBUG: Flow 90 RX energy: 8.60 mJ
+   DEBUG: Flow 91 txPackets=57 rxPackets=56
+   DEBUG: Flow 91 TX energy: 23.35 mJ
+   DEBUG: Flow 91 RX energy: 11.47 mJ
+   DEBUG: Flow 92 txPackets=60 rxPackets=59
+   DEBUG: Flow 92 TX energy: 24.58 mJ
+   DEBUG: Flow 92 RX energy: 12.08 mJ
+   DEBUG: Flow 93 txPackets=57 rxPackets=57
+   DEBUG: Flow 93 TX energy: 23.35 mJ
+   DEBUG: Flow 93 RX energy: 11.67 mJ
+   DEBUG: Flow 94 txPackets=58 rxPackets=57
+   DEBUG: Flow 94 TX energy: 23.76 mJ
+   DEBUG: Flow 94 RX energy: 11.67 mJ
+   DEBUG: Flow 95 txPackets=61 rxPackets=61
+   DEBUG: Flow 95 TX energy: 24.99 mJ
+   DEBUG: Flow 95 RX energy: 12.49 mJ
+   DEBUG: Flow 96 txPackets=55 rxPackets=55
+   DEBUG: Flow 96 TX energy: 22.53 mJ
+   DEBUG: Flow 96 RX energy: 11.26 mJ
+   DEBUG: Flow 97 txPackets=48 rxPackets=47
+   DEBUG: Flow 97 TX energy: 19.66 mJ
+   DEBUG: Flow 97 RX energy: 9.63 mJ
+   DEBUG: Flow 98 txPackets=53 rxPackets=45
+   DEBUG: Flow 98 TX energy: 21.71 mJ
+   DEBUG: Flow 98 RX energy: 9.22 mJ
+   DEBUG: Flow 99 txPackets=49 rxPackets=48
+   DEBUG: Flow 99 TX energy: 20.07 mJ
+   DEBUG: Flow 99 RX energy: 9.83 mJ
+   DEBUG: Flow 100 txPackets=54 rxPackets=49
+   DEBUG: Flow 100 TX energy: 22.12 mJ
+   DEBUG: Flow 100 RX energy: 10.04 mJ
+   DEBUG: Flow 101 txPackets=38 rxPackets=25
+   DEBUG: Flow 101 TX energy: 15.56 mJ
+   DEBUG: Flow 101 RX energy: 5.12 mJ
+   DEBUG: Flow 102 txPackets=43 rxPackets=43
+   DEBUG: Flow 102 TX energy: 17.61 mJ
+   DEBUG: Flow 102 RX energy: 8.81 mJ
+   DEBUG: Flow 103 txPackets=43 rxPackets=37
+   DEBUG: Flow 103 TX energy: 17.61 mJ
+   DEBUG: Flow 103 RX energy: 7.58 mJ
+   DEBUG: Flow 104 txPackets=46 rxPackets=46
+   DEBUG: Flow 104 TX energy: 18.84 mJ
+   DEBUG: Flow 104 RX energy: 9.42 mJ
+   DEBUG: Flow 105 txPackets=42 rxPackets=42
+   DEBUG: Flow 105 TX energy: 17.20 mJ
+   DEBUG: Flow 105 RX energy: 8.60 mJ
+   DEBUG: Flow 106 txPackets=56 rxPackets=0
+   DEBUG: Flow 106 TX energy: 22.94 mJ
+   DEBUG: Flow 107 txPackets=54 rxPackets=0
+   DEBUG: Flow 107 TX energy: 22.12 mJ
+   DEBUG: Flow 108 txPackets=37 rxPackets=35
+   DEBUG: Flow 108 TX energy: 15.16 mJ
+   DEBUG: Flow 108 RX energy: 7.17 mJ
+   DEBUG: Flow 109 txPackets=37 rxPackets=35
+   DEBUG: Flow 109 TX energy: 15.16 mJ
+   DEBUG: Flow 109 RX energy: 7.17 mJ
+   DEBUG: Flow 110 txPackets=52 rxPackets=52
+   DEBUG: Flow 110 TX energy: 21.30 mJ
+   DEBUG: Flow 110 RX energy: 10.65 mJ
+   DEBUG: Flow 111 txPackets=48 rxPackets=48
+   DEBUG: Flow 111 TX energy: 19.66 mJ
+   DEBUG: Flow 111 RX energy: 9.83 mJ
+   DEBUG: Flow 112 txPackets=22 rxPackets=22
+   DEBUG: Flow 112 TX energy: 9.01 mJ
+   DEBUG: Flow 112 RX energy: 4.51 mJ
+   DEBUG: Flow 113 txPackets=39 rxPackets=39
+   DEBUG: Flow 113 TX energy: 15.97 mJ
+   DEBUG: Flow 113 RX energy: 7.99 mJ
+   DEBUG: Flow 114 txPackets=33 rxPackets=0
+   DEBUG: Flow 114 TX energy: 13.52 mJ
+   DEBUG: Flow 115 txPackets=58 rxPackets=58
+   DEBUG: Flow 115 TX energy: 23.76 mJ
+   DEBUG: Flow 115 RX energy: 11.88 mJ
+   DEBUG: Flow 116 txPackets=60 rxPackets=60
+   DEBUG: Flow 116 TX energy: 24.58 mJ
+   DEBUG: Flow 116 RX energy: 12.29 mJ
+   DEBUG: Flow 117 txPackets=60 rxPackets=60
+   DEBUG: Flow 117 TX energy: 24.58 mJ
+   DEBUG: Flow 117 RX energy: 12.29 mJ
+   DEBUG: Flow 118 txPackets=54 rxPackets=54
+   DEBUG: Flow 118 TX energy: 22.12 mJ
+   DEBUG: Flow 118 RX energy: 11.06 mJ
+   DEBUG: Flow 119 txPackets=42 rxPackets=40
+   DEBUG: Flow 119 TX energy: 17.20 mJ
+   DEBUG: Flow 119 RX energy: 8.19 mJ
+   DEBUG: Flow 120 txPackets=49 rxPackets=43
+   DEBUG: Flow 120 TX energy: 20.07 mJ
+   DEBUG: Flow 120 RX energy: 8.81 mJ
+   DEBUG: Flow 121 txPackets=53 rxPackets=0
+   DEBUG: Flow 121 TX energy: 21.71 mJ
+   DEBUG: Flow 122 txPackets=54 rxPackets=0
+   DEBUG: Flow 122 TX energy: 22.12 mJ
+   DEBUG: Flow 123 txPackets=17 rxPackets=16
+   DEBUG: Flow 123 TX energy: 6.96 mJ
+   DEBUG: Flow 123 RX energy: 3.28 mJ
+   DEBUG: Flow 124 txPackets=18 rxPackets=17
+   DEBUG: Flow 124 TX energy: 7.37 mJ
+   DEBUG: Flow 124 RX energy: 3.48 mJ
+   DEBUG: Flow 125 txPackets=52 rxPackets=52
+   DEBUG: Flow 125 TX energy: 21.30 mJ
+   DEBUG: Flow 125 RX energy: 10.65 mJ
+   DEBUG: Flow 126 txPackets=61 rxPackets=61
+   DEBUG: Flow 126 TX energy: 24.99 mJ
+   DEBUG: Flow 126 RX energy: 12.49 mJ
+   DEBUG: Flow 127 txPackets=61 rxPackets=0
+   DEBUG: Flow 127 TX energy: 24.99 mJ
+   DEBUG: Flow 128 txPackets=59 rxPackets=0
+   DEBUG: Flow 128 TX energy: 24.17 mJ
+   DEBUG: Flow 129 txPackets=63 rxPackets=63
+   DEBUG: Flow 129 TX energy: 25.80 mJ
+   DEBUG: Flow 129 RX energy: 12.90 mJ
+   DEBUG: Flow 130 txPackets=65 rxPackets=65
+   DEBUG: Flow 130 TX energy: 26.62 mJ
+   DEBUG: Flow 130 RX energy: 13.31 mJ
+   DEBUG: Flow 131 txPackets=65 rxPackets=65
+   DEBUG: Flow 131 TX energy: 26.62 mJ
+   DEBUG: Flow 131 RX energy: 13.31 mJ
+   DEBUG: Flow 132 txPackets=65 rxPackets=65
+   DEBUG: Flow 132 TX energy: 26.62 mJ
+   DEBUG: Flow 132 RX energy: 13.31 mJ
+   DEBUG: Flow 133 txPackets=64 rxPackets=64
+   DEBUG: Flow 133 TX energy: 26.21 mJ
+   DEBUG: Flow 133 RX energy: 13.11 mJ
+   DEBUG: Flow 134 txPackets=55 rxPackets=55
+   DEBUG: Flow 134 TX energy: 22.53 mJ
+   DEBUG: Flow 134 RX energy: 11.26 mJ
+   DEBUG: Flow 135 txPackets=54 rxPackets=54
+   DEBUG: Flow 135 TX energy: 22.12 mJ
+   DEBUG: Flow 135 RX energy: 11.06 mJ
+   DEBUG: Flow 136 txPackets=47 rxPackets=47
+   DEBUG: Flow 136 TX energy: 19.25 mJ
+   DEBUG: Flow 136 RX energy: 9.63 mJ
+   DEBUG: Flow 137 txPackets=50 rxPackets=50
+   DEBUG: Flow 137 TX energy: 20.48 mJ
+   DEBUG: Flow 137 RX energy: 10.24 mJ
+   DEBUG: Flow 138 txPackets=58 rxPackets=58
+   DEBUG: Flow 138 TX energy: 23.76 mJ
+   DEBUG: Flow 138 RX energy: 11.88 mJ
+   DEBUG: Flow 139 txPackets=60 rxPackets=60
+   DEBUG: Flow 139 TX energy: 24.58 mJ
+   DEBUG: Flow 139 RX energy: 12.29 mJ
+   DEBUG: Flow 140 txPackets=36 rxPackets=36
+   DEBUG: Flow 140 TX energy: 14.75 mJ
+   DEBUG: Flow 140 RX energy: 7.37 mJ
+   DEBUG: Flow 141 txPackets=33 rxPackets=33
+   DEBUG: Flow 141 TX energy: 13.52 mJ
+   DEBUG: Flow 141 RX energy: 6.76 mJ
+   DEBUG: Flow 142 txPackets=39 rxPackets=39
+   DEBUG: Flow 142 TX energy: 15.97 mJ
+   DEBUG: Flow 142 RX energy: 7.99 mJ
+   DEBUG: Flow 143 txPackets=38 rxPackets=38
+   DEBUG: Flow 143 TX energy: 15.56 mJ
+   DEBUG: Flow 143 RX energy: 7.78 mJ
+   DEBUG: Flow 144 txPackets=65 rxPackets=65
+   DEBUG: Flow 144 TX energy: 26.62 mJ
+   DEBUG: Flow 144 RX energy: 13.31 mJ
+   DEBUG: Flow 145 txPackets=65 rxPackets=65
+   DEBUG: Flow 145 TX energy: 26.62 mJ
+   DEBUG: Flow 145 RX energy: 13.31 mJ
+   DEBUG: Flow 146 txPackets=65 rxPackets=65
+   DEBUG: Flow 146 TX energy: 26.62 mJ
+   DEBUG: Flow 146 RX energy: 13.31 mJ
+   DEBUG: Flow 147 txPackets=61 rxPackets=61
+   DEBUG: Flow 147 TX energy: 24.99 mJ
+   DEBUG: Flow 147 RX energy: 12.49 mJ
+   DEBUG: Flow 148 txPackets=61 rxPackets=61
+   DEBUG: Flow 148 TX energy: 24.99 mJ
+   DEBUG: Flow 148 RX energy: 12.49 mJ
+   DEBUG: Flow 149 txPackets=58 rxPackets=58
+   DEBUG: Flow 149 TX energy: 23.76 mJ
+   DEBUG: Flow 149 RX energy: 11.88 mJ
+   DEBUG: Flow 150 txPackets=60 rxPackets=58
+   DEBUG: Flow 150 TX energy: 24.58 mJ
+   DEBUG: Flow 150 RX energy: 11.88 mJ
+   DEBUG: Flow 151 txPackets=52 rxPackets=0
+   DEBUG: Flow 151 TX energy: 21.30 mJ
+   DEBUG: Flow 152 txPackets=55 rxPackets=55
+   DEBUG: Flow 152 TX energy: 22.53 mJ
+   DEBUG: Flow 152 RX energy: 11.26 mJ
+   DEBUG: Flow 153 txPackets=58 rxPackets=58
+   DEBUG: Flow 153 TX energy: 23.76 mJ
+   DEBUG: Flow 153 RX energy: 11.88 mJ
+   DEBUG: Flow 154 txPackets=55 rxPackets=55
+   DEBUG: Flow 154 TX energy: 22.53 mJ
+   DEBUG: Flow 154 RX energy: 11.26 mJ
+   DEBUG: Flow 155 txPackets=57 rxPackets=57
+   DEBUG: Flow 155 TX energy: 23.35 mJ
+   DEBUG: Flow 155 RX energy: 11.67 mJ
+   DEBUG: Flow 156 txPackets=57 rxPackets=57
+   DEBUG: Flow 156 TX energy: 23.35 mJ
+   DEBUG: Flow 156 RX energy: 11.67 mJ
+   DEBUG: Flow 157 txPackets=56 rxPackets=56
+   DEBUG: Flow 157 TX energy: 22.94 mJ
+   DEBUG: Flow 157 RX energy: 11.47 mJ
+   DEBUG: Flow 158 txPackets=57 rxPackets=52
+   DEBUG: Flow 158 TX energy: 23.35 mJ
+   DEBUG: Flow 158 RX energy: 10.65 mJ
+   DEBUG: Flow 159 txPackets=53 rxPackets=53
+   DEBUG: Flow 159 TX energy: 21.71 mJ
+   DEBUG: Flow 159 RX energy: 10.85 mJ
+   DEBUG: Flow 160 txPackets=39 rxPackets=32
+   DEBUG: Flow 160 TX energy: 15.97 mJ
+   DEBUG: Flow 160 RX energy: 6.55 mJ
+   DEBUG: Flow 161 txPackets=33 rxPackets=31
+   DEBUG: Flow 161 TX energy: 13.52 mJ
+   DEBUG: Flow 161 RX energy: 6.35 mJ
+   DEBUG: Flow 162 txPackets=62 rxPackets=62
+   DEBUG: Flow 162 TX energy: 25.40 mJ
+   DEBUG: Flow 162 RX energy: 12.70 mJ
+   DEBUG: Flow 163 txPackets=59 rxPackets=59
+   DEBUG: Flow 163 TX energy: 24.17 mJ
+   DEBUG: Flow 163 RX energy: 12.08 mJ
+   DEBUG: Flow 164 txPackets=60 rxPackets=0
+   DEBUG: Flow 164 TX energy: 24.58 mJ
+   DEBUG: Flow 165 txPackets=63 rxPackets=63
+   DEBUG: Flow 165 TX energy: 25.80 mJ
+   DEBUG: Flow 165 RX energy: 12.90 mJ
+   DEBUG: Flow 166 txPackets=60 rxPackets=60
+   DEBUG: Flow 166 TX energy: 24.58 mJ
+   DEBUG: Flow 166 RX energy: 12.29 mJ
+   DEBUG: Flow 167 txPackets=38 rxPackets=38
+   DEBUG: Flow 167 TX energy: 15.56 mJ
+   DEBUG: Flow 167 RX energy: 7.78 mJ
+   DEBUG: Flow 168 txPackets=54 rxPackets=46
+   DEBUG: Flow 168 TX energy: 22.12 mJ
+   DEBUG: Flow 168 RX energy: 9.42 mJ
+   DEBUG: Flow 169 txPackets=64 rxPackets=0
+   DEBUG: Flow 169 TX energy: 26.21 mJ
+   DEBUG: Flow 170 txPackets=30 rxPackets=29
+   DEBUG: Flow 170 TX energy: 12.29 mJ
+   DEBUG: Flow 170 RX energy: 5.94 mJ
+   DEBUG: Flow 171 txPackets=58 rxPackets=58
+   DEBUG: Flow 171 TX energy: 23.76 mJ
+   DEBUG: Flow 171 RX energy: 11.88 mJ
+   DEBUG: Flow 172 txPackets=48 rxPackets=48
+   DEBUG: Flow 172 TX energy: 19.66 mJ
+   DEBUG: Flow 172 RX energy: 9.83 mJ
+   DEBUG: Flow 173 txPackets=64 rxPackets=64
+   DEBUG: Flow 173 TX energy: 26.21 mJ
+   DEBUG: Flow 173 RX energy: 13.11 mJ
+   DEBUG: Flow 174 txPackets=40 rxPackets=35
+   DEBUG: Flow 174 TX energy: 16.38 mJ
+   DEBUG: Flow 174 RX energy: 7.17 mJ
+   DEBUG: Flow 175 txPackets=33 rxPackets=0
+   DEBUG: Flow 175 TX energy: 13.52 mJ
+   DEBUG: Flow 176 txPackets=65 rxPackets=65
+   DEBUG: Flow 176 TX energy: 26.62 mJ
+   DEBUG: Flow 176 RX energy: 13.31 mJ
+   DEBUG: Flow 177 txPackets=62 rxPackets=62
+   DEBUG: Flow 177 TX energy: 25.40 mJ
+   DEBUG: Flow 177 RX energy: 12.70 mJ
+   DEBUG: Flow 178 txPackets=61 rxPackets=61
+   DEBUG: Flow 178 TX energy: 24.99 mJ
+   DEBUG: Flow 178 RX energy: 12.49 mJ
+   DEBUG: Flow 179 txPackets=60 rxPackets=60
+   DEBUG: Flow 179 TX energy: 24.58 mJ
+   DEBUG: Flow 179 RX energy: 12.29 mJ
+   DEBUG: Flow 180 txPackets=60 rxPackets=60
+   DEBUG: Flow 180 TX energy: 24.58 mJ
+   DEBUG: Flow 180 RX energy: 12.29 mJ
+   DEBUG: Flow 181 txPackets=50 rxPackets=50
+   DEBUG: Flow 181 TX energy: 20.48 mJ
+   DEBUG: Flow 181 RX energy: 10.24 mJ
+   DEBUG: Flow 182 txPackets=51 rxPackets=51
+   DEBUG: Flow 182 TX energy: 20.89 mJ
+   DEBUG: Flow 182 RX energy: 10.44 mJ
+   DEBUG: Flow 183 txPackets=52 rxPackets=50
+   DEBUG: Flow 183 TX energy: 21.30 mJ
+   DEBUG: Flow 183 RX energy: 10.24 mJ
+   DEBUG: Flow 184 txPackets=57 rxPackets=57
+   DEBUG: Flow 184 TX energy: 23.35 mJ
+   DEBUG: Flow 184 RX energy: 11.67 mJ
+   DEBUG: Flow 185 txPackets=60 rxPackets=59
+   DEBUG: Flow 185 TX energy: 24.58 mJ
+   DEBUG: Flow 185 RX energy: 12.08 mJ
+   DEBUG: Flow 186 txPackets=65 rxPackets=65
+   DEBUG: Flow 186 TX energy: 26.62 mJ
+   DEBUG: Flow 186 RX energy: 13.31 mJ
+   DEBUG: Flow 187 txPackets=64 rxPackets=64
+   DEBUG: Flow 187 TX energy: 26.21 mJ
+   DEBUG: Flow 187 RX energy: 13.11 mJ
+   DEBUG: Flow 188 txPackets=63 rxPackets=63
+   DEBUG: Flow 188 TX energy: 25.80 mJ
+   DEBUG: Flow 188 RX energy: 12.90 mJ
+   DEBUG: Flow 189 txPackets=64 rxPackets=62
+   DEBUG: Flow 189 TX energy: 26.21 mJ
+   DEBUG: Flow 189 RX energy: 12.70 mJ
+   DEBUG: Flow 190 txPackets=57 rxPackets=57
+   DEBUG: Flow 190 TX energy: 23.35 mJ
+   DEBUG: Flow 190 RX energy: 11.67 mJ
+   DEBUG: Flow 191 txPackets=57 rxPackets=0
+   DEBUG: Flow 191 TX energy: 23.35 mJ
+   DEBUG: Flow 192 txPackets=57 rxPackets=57
+   DEBUG: Flow 192 TX energy: 23.35 mJ
+   DEBUG: Flow 192 RX energy: 11.67 mJ
+   DEBUG: Flow 193 txPackets=53 rxPackets=0
+   DEBUG: Flow 193 TX energy: 21.71 mJ
+   DEBUG: Flow 194 txPackets=49 rxPackets=0
+   DEBUG: Flow 194 TX energy: 20.07 mJ
+   DEBUG: Flow 195 txPackets=53 rxPackets=53
+   DEBUG: Flow 195 TX energy: 21.71 mJ
+   DEBUG: Flow 195 RX energy: 10.85 mJ
+   DEBUG: Flow 196 txPackets=64 rxPackets=64
+   DEBUG: Flow 196 TX energy: 26.21 mJ
+   DEBUG: Flow 196 RX energy: 13.11 mJ
+   DEBUG: Flow 197 txPackets=60 rxPackets=60
+   DEBUG: Flow 197 TX energy: 24.58 mJ
+   DEBUG: Flow 197 RX energy: 12.29 mJ
+   DEBUG: Flow 198 txPackets=60 rxPackets=60
+   DEBUG: Flow 198 TX energy: 24.58 mJ
+   DEBUG: Flow 198 RX energy: 12.29 mJ
+   DEBUG: Flow 199 txPackets=58 rxPackets=58
+   DEBUG: Flow 199 TX energy: 23.76 mJ
+   DEBUG: Flow 199 RX energy: 11.88 mJ
+   DEBUG: Flow 200 txPackets=34 rxPackets=34
+   DEBUG: Flow 200 TX energy: 13.93 mJ
+   DEBUG: Flow 200 RX energy: 6.96 mJ
+   DEBUG: Flow 201 txPackets=49 rxPackets=44
+   DEBUG: Flow 201 TX energy: 20.07 mJ
+   DEBUG: Flow 201 RX energy: 9.01 mJ
+   DEBUG: Flow 202 txPackets=62 rxPackets=62
+   DEBUG: Flow 202 TX energy: 25.40 mJ
+   DEBUG: Flow 202 RX energy: 12.70 mJ
+   DEBUG: Flow 203 txPackets=62 rxPackets=62
+   DEBUG: Flow 203 TX energy: 25.40 mJ
+   DEBUG: Flow 203 RX energy: 12.70 mJ
+   DEBUG: Flow 204 txPackets=62 rxPackets=62
+   DEBUG: Flow 204 TX energy: 25.40 mJ
+   DEBUG: Flow 204 RX energy: 12.70 mJ
+   DEBUG: Flow 205 txPackets=61 rxPackets=61
+   DEBUG: Flow 205 TX energy: 24.99 mJ
+   DEBUG: Flow 205 RX energy: 12.49 mJ
+   DEBUG: Flow 206 txPackets=60 rxPackets=60
+   DEBUG: Flow 206 TX energy: 24.58 mJ
+   DEBUG: Flow 206 RX energy: 12.29 mJ
+   DEBUG: Flow 207 txPackets=61 rxPackets=61
+   DEBUG: Flow 207 TX energy: 24.99 mJ
+   DEBUG: Flow 207 RX energy: 12.49 mJ
+   DEBUG: Flow 208 txPackets=54 rxPackets=54
+   DEBUG: Flow 208 TX energy: 22.12 mJ
+   DEBUG: Flow 208 RX energy: 11.06 mJ
+   DEBUG: Flow 209 txPackets=55 rxPackets=55
+   DEBUG: Flow 209 TX energy: 22.53 mJ
+   DEBUG: Flow 209 RX energy: 11.26 mJ
+   DEBUG: Flow 210 txPackets=49 rxPackets=49
+   DEBUG: Flow 210 TX energy: 20.07 mJ
+   DEBUG: Flow 210 RX energy: 10.04 mJ
+   DEBUG: Flow 211 txPackets=54 rxPackets=52
+   DEBUG: Flow 211 TX energy: 22.12 mJ
+   DEBUG: Flow 211 RX energy: 10.65 mJ
+   DEBUG: Flow 212 txPackets=40 rxPackets=37
+   DEBUG: Flow 212 TX energy: 16.38 mJ
+   DEBUG: Flow 212 RX energy: 7.58 mJ
+   DEBUG: Flow 213 txPackets=39 rxPackets=38
+   DEBUG: Flow 213 TX energy: 15.97 mJ
+   DEBUG: Flow 213 RX energy: 7.78 mJ
+   DEBUG: Flow 214 txPackets=40 rxPackets=0
+   DEBUG: Flow 214 TX energy: 16.38 mJ
+   DEBUG: Flow 215 txPackets=49 rxPackets=0
+   DEBUG: Flow 215 TX energy: 20.07 mJ
+   DEBUG: Flow 216 txPackets=24 rxPackets=22
+   DEBUG: Flow 216 TX energy: 9.83 mJ
+   DEBUG: Flow 216 RX energy: 4.51 mJ
+   DEBUG: Flow 217 txPackets=64 rxPackets=64
+   DEBUG: Flow 217 TX energy: 26.21 mJ
+   DEBUG: Flow 217 RX energy: 13.11 mJ
+   DEBUG: Flow 218 txPackets=64 rxPackets=63
+   DEBUG: Flow 218 TX energy: 26.21 mJ
+   DEBUG: Flow 218 RX energy: 12.90 mJ
+   DEBUG: Flow 219 txPackets=64 rxPackets=64
+   DEBUG: Flow 219 TX energy: 26.21 mJ
+   DEBUG: Flow 219 RX energy: 13.11 mJ
+   DEBUG: Flow 220 txPackets=60 rxPackets=60
+   DEBUG: Flow 220 TX energy: 24.58 mJ
+   DEBUG: Flow 220 RX energy: 12.29 mJ
+   DEBUG: Flow 221 txPackets=60 rxPackets=60
+   DEBUG: Flow 221 TX energy: 24.58 mJ
+   DEBUG: Flow 221 RX energy: 12.29 mJ
+   DEBUG: Flow 222 txPackets=43 rxPackets=42
+   DEBUG: Flow 222 TX energy: 17.61 mJ
+   DEBUG: Flow 222 RX energy: 8.60 mJ
+   DEBUG: Flow 223 txPackets=44 rxPackets=38
+   DEBUG: Flow 223 TX energy: 18.02 mJ
+   DEBUG: Flow 223 RX energy: 7.78 mJ
+   DEBUG: Flow 224 txPackets=63 rxPackets=63
+   DEBUG: Flow 224 TX energy: 25.80 mJ
+   DEBUG: Flow 224 RX energy: 12.90 mJ
+   DEBUG: Flow 225 txPackets=63 rxPackets=63
+   DEBUG: Flow 225 TX energy: 25.80 mJ
+   DEBUG: Flow 225 RX energy: 12.90 mJ
+   DEBUG: Flow 226 txPackets=63 rxPackets=63
+   DEBUG: Flow 226 TX energy: 25.80 mJ
+   DEBUG: Flow 226 RX energy: 12.90 mJ
+   DEBUG: Flow 227 txPackets=51 rxPackets=51
+   DEBUG: Flow 227 TX energy: 20.89 mJ
+   DEBUG: Flow 227 RX energy: 10.44 mJ
+   DEBUG: Flow 228 txPackets=54 rxPackets=54
+   DEBUG: Flow 228 TX energy: 22.12 mJ
+   DEBUG: Flow 228 RX energy: 11.06 mJ
+   DEBUG: Flow 229 txPackets=57 rxPackets=49
+   DEBUG: Flow 229 TX energy: 23.35 mJ
+   DEBUG: Flow 229 RX energy: 10.04 mJ
+   DEBUG: Flow 230 txPackets=33 rxPackets=33
+   DEBUG: Flow 230 TX energy: 13.52 mJ
+   DEBUG: Flow 230 RX energy: 6.76 mJ
+   DEBUG: Flow 231 txPackets=32 rxPackets=0
+   DEBUG: Flow 231 TX energy: 13.11 mJ
+   DEBUG: Flow 232 txPackets=59 rxPackets=59
+   DEBUG: Flow 232 TX energy: 24.17 mJ
+   DEBUG: Flow 232 RX energy: 12.08 mJ
+   DEBUG: Flow 233 txPackets=61 rxPackets=61
+   DEBUG: Flow 233 TX energy: 24.99 mJ
+   DEBUG: Flow 233 RX energy: 12.49 mJ
+   DEBUG: Flow 234 txPackets=61 rxPackets=48
+   DEBUG: Flow 234 TX energy: 24.99 mJ
+   DEBUG: Flow 234 RX energy: 9.83 mJ
+   DEBUG: Flow 235 txPackets=54 rxPackets=54
+   DEBUG: Flow 235 TX energy: 22.12 mJ
+   DEBUG: Flow 235 RX energy: 11.06 mJ
+   DEBUG: Flow 236 txPackets=52 rxPackets=52
+   DEBUG: Flow 236 TX energy: 21.30 mJ
+   DEBUG: Flow 236 RX energy: 10.65 mJ
+   DEBUG: Flow 237 txPackets=48 rxPackets=45
+   DEBUG: Flow 237 TX energy: 19.66 mJ
+   DEBUG: Flow 237 RX energy: 9.22 mJ
+   DEBUG: Flow 238 txPackets=36 rxPackets=36
+   DEBUG: Flow 238 TX energy: 14.75 mJ
+   DEBUG: Flow 238 RX energy: 7.37 mJ
+   DEBUG: Flow 239 txPackets=40 rxPackets=0
+   DEBUG: Flow 239 TX energy: 16.38 mJ
+   DEBUG: Flow 240 txPackets=36 rxPackets=0
+   DEBUG: Flow 240 TX energy: 14.75 mJ
+   DEBUG: Flow 241 txPackets=47 rxPackets=46
+   DEBUG: Flow 241 TX energy: 19.25 mJ
+   DEBUG: Flow 241 RX energy: 9.42 mJ
+   DEBUG: Flow 242 txPackets=38 rxPackets=0
+   DEBUG: Flow 242 TX energy: 15.56 mJ
+   DEBUG: Flow 243 txPackets=42 rxPackets=32
+   DEBUG: Flow 243 TX energy: 17.20 mJ
+   DEBUG: Flow 243 RX energy: 6.55 mJ
+   DEBUG: Flow 244 txPackets=39 rxPackets=0
+   DEBUG: Flow 244 TX energy: 15.97 mJ
+   DEBUG: Flow 245 txPackets=55 rxPackets=55
+   DEBUG: Flow 245 TX energy: 22.53 mJ
+   DEBUG: Flow 245 RX energy: 11.26 mJ
+   DEBUG: Flow 246 txPackets=49 rxPackets=49
+   DEBUG: Flow 246 TX energy: 20.07 mJ
+   DEBUG: Flow 246 RX energy: 10.04 mJ
+   DEBUG: Flow 247 txPackets=51 rxPackets=51
+   DEBUG: Flow 247 TX energy: 20.89 mJ
+   DEBUG: Flow 247 RX energy: 10.44 mJ
+   DEBUG: Flow 248 txPackets=48 rxPackets=48
+   DEBUG: Flow 248 TX energy: 19.66 mJ
+   DEBUG: Flow 248 RX energy: 9.83 mJ
+   DEBUG: Flow 249 txPackets=42 rxPackets=36
+   DEBUG: Flow 249 TX energy: 17.20 mJ
+   DEBUG: Flow 249 RX energy: 7.37 mJ
+   DEBUG: Flow 250 txPackets=57 rxPackets=51
+   DEBUG: Flow 250 TX energy: 23.35 mJ
+   DEBUG: Flow 250 RX energy: 10.44 mJ
+   DEBUG: Flow 251 txPackets=24 rxPackets=24
+   DEBUG: Flow 251 TX energy: 9.83 mJ
+   DEBUG: Flow 251 RX energy: 4.92 mJ
+   DEBUG: Flow 252 txPackets=59 rxPackets=0
+   DEBUG: Flow 252 TX energy: 24.17 mJ
+   DEBUG: Flow 253 txPackets=25 rxPackets=25
+   DEBUG: Flow 253 TX energy: 10.24 mJ
+   DEBUG: Flow 253 RX energy: 5.12 mJ
+   DEBUG: Flow 254 txPackets=42 rxPackets=0
+   DEBUG: Flow 254 TX energy: 17.20 mJ
+   DEBUG: Flow 255 txPackets=34 rxPackets=30
+   DEBUG: Flow 255 TX energy: 13.93 mJ
+   DEBUG: Flow 255 RX energy: 6.14 mJ
+   DEBUG: Flow 256 txPackets=34 rxPackets=34
+   DEBUG: Flow 256 TX energy: 13.93 mJ
+   DEBUG: Flow 256 RX energy: 6.96 mJ
+   DEBUG: Flow 257 txPackets=61 rxPackets=58
+   DEBUG: Flow 257 TX energy: 24.99 mJ
+   DEBUG: Flow 257 RX energy: 11.88 mJ
+   DEBUG: Flow 258 txPackets=52 rxPackets=51
+   DEBUG: Flow 258 TX energy: 21.30 mJ
+   DEBUG: Flow 258 RX energy: 10.44 mJ
+   DEBUG: Flow 259 txPackets=49 rxPackets=49
+   DEBUG: Flow 259 TX energy: 20.07 mJ
+   DEBUG: Flow 259 RX energy: 10.04 mJ
+   DEBUG: Flow 260 txPackets=57 rxPackets=56
+   DEBUG: Flow 260 TX energy: 23.35 mJ
+   DEBUG: Flow 260 RX energy: 11.47 mJ
+   DEBUG: Flow 261 txPackets=49 rxPackets=48
+   DEBUG: Flow 261 TX energy: 20.07 mJ
+   DEBUG: Flow 261 RX energy: 9.83 mJ
+   DEBUG: Flow 262 txPackets=58 rxPackets=57
+   DEBUG: Flow 262 TX energy: 23.76 mJ
+   DEBUG: Flow 262 RX energy: 11.67 mJ
+   DEBUG: Flow 263 txPackets=63 rxPackets=63
+   DEBUG: Flow 263 TX energy: 25.80 mJ
+   DEBUG: Flow 263 RX energy: 12.90 mJ
+   DEBUG: Flow 264 txPackets=63 rxPackets=63
+   DEBUG: Flow 264 TX energy: 25.80 mJ
+   DEBUG: Flow 264 RX energy: 12.90 mJ
+   DEBUG: Flow 265 txPackets=62 rxPackets=62
+   DEBUG: Flow 265 TX energy: 25.40 mJ
+   DEBUG: Flow 265 RX energy: 12.70 mJ
+   DEBUG: Flow 266 txPackets=35 rxPackets=35
+   DEBUG: Flow 266 TX energy: 14.34 mJ
+   DEBUG: Flow 266 RX energy: 7.17 mJ
+   DEBUG: Flow 267 txPackets=43 rxPackets=42
+   DEBUG: Flow 267 TX energy: 17.61 mJ
+   DEBUG: Flow 267 RX energy: 8.60 mJ
+   DEBUG: Flow 268 txPackets=44 rxPackets=44
+   DEBUG: Flow 268 TX energy: 18.02 mJ
+   DEBUG: Flow 268 RX energy: 9.01 mJ
+   DEBUG: Flow 269 txPackets=48 rxPackets=48
+   DEBUG: Flow 269 TX energy: 19.66 mJ
+   DEBUG: Flow 269 RX energy: 9.83 mJ
+   DEBUG: Flow 270 txPackets=29 rxPackets=25
+   DEBUG: Flow 270 TX energy: 11.88 mJ
+   DEBUG: Flow 270 RX energy: 5.12 mJ
+   DEBUG: Flow 271 txPackets=15 rxPackets=15
+   DEBUG: Flow 271 TX energy: 6.14 mJ
+   DEBUG: Flow 271 RX energy: 3.07 mJ
+   DEBUG: Flow 272 txPackets=60 rxPackets=60
+   DEBUG: Flow 272 TX energy: 24.58 mJ
+   DEBUG: Flow 272 RX energy: 12.29 mJ
+   DEBUG: Flow 273 txPackets=41 rxPackets=41
+   DEBUG: Flow 273 TX energy: 16.79 mJ
+   DEBUG: Flow 273 RX energy: 8.40 mJ
+   DEBUG: Flow 274 txPackets=48 rxPackets=0
+   DEBUG: Flow 274 TX energy: 19.66 mJ
+   DEBUG: Flow 275 txPackets=48 rxPackets=48
+   DEBUG: Flow 275 TX energy: 19.66 mJ
+   DEBUG: Flow 275 RX energy: 9.83 mJ
+   DEBUG: Flow 276 txPackets=43 rxPackets=43
+   DEBUG: Flow 276 TX energy: 17.61 mJ
+   DEBUG: Flow 276 RX energy: 8.81 mJ
+   DEBUG: Flow 277 txPackets=38 rxPackets=36
+   DEBUG: Flow 277 TX energy: 15.56 mJ
+   DEBUG: Flow 277 RX energy: 7.37 mJ
+   DEBUG: Flow 278 txPackets=37 rxPackets=37
+   DEBUG: Flow 278 TX energy: 15.16 mJ
+   DEBUG: Flow 278 RX energy: 7.58 mJ
+   DEBUG: Flow 279 txPackets=33 rxPackets=33
+   DEBUG: Flow 279 TX energy: 13.52 mJ
+   DEBUG: Flow 279 RX energy: 6.76 mJ
+   DEBUG: Flow 280 txPackets=26 rxPackets=26
+   DEBUG: Flow 280 TX energy: 10.65 mJ
+   DEBUG: Flow 280 RX energy: 5.32 mJ
+   DEBUG: Flow 281 txPackets=38 rxPackets=37
+   DEBUG: Flow 281 TX energy: 15.56 mJ
+   DEBUG: Flow 281 RX energy: 7.58 mJ
+   DEBUG: Flow 282 txPackets=44 rxPackets=36
+   DEBUG: Flow 282 TX energy: 18.02 mJ
+   DEBUG: Flow 282 RX energy: 7.37 mJ
+   DEBUG: Flow 283 txPackets=60 rxPackets=0
+   DEBUG: Flow 283 TX energy: 24.58 mJ
+   DEBUG: Flow 284 txPackets=38 rxPackets=37
+   DEBUG: Flow 284 TX energy: 15.56 mJ
+   DEBUG: Flow 284 RX energy: 7.58 mJ
+   DEBUG: Flow 285 txPackets=61 rxPackets=61
+   DEBUG: Flow 285 TX energy: 24.99 mJ
+   DEBUG: Flow 285 RX energy: 12.49 mJ
+   DEBUG: Flow 286 txPackets=42 rxPackets=42
+   DEBUG: Flow 286 TX energy: 17.20 mJ
+   DEBUG: Flow 286 RX energy: 8.60 mJ
+   DEBUG: Flow 287 txPackets=16 rxPackets=16
+   DEBUG: Flow 287 TX energy: 6.55 mJ
+   DEBUG: Flow 287 RX energy: 3.28 mJ
+   DEBUG: Flow 288 txPackets=26 rxPackets=24
+   DEBUG: Flow 288 TX energy: 10.65 mJ
+   DEBUG: Flow 288 RX energy: 4.92 mJ
+   DEBUG: Flow 289 txPackets=13 rxPackets=13
+   DEBUG: Flow 289 TX energy: 5.32 mJ
+   DEBUG: Flow 289 RX energy: 2.66 mJ
+   DEBUG: Flow 290 txPackets=25 rxPackets=25
+   DEBUG: Flow 290 TX energy: 10.24 mJ
+   DEBUG: Flow 290 RX energy: 5.12 mJ
+   DEBUG: Flow 291 txPackets=51 rxPackets=51
+   DEBUG: Flow 291 TX energy: 20.89 mJ
+   DEBUG: Flow 291 RX energy: 10.44 mJ
+   DEBUG: Flow 292 txPackets=44 rxPackets=43
+   DEBUG: Flow 292 TX energy: 18.02 mJ
+   DEBUG: Flow 292 RX energy: 8.81 mJ
+   DEBUG: Flow 293 txPackets=42 rxPackets=42
+   DEBUG: Flow 293 TX energy: 17.20 mJ
+   DEBUG: Flow 293 RX energy: 8.60 mJ
+   DEBUG: Flow 294 txPackets=46 rxPackets=45
+   DEBUG: Flow 294 TX energy: 18.84 mJ
+   DEBUG: Flow 294 RX energy: 9.22 mJ
+   DEBUG: Flow 295 txPackets=57 rxPackets=57
+   DEBUG: Flow 295 TX energy: 23.35 mJ
+   DEBUG: Flow 295 RX energy: 11.67 mJ
+   DEBUG: Flow 296 txPackets=19 rxPackets=19
+   DEBUG: Flow 296 TX energy: 7.78 mJ
+   DEBUG: Flow 296 RX energy: 3.89 mJ
+   DEBUG: Flow 297 txPackets=54 rxPackets=54
+   DEBUG: Flow 297 TX energy: 22.12 mJ
+   DEBUG: Flow 297 RX energy: 11.06 mJ
+   DEBUG: Flow 298 txPackets=54 rxPackets=54
+   DEBUG: Flow 298 TX energy: 22.12 mJ
+   DEBUG: Flow 298 RX energy: 11.06 mJ
+   DEBUG: Flow 299 txPackets=28 rxPackets=27
+   DEBUG: Flow 299 TX energy: 11.47 mJ
+   DEBUG: Flow 299 RX energy: 5.53 mJ
+   DEBUG: Flow 300 txPackets=40 rxPackets=40
+   DEBUG: Flow 300 TX energy: 16.38 mJ
+   DEBUG: Flow 300 RX energy: 8.19 mJ
+   DEBUG: Flow 301 txPackets=44 rxPackets=44
+   DEBUG: Flow 301 TX energy: 18.02 mJ
+   DEBUG: Flow 301 RX energy: 9.01 mJ
+   DEBUG: Flow 302 txPackets=42 rxPackets=0
+   DEBUG: Flow 302 TX energy: 17.20 mJ
+   DEBUG: Flow 303 txPackets=42 rxPackets=0
+   DEBUG: Flow 303 TX energy: 17.20 mJ
+   DEBUG: Flow 304 txPackets=43 rxPackets=0
+   DEBUG: Flow 304 TX energy: 17.61 mJ
+   DEBUG: Flow 305 txPackets=26 rxPackets=26
+   DEBUG: Flow 305 TX energy: 10.65 mJ
+   DEBUG: Flow 305 RX energy: 5.32 mJ
+   DEBUG: Flow 306 txPackets=34 rxPackets=29
+   DEBUG: Flow 306 TX energy: 13.93 mJ
+   DEBUG: Flow 306 RX energy: 5.94 mJ
+   DEBUG: Flow 307 txPackets=28 rxPackets=0
+   DEBUG: Flow 307 TX energy: 11.47 mJ
+   DEBUG: Flow 308 txPackets=49 rxPackets=48
+   DEBUG: Flow 308 TX energy: 20.07 mJ
+   DEBUG: Flow 308 RX energy: 9.83 mJ
+   DEBUG: Flow 309 txPackets=53 rxPackets=53
+   DEBUG: Flow 309 TX energy: 21.71 mJ
+   DEBUG: Flow 309 RX energy: 10.85 mJ
+   DEBUG: Flow 310 txPackets=47 rxPackets=47
+   DEBUG: Flow 310 TX energy: 19.25 mJ
+   DEBUG: Flow 310 RX energy: 9.63 mJ
+   DEBUG: Flow 311 txPackets=43 rxPackets=43
+   DEBUG: Flow 311 TX energy: 17.61 mJ
+   DEBUG: Flow 311 RX energy: 8.81 mJ
+   DEBUG: Flow 312 txPackets=49 rxPackets=49
+   DEBUG: Flow 312 TX energy: 20.07 mJ
+   DEBUG: Flow 312 RX energy: 10.04 mJ
+   DEBUG: Flow 313 txPackets=18 rxPackets=18
+   DEBUG: Flow 313 TX energy: 7.37 mJ
+   DEBUG: Flow 313 RX energy: 3.69 mJ
+   DEBUG: Flow 314 txPackets=21 rxPackets=21
+   DEBUG: Flow 314 TX energy: 8.60 mJ
+   DEBUG: Flow 314 RX energy: 4.30 mJ
+   DEBUG: Flow 315 txPackets=59 rxPackets=59
+   DEBUG: Flow 315 TX energy: 24.17 mJ
+   DEBUG: Flow 315 RX energy: 12.08 mJ
+   DEBUG: Flow 316 txPackets=60 rxPackets=60
+   DEBUG: Flow 316 TX energy: 24.58 mJ
+   DEBUG: Flow 316 RX energy: 12.29 mJ
+   DEBUG: Flow 317 txPackets=58 rxPackets=0
+   DEBUG: Flow 317 TX energy: 23.76 mJ
+   DEBUG: Flow 318 txPackets=38 rxPackets=38
+   DEBUG: Flow 318 TX energy: 15.56 mJ
+   DEBUG: Flow 318 RX energy: 7.78 mJ
+   DEBUG: Flow 319 txPackets=29 rxPackets=29
+   DEBUG: Flow 319 TX energy: 11.88 mJ
+   DEBUG: Flow 319 RX energy: 5.94 mJ
+   DEBUG: Flow 320 txPackets=19 rxPackets=0
+   DEBUG: Flow 320 TX energy: 7.78 mJ
+   DEBUG: Flow 321 txPackets=29 rxPackets=28
+   DEBUG: Flow 321 TX energy: 11.88 mJ
+   DEBUG: Flow 321 RX energy: 5.73 mJ
+   DEBUG: Flow 322 txPackets=20 rxPackets=19
+   DEBUG: Flow 322 TX energy: 8.19 mJ
+   DEBUG: Flow 322 RX energy: 3.89 mJ
+   DEBUG: Flow 323 txPackets=37 rxPackets=37
+   DEBUG: Flow 323 TX energy: 15.16 mJ
+   DEBUG: Flow 323 RX energy: 7.58 mJ
+   DEBUG: Flow 324 txPackets=42 rxPackets=38
+   DEBUG: Flow 324 TX energy: 17.20 mJ
+   DEBUG: Flow 324 RX energy: 7.78 mJ
+   DEBUG: Flow 325 txPackets=41 rxPackets=0
+   DEBUG: Flow 325 TX energy: 16.79 mJ
+   DEBUG: Flow 326 txPackets=20 rxPackets=20
+   DEBUG: Flow 326 TX energy: 8.19 mJ
+   DEBUG: Flow 326 RX energy: 4.10 mJ
+   DEBUG: Flow 327 txPackets=31 rxPackets=31
+   DEBUG: Flow 327 TX energy: 12.70 mJ
+   DEBUG: Flow 327 RX energy: 6.35 mJ
+   DEBUG: Flow 328 txPackets=31 rxPackets=31
+   DEBUG: Flow 328 TX energy: 12.70 mJ
+   DEBUG: Flow 328 RX energy: 6.35 mJ
+   DEBUG: Flow 329 txPackets=40 rxPackets=40
+   DEBUG: Flow 329 TX energy: 16.38 mJ
+   DEBUG: Flow 329 RX energy: 8.19 mJ
+   DEBUG: Flow 330 txPackets=25 rxPackets=25
+   DEBUG: Flow 330 TX energy: 10.24 mJ
+   DEBUG: Flow 330 RX energy: 5.12 mJ
+   DEBUG: Flow 331 txPackets=24 rxPackets=24
+   DEBUG: Flow 331 TX energy: 9.83 mJ
+   DEBUG: Flow 331 RX energy: 4.92 mJ
+   DEBUG: Flow 332 txPackets=41 rxPackets=0
+   DEBUG: Flow 332 TX energy: 16.79 mJ
+   DEBUG: Flow 333 txPackets=28 rxPackets=27
+   DEBUG: Flow 333 TX energy: 11.47 mJ
+   DEBUG: Flow 333 RX energy: 5.53 mJ
+   DEBUG: Flow 334 txPackets=28 rxPackets=23
+   DEBUG: Flow 334 TX energy: 11.47 mJ
+   DEBUG: Flow 334 RX energy: 4.71 mJ
+   DEBUG: Flow 335 txPackets=32 rxPackets=31
+   DEBUG: Flow 335 TX energy: 13.11 mJ
+   DEBUG: Flow 335 RX energy: 6.35 mJ
+   DEBUG: Flow 336 txPackets=21 rxPackets=16
+   DEBUG: Flow 336 TX energy: 8.60 mJ
+   DEBUG: Flow 336 RX energy: 3.28 mJ
+   DEBUG: Flow 337 txPackets=22 rxPackets=21
+   DEBUG: Flow 337 TX energy: 9.01 mJ
+   DEBUG: Flow 337 RX energy: 4.30 mJ
+   DEBUG: Flow 338 txPackets=15 rxPackets=0
+   DEBUG: Flow 338 TX energy: 6.14 mJ
+   DEBUG: Flow 339 txPackets=24 rxPackets=24
+   DEBUG: Flow 339 TX energy: 9.83 mJ
+   DEBUG: Flow 339 RX energy: 4.92 mJ
+   DEBUG: Flow 340 txPackets=30 rxPackets=0
+   DEBUG: Flow 340 TX energy: 12.29 mJ
+   DEBUG: Flow 341 txPackets=94 rxPackets=0
+   DEBUG: Flow 341 TX energy: 38.50 mJ
+   DEBUG: Flow 342 txPackets=94 rxPackets=0
+   DEBUG: Flow 342 TX energy: 38.50 mJ
+   DEBUG: Flow 343 txPackets=94 rxPackets=94
+   DEBUG: Flow 343 TX energy: 38.50 mJ
+   DEBUG: Flow 343 RX energy: 19.25 mJ
+8. ENERGY CONSUMPTION:
+   TX Power: 100.00 mW
+   RX Power: 50.00 mW
+   Total energy (TX+RX): 9817.70 mJ
+   Energy per node: 196.35 mJ
 
 9. PER-FLOW STATISTICS:
    Flow 1 (10.1.1.17 -> 10.1.1.49):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.6297 ms
-     Avg Jitter: 4.2058 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 3.63 ms
+     Avg Jitter: 4.21 ms
+     Throughput: 2.55 kbps
 
    Flow 2 (10.1.1.16 -> 10.1.1.49):
      TX Packets: 65
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 3 (10.1.1.42 -> 10.1.1.49):
      TX Packets: 64
      RX Packets: 61
      Lost: 3
-     PDR: 0.9531
-     Avg Delay: 51.0006 ms
-     Avg Jitter: 22.8805 ms
-     Throughput: 2.3912 kbps
+     PDR: 0.95
+     Avg Delay: 51.00 ms
+     Avg Jitter: 22.88 ms
+     Throughput: 2.39 kbps
 
    Flow 4 (10.1.1.5 -> 10.1.1.49):
      TX Packets: 59
      RX Packets: 58
      Lost: 0
-     PDR: 0.9831
-     Avg Delay: 24.6967 ms
-     Avg Jitter: 28.7257 ms
-     Throughput: 2.2736 kbps
+     PDR: 0.98
+     Avg Delay: 24.70 ms
+     Avg Jitter: 28.73 ms
+     Throughput: 2.27 kbps
 
    Flow 5 (10.1.1.26 -> 10.1.1.49):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 15.9892 ms
-     Avg Jitter: 16.9430 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 15.99 ms
+     Avg Jitter: 16.94 ms
+     Throughput: 2.16 kbps
 
    Flow 6 (10.1.1.24 -> 10.1.1.49):
      TX Packets: 64
      RX Packets: 56
      Lost: 8
-     PDR: 0.8750
-     Avg Delay: 112.8116 ms
-     Avg Jitter: 54.6822 ms
-     Throughput: 2.1952 kbps
+     PDR: 0.88
+     Avg Delay: 112.81 ms
+     Avg Jitter: 54.68 ms
+     Throughput: 2.20 kbps
 
    Flow 7 (10.1.1.25 -> 10.1.1.49):
      TX Packets: 64
      RX Packets: 56
      Lost: 8
-     PDR: 0.8750
-     Avg Delay: 117.2311 ms
-     Avg Jitter: 57.7741 ms
-     Throughput: 2.1952 kbps
+     PDR: 0.88
+     Avg Delay: 117.23 ms
+     Avg Jitter: 57.77 ms
+     Throughput: 2.20 kbps
 
    Flow 8 (10.1.1.27 -> 10.1.1.49):
      TX Packets: 45
      RX Packets: 44
      Lost: 0
-     PDR: 0.9778
-     Avg Delay: 71.1043 ms
-     Avg Jitter: 46.5595 ms
-     Throughput: 1.7248 kbps
+     PDR: 0.98
+     Avg Delay: 71.10 ms
+     Avg Jitter: 46.56 ms
+     Throughput: 1.72 kbps
 
    Flow 9 (10.1.1.18 -> 10.1.1.49):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 13.3510 ms
-     Avg Jitter: 14.4225 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 13.35 ms
+     Avg Jitter: 14.42 ms
+     Throughput: 2.23 kbps
 
    Flow 10 (10.1.1.10 -> 10.1.1.49):
      TX Packets: 63
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 11 (10.1.1.6 -> 10.1.1.49):
      TX Packets: 63
      RX Packets: 58
      Lost: 4
-     PDR: 0.9206
-     Avg Delay: 31.0808 ms
-     Avg Jitter: 31.7093 ms
-     Throughput: 2.2736 kbps
+     PDR: 0.92
+     Avg Delay: 31.08 ms
+     Avg Jitter: 31.71 ms
+     Throughput: 2.27 kbps
 
    Flow 12 (10.1.1.29 -> 10.1.1.37):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 1.7792 ms
-     Avg Jitter: 1.2551 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 1.78 ms
+     Avg Jitter: 1.26 ms
+     Throughput: 2.43 kbps
 
    Flow 13 (10.1.1.4 -> 10.1.1.37):
      TX Packets: 63
      RX Packets: 60
      Lost: 2
-     PDR: 0.9524
-     Avg Delay: 53.0287 ms
-     Avg Jitter: 23.3586 ms
-     Throughput: 2.3576 kbps
+     PDR: 0.95
+     Avg Delay: 53.03 ms
+     Avg Jitter: 23.36 ms
+     Throughput: 2.36 kbps
 
    Flow 14 (10.1.1.32 -> 10.1.1.37):
      TX Packets: 58
      RX Packets: 45
      Lost: 10
-     PDR: 0.7759
-     Avg Delay: 201.9064 ms
-     Avg Jitter: 79.8414 ms
-     Throughput: 1.7640 kbps
+     PDR: 0.78
+     Avg Delay: 201.91 ms
+     Avg Jitter: 79.84 ms
+     Throughput: 1.76 kbps
 
    Flow 15 (10.1.1.40 -> 10.1.1.37):
      TX Packets: 25
      RX Packets: 0
      Lost: 9
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 16 (10.1.1.12 -> 10.1.1.37):
      TX Packets: 21
      RX Packets: 21
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 35.6093 ms
-     Avg Jitter: 36.0568 ms
-     Throughput: 0.8232 kbps
+     PDR: 1.00
+     Avg Delay: 35.61 ms
+     Avg Jitter: 36.06 ms
+     Throughput: 0.82 kbps
 
    Flow 17 (10.1.1.13 -> 10.1.1.37):
      TX Packets: 22
      RX Packets: 21
      Lost: 1
-     PDR: 0.9545
-     Avg Delay: 302.2941 ms
-     Avg Jitter: 151.8070 ms
-     Throughput: 0.8232 kbps
+     PDR: 0.95
+     Avg Delay: 302.29 ms
+     Avg Jitter: 151.81 ms
+     Throughput: 0.82 kbps
 
    Flow 18 (10.1.1.2 -> 10.1.1.37):
      TX Packets: 27
      RX Packets: 0
      Lost: 9
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 19 (10.1.1.30 -> 10.1.1.37):
      TX Packets: 19
      RX Packets: 19
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 30.8272 ms
-     Avg Jitter: 39.8223 ms
-     Throughput: 0.7448 kbps
+     PDR: 1.00
+     Avg Delay: 30.83 ms
+     Avg Jitter: 39.82 ms
+     Throughput: 0.74 kbps
 
    Flow 20 (10.1.1.32 -> 10.1.1.4):
      TX Packets: 59
      RX Packets: 59
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 6.6949 ms
-     Avg Jitter: 8.5904 ms
-     Throughput: 2.3128 kbps
+     PDR: 1.00
+     Avg Delay: 6.69 ms
+     Avg Jitter: 8.59 ms
+     Throughput: 2.31 kbps
 
    Flow 21 (10.1.1.29 -> 10.1.1.4):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 5.2880 ms
-     Avg Jitter: 2.6747 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 5.29 ms
+     Avg Jitter: 2.67 ms
+     Throughput: 2.35 kbps
 
    Flow 22 (10.1.1.48 -> 10.1.1.4):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 6.4453 ms
-     Avg Jitter: 5.4358 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 6.45 ms
+     Avg Jitter: 5.44 ms
+     Throughput: 2.23 kbps
 
    Flow 23 (10.1.1.37 -> 10.1.1.4):
      TX Packets: 41
      RX Packets: 41
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 51.5413 ms
-     Avg Jitter: 51.9458 ms
-     Throughput: 1.5712 kbps
+     PDR: 1.00
+     Avg Delay: 51.54 ms
+     Avg Jitter: 51.95 ms
+     Throughput: 1.57 kbps
 
    Flow 24 (10.1.1.18 -> 10.1.1.42):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.2733 ms
-     Avg Jitter: 12.7887 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 11.27 ms
+     Avg Jitter: 12.79 ms
+     Throughput: 2.51 kbps
 
    Flow 25 (10.1.1.25 -> 10.1.1.42):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 17.5740 ms
-     Avg Jitter: 17.9557 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 17.57 ms
+     Avg Jitter: 17.96 ms
+     Throughput: 2.47 kbps
 
    Flow 26 (10.1.1.27 -> 10.1.1.42):
      TX Packets: 56
      RX Packets: 55
      Lost: 0
-     PDR: 0.9821
-     Avg Delay: 37.3295 ms
-     Avg Jitter: 39.5796 ms
-     Throughput: 2.1560 kbps
+     PDR: 0.98
+     Avg Delay: 37.33 ms
+     Avg Jitter: 39.58 ms
+     Throughput: 2.16 kbps
 
    Flow 27 (10.1.1.24 -> 10.1.1.42):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 14.7372 ms
-     Avg Jitter: 10.7794 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 14.74 ms
+     Avg Jitter: 10.78 ms
+     Throughput: 2.43 kbps
 
    Flow 28 (10.1.1.6 -> 10.1.1.42):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 40.6774 ms
-     Avg Jitter: 35.8747 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 40.68 ms
+     Avg Jitter: 35.87 ms
+     Throughput: 2.47 kbps
 
    Flow 29 (10.1.1.10 -> 10.1.1.42):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.0079 ms
-     Avg Jitter: 9.4699 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 10.01 ms
+     Avg Jitter: 9.47 ms
+     Throughput: 2.43 kbps
 
    Flow 30 (10.1.1.3 -> 10.1.1.34):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 27.9558 ms
-     Avg Jitter: 30.6943 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 27.96 ms
+     Avg Jitter: 30.69 ms
+     Throughput: 2.43 kbps
 
    Flow 31 (10.1.1.35 -> 10.1.1.34):
      TX Packets: 62
      RX Packets: 61
      Lost: 0
-     PDR: 0.9839
-     Avg Delay: 23.9047 ms
-     Avg Jitter: 28.1066 ms
-     Throughput: 2.3912 kbps
+     PDR: 0.98
+     Avg Delay: 23.90 ms
+     Avg Jitter: 28.11 ms
+     Throughput: 2.39 kbps
 
    Flow 32 (10.1.1.39 -> 10.1.1.43):
      TX Packets: 61
      RX Packets: 58
      Lost: 3
-     PDR: 0.9508
-     Avg Delay: 60.7492 ms
-     Avg Jitter: 36.4228 ms
-     Throughput: 2.2736 kbps
+     PDR: 0.95
+     Avg Delay: 60.75 ms
+     Avg Jitter: 36.42 ms
+     Throughput: 2.27 kbps
 
    Flow 33 (10.1.1.5 -> 10.1.1.26):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 14.8142 ms
-     Avg Jitter: 19.2124 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 14.81 ms
+     Avg Jitter: 19.21 ms
+     Throughput: 2.55 kbps
 
    Flow 34 (10.1.1.16 -> 10.1.1.26):
      TX Packets: 59
      RX Packets: 59
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.4770 ms
-     Avg Jitter: 12.7594 ms
-     Throughput: 2.3128 kbps
+     PDR: 1.00
+     Avg Delay: 10.48 ms
+     Avg Jitter: 12.76 ms
+     Throughput: 2.31 kbps
 
    Flow 35 (10.1.1.45 -> 10.1.1.26):
      TX Packets: 56
      RX Packets: 56
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 15.8293 ms
-     Avg Jitter: 17.3234 ms
-     Throughput: 2.1952 kbps
+     PDR: 1.00
+     Avg Delay: 15.83 ms
+     Avg Jitter: 17.32 ms
+     Throughput: 2.20 kbps
 
    Flow 36 (10.1.1.9 -> 10.1.1.26):
      TX Packets: 59
      RX Packets: 58
      Lost: 0
-     PDR: 0.9831
-     Avg Delay: 17.5303 ms
-     Avg Jitter: 16.4129 ms
-     Throughput: 2.2736 kbps
+     PDR: 0.98
+     Avg Delay: 17.53 ms
+     Avg Jitter: 16.41 ms
+     Throughput: 2.27 kbps
 
    Flow 37 (10.1.1.40 -> 10.1.1.2):
      TX Packets: 59
      RX Packets: 59
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 21.7437 ms
-     Avg Jitter: 35.2004 ms
-     Throughput: 2.3128 kbps
+     PDR: 1.00
+     Avg Delay: 21.74 ms
+     Avg Jitter: 35.20 ms
+     Throughput: 2.31 kbps
 
    Flow 38 (10.1.1.23 -> 10.1.1.2):
      TX Packets: 52
      RX Packets: 52
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.5091 ms
-     Avg Jitter: 11.6839 ms
-     Throughput: 2.0384 kbps
+     PDR: 1.00
+     Avg Delay: 9.51 ms
+     Avg Jitter: 11.68 ms
+     Throughput: 2.04 kbps
 
    Flow 39 (10.1.1.41 -> 10.1.1.2):
      TX Packets: 44
      RX Packets: 44
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.7153 ms
-     Avg Jitter: 22.0878 ms
-     Throughput: 1.7248 kbps
+     PDR: 1.00
+     Avg Delay: 19.72 ms
+     Avg Jitter: 22.09 ms
+     Throughput: 1.72 kbps
 
    Flow 40 (10.1.1.46 -> 10.1.1.2):
      TX Packets: 27
      RX Packets: 27
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 212.9619 ms
-     Avg Jitter: 135.1223 ms
-     Throughput: 1.0584 kbps
+     PDR: 1.00
+     Avg Delay: 212.96 ms
+     Avg Jitter: 135.12 ms
+     Throughput: 1.06 kbps
 
    Flow 41 (10.1.1.19 -> 10.1.1.2):
      TX Packets: 56
      RX Packets: 54
      Lost: 0
-     PDR: 0.9643
-     Avg Delay: 12.5517 ms
-     Avg Jitter: 13.3719 ms
-     Throughput: 2.1168 kbps
+     PDR: 0.96
+     Avg Delay: 12.55 ms
+     Avg Jitter: 13.37 ms
+     Throughput: 2.12 kbps
 
    Flow 42 (10.1.1.14 -> 10.1.1.2):
      TX Packets: 52
      RX Packets: 45
      Lost: 6
-     PDR: 0.8654
-     Avg Delay: 130.9428 ms
-     Avg Jitter: 62.5748 ms
-     Throughput: 1.7640 kbps
+     PDR: 0.87
+     Avg Delay: 130.94 ms
+     Avg Jitter: 62.57 ms
+     Throughput: 1.76 kbps
 
    Flow 43 (10.1.1.28 -> 10.1.1.2):
      TX Packets: 23
      RX Packets: 0
      Lost: 2
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 44 (10.1.1.14 -> 10.1.1.11):
      TX Packets: 45
      RX Packets: 44
      Lost: 0
-     PDR: 0.9778
-     Avg Delay: 14.6469 ms
-     Avg Jitter: 18.9556 ms
-     Throughput: 1.7248 kbps
+     PDR: 0.98
+     Avg Delay: 14.65 ms
+     Avg Jitter: 18.96 ms
+     Throughput: 1.72 kbps
 
    Flow 45 (10.1.1.33 -> 10.1.1.11):
      TX Packets: 16
      RX Packets: 0
      Lost: 4
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 46 (10.1.1.19 -> 10.1.1.11):
      TX Packets: 32
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 47 (10.1.1.12 -> 10.1.1.13):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 35.3285 ms
-     Avg Jitter: 50.7089 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 35.33 ms
+     Avg Jitter: 50.71 ms
+     Throughput: 2.23 kbps
 
    Flow 48 (10.1.1.30 -> 10.1.1.13):
      TX Packets: 42
      RX Packets: 42
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 42.0636 ms
-     Avg Jitter: 45.3900 ms
-     Throughput: 1.6464 kbps
+     PDR: 1.00
+     Avg Delay: 42.06 ms
+     Avg Jitter: 45.39 ms
+     Throughput: 1.65 kbps
 
    Flow 49 (10.1.1.10 -> 10.1.1.25):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 7.3642 ms
-     Avg Jitter: 6.4648 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 7.36 ms
+     Avg Jitter: 6.46 ms
+     Throughput: 2.51 kbps
 
    Flow 50 (10.1.1.24 -> 10.1.1.25):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.0878 ms
-     Avg Jitter: 10.1115 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 10.09 ms
+     Avg Jitter: 10.11 ms
+     Throughput: 2.51 kbps
 
    Flow 51 (10.1.1.6 -> 10.1.1.25):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 35.4363 ms
-     Avg Jitter: 33.7717 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 35.44 ms
+     Avg Jitter: 33.77 ms
+     Throughput: 2.47 kbps
 
    Flow 52 (10.1.1.42 -> 10.1.1.25):
      TX Packets: 57
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 53 (10.1.1.18 -> 10.1.1.25):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.2609 ms
-     Avg Jitter: 9.4108 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 10.26 ms
+     Avg Jitter: 9.41 ms
+     Throughput: 2.16 kbps
 
    Flow 54 (10.1.1.4 -> 10.1.1.32):
      TX Packets: 56
      RX Packets: 56
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.1261 ms
-     Avg Jitter: 4.0614 ms
-     Throughput: 2.1952 kbps
+     PDR: 1.00
+     Avg Delay: 3.13 ms
+     Avg Jitter: 4.06 ms
+     Throughput: 2.20 kbps
 
    Flow 55 (10.1.1.48 -> 10.1.1.32):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.3911 ms
-     Avg Jitter: 4.2725 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 4.39 ms
+     Avg Jitter: 4.27 ms
+     Throughput: 2.39 kbps
 
    Flow 56 (10.1.1.29 -> 10.1.1.32):
      TX Packets: 56
      RX Packets: 54
      Lost: 2
-     PDR: 0.9643
-     Avg Delay: 48.4150 ms
-     Avg Jitter: 21.3860 ms
-     Throughput: 2.1168 kbps
+     PDR: 0.96
+     Avg Delay: 48.41 ms
+     Avg Jitter: 21.39 ms
+     Throughput: 2.12 kbps
 
    Flow 57 (10.1.1.37 -> 10.1.1.32):
      TX Packets: 22
      RX Packets: 22
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 43.8516 ms
-     Avg Jitter: 47.6162 ms
-     Throughput: 0.8624 kbps
+     PDR: 1.00
+     Avg Delay: 43.85 ms
+     Avg Jitter: 47.62 ms
+     Throughput: 0.86 kbps
 
    Flow 58 (10.1.1.9 -> 10.1.1.20):
      TX Packets: 58
      RX Packets: 56
      Lost: 2
-     PDR: 0.9655
-     Avg Delay: 69.3496 ms
-     Avg Jitter: 39.4947 ms
-     Throughput: 2.1952 kbps
+     PDR: 0.97
+     Avg Delay: 69.35 ms
+     Avg Jitter: 39.49 ms
+     Throughput: 2.20 kbps
 
    Flow 59 (10.1.1.36 -> 10.1.1.20):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.3291 ms
-     Avg Jitter: 3.1927 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 3.33 ms
+     Avg Jitter: 3.19 ms
+     Throughput: 2.23 kbps
 
    Flow 60 (10.1.1.8 -> 10.1.1.20):
      TX Packets: 41
      RX Packets: 0
      Lost: 14
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 61 (10.1.1.31 -> 10.1.1.20):
      TX Packets: 28
      RX Packets: 28
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 16.3281 ms
-     Avg Jitter: 17.5450 ms
-     Throughput: 1.0976 kbps
+     PDR: 1.00
+     Avg Delay: 16.33 ms
+     Avg Jitter: 17.55 ms
+     Throughput: 1.10 kbps
 
    Flow 62 (10.1.1.7 -> 10.1.1.15):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.8413 ms
-     Avg Jitter: 1.5437 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 3.84 ms
+     Avg Jitter: 1.54 ms
+     Throughput: 2.55 kbps
 
    Flow 63 (10.1.1.21 -> 10.1.1.15):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.1001 ms
-     Avg Jitter: 1.4670 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 4.10 ms
+     Avg Jitter: 1.47 ms
+     Throughput: 2.55 kbps
 
    Flow 64 (10.1.1.50 -> 10.1.1.15):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.2175 ms
-     Avg Jitter: 1.6388 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 4.22 ms
+     Avg Jitter: 1.64 ms
+     Throughput: 2.55 kbps
 
    Flow 65 (10.1.1.44 -> 10.1.1.45):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.7420 ms
-     Avg Jitter: 9.5047 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 8.74 ms
+     Avg Jitter: 9.50 ms
+     Throughput: 2.43 kbps
 
    Flow 66 (10.1.1.26 -> 10.1.1.45):
      TX Packets: 56
      RX Packets: 54
      Lost: 2
-     PDR: 0.9643
-     Avg Delay: 60.4528 ms
-     Avg Jitter: 36.8322 ms
-     Throughput: 2.1224 kbps
+     PDR: 0.96
+     Avg Delay: 60.45 ms
+     Avg Jitter: 36.83 ms
+     Throughput: 2.12 kbps
 
    Flow 67 (10.1.1.38 -> 10.1.1.45):
      TX Packets: 50
      RX Packets: 40
      Lost: 9
-     PDR: 0.8000
-     Avg Delay: 148.7188 ms
-     Avg Jitter: 60.1016 ms
-     Throughput: 1.5680 kbps
+     PDR: 0.80
+     Avg Delay: 148.72 ms
+     Avg Jitter: 60.10 ms
+     Throughput: 1.57 kbps
 
    Flow 68 (10.1.1.31 -> 10.1.1.45):
      TX Packets: 41
      RX Packets: 38
      Lost: 1
-     PDR: 0.9268
-     Avg Delay: 17.9692 ms
-     Avg Jitter: 19.4336 ms
-     Throughput: 1.4896 kbps
+     PDR: 0.93
+     Avg Delay: 17.97 ms
+     Avg Jitter: 19.43 ms
+     Throughput: 1.49 kbps
 
    Flow 69 (10.1.1.9 -> 10.1.1.45):
      TX Packets: 49
      RX Packets: 48
      Lost: 0
-     PDR: 0.9796
-     Avg Delay: 28.8038 ms
-     Avg Jitter: 25.6412 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.98
+     Avg Delay: 28.80 ms
+     Avg Jitter: 25.64 ms
+     Throughput: 1.88 kbps
 
    Flow 70 (10.1.1.1 -> 10.1.1.45):
      TX Packets: 40
      RX Packets: 0
      Lost: 10
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 71 (10.1.1.46 -> 10.1.1.28):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 28.2079 ms
-     Avg Jitter: 35.2816 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 28.21 ms
+     Avg Jitter: 35.28 ms
+     Throughput: 2.16 kbps
 
    Flow 72 (10.1.1.35 -> 10.1.1.28):
      TX Packets: 56
      RX Packets: 54
      Lost: 2
-     PDR: 0.9643
-     Avg Delay: 76.0546 ms
-     Avg Jitter: 55.9235 ms
-     Throughput: 2.1168 kbps
+     PDR: 0.96
+     Avg Delay: 76.05 ms
+     Avg Jitter: 55.92 ms
+     Throughput: 2.12 kbps
 
    Flow 73 (10.1.1.3 -> 10.1.1.28):
      TX Packets: 56
      RX Packets: 54
      Lost: 2
-     PDR: 0.9643
-     Avg Delay: 79.6632 ms
-     Avg Jitter: 51.2398 ms
-     Throughput: 2.1168 kbps
+     PDR: 0.96
+     Avg Delay: 79.66 ms
+     Avg Jitter: 51.24 ms
+     Throughput: 2.12 kbps
 
    Flow 74 (10.1.1.33 -> 10.1.1.28):
      TX Packets: 55
      RX Packets: 48
      Lost: 7
-     PDR: 0.8727
-     Avg Delay: 153.3804 ms
-     Avg Jitter: 81.4341 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.87
+     Avg Delay: 153.38 ms
+     Avg Jitter: 81.43 ms
+     Throughput: 1.88 kbps
 
    Flow 75 (10.1.1.41 -> 10.1.1.28):
      TX Packets: 53
      RX Packets: 50
      Lost: 3
-     PDR: 0.9434
-     Avg Delay: 87.5199 ms
-     Avg Jitter: 51.8407 ms
-     Throughput: 1.9600 kbps
+     PDR: 0.94
+     Avg Delay: 87.52 ms
+     Avg Jitter: 51.84 ms
+     Throughput: 1.96 kbps
 
    Flow 76 (10.1.1.34 -> 10.1.1.28):
      TX Packets: 55
      RX Packets: 53
      Lost: 2
-     PDR: 0.9636
-     Avg Delay: 86.7582 ms
-     Avg Jitter: 55.0159 ms
-     Throughput: 2.0776 kbps
+     PDR: 0.96
+     Avg Delay: 86.76 ms
+     Avg Jitter: 55.02 ms
+     Throughput: 2.08 kbps
 
    Flow 77 (10.1.1.23 -> 10.1.1.28):
      TX Packets: 50
      RX Packets: 49
      Lost: 1
-     PDR: 0.9800
-     Avg Delay: 75.8848 ms
-     Avg Jitter: 52.0804 ms
-     Throughput: 1.9208 kbps
+     PDR: 0.98
+     Avg Delay: 75.88 ms
+     Avg Jitter: 52.08 ms
+     Throughput: 1.92 kbps
 
    Flow 78 (10.1.1.30 -> 10.1.1.28):
      TX Packets: 43
      RX Packets: 43
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 63.9055 ms
-     Avg Jitter: 52.4106 ms
-     Throughput: 1.6856 kbps
+     PDR: 1.00
+     Avg Delay: 63.91 ms
+     Avg Jitter: 52.41 ms
+     Throughput: 1.69 kbps
 
    Flow 79 (10.1.1.43 -> 10.1.1.28):
      TX Packets: 53
      RX Packets: 48
      Lost: 3
-     PDR: 0.9057
-     Avg Delay: 25.7685 ms
-     Avg Jitter: 30.0881 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.91
+     Avg Delay: 25.77 ms
+     Avg Jitter: 30.09 ms
+     Throughput: 1.88 kbps
 
    Flow 80 (10.1.1.31 -> 10.1.1.8):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 14.3427 ms
-     Avg Jitter: 15.2254 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 14.34 ms
+     Avg Jitter: 15.23 ms
+     Throughput: 2.23 kbps
 
    Flow 81 (10.1.1.36 -> 10.1.1.8):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.0898 ms
-     Avg Jitter: 4.2167 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 4.09 ms
+     Avg Jitter: 4.22 ms
+     Throughput: 2.27 kbps
 
    Flow 82 (10.1.1.1 -> 10.1.1.8):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.6743 ms
-     Avg Jitter: 6.7369 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 10.67 ms
+     Avg Jitter: 6.74 ms
+     Throughput: 2.12 kbps
 
    Flow 83 (10.1.1.38 -> 10.1.1.8):
      TX Packets: 52
      RX Packets: 52
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.3272 ms
-     Avg Jitter: 11.3301 ms
-     Throughput: 2.0384 kbps
+     PDR: 1.00
+     Avg Delay: 10.33 ms
+     Avg Jitter: 11.33 ms
+     Throughput: 2.04 kbps
 
    Flow 84 (10.1.1.20 -> 10.1.1.8):
      TX Packets: 34
      RX Packets: 33
      Lost: 1
-     PDR: 0.9706
-     Avg Delay: 15.1153 ms
-     Avg Jitter: 18.5795 ms
-     Throughput: 1.2936 kbps
+     PDR: 0.97
+     Avg Delay: 15.12 ms
+     Avg Jitter: 18.58 ms
+     Throughput: 1.29 kbps
 
    Flow 85 (10.1.1.44 -> 10.1.1.8):
      TX Packets: 32
      RX Packets: 32
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.0035 ms
-     Avg Jitter: 7.6775 ms
-     Throughput: 1.2544 kbps
+     PDR: 1.00
+     Avg Delay: 10.00 ms
+     Avg Jitter: 7.68 ms
+     Throughput: 1.25 kbps
 
    Flow 86 (10.1.1.5 -> 10.1.1.16):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 12.9930 ms
-     Avg Jitter: 16.1031 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 12.99 ms
+     Avg Jitter: 16.10 ms
+     Throughput: 2.55 kbps
 
    Flow 87 (10.1.1.26 -> 10.1.1.16):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 6.6648 ms
-     Avg Jitter: 6.3233 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 6.66 ms
+     Avg Jitter: 6.32 ms
+     Throughput: 2.47 kbps
 
    Flow 88 (10.1.1.49 -> 10.1.1.16):
      TX Packets: 38
      RX Packets: 36
      Lost: 2
-     PDR: 0.9474
-     Avg Delay: 70.3983 ms
-     Avg Jitter: 36.8298 ms
-     Throughput: 1.4112 kbps
+     PDR: 0.95
+     Avg Delay: 70.40 ms
+     Avg Jitter: 36.83 ms
+     Throughput: 1.41 kbps
 
    Flow 89 (10.1.1.17 -> 10.1.1.16):
      TX Packets: 39
      RX Packets: 38
      Lost: 1
-     PDR: 0.9744
-     Avg Delay: 62.1016 ms
-     Avg Jitter: 32.9261 ms
-     Throughput: 1.4896 kbps
+     PDR: 0.97
+     Avg Delay: 62.10 ms
+     Avg Jitter: 32.93 ms
+     Throughput: 1.49 kbps
 
    Flow 90 (10.1.1.27 -> 10.1.1.16):
      TX Packets: 42
      RX Packets: 42
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 28.3672 ms
-     Avg Jitter: 27.9321 ms
-     Throughput: 1.6464 kbps
+     PDR: 1.00
+     Avg Delay: 28.37 ms
+     Avg Jitter: 27.93 ms
+     Throughput: 1.65 kbps
 
    Flow 91 (10.1.1.14 -> 10.1.1.19):
      TX Packets: 57
      RX Packets: 56
      Lost: 0
-     PDR: 0.9825
-     Avg Delay: 18.1358 ms
-     Avg Jitter: 24.5485 ms
-     Throughput: 2.1952 kbps
+     PDR: 0.98
+     Avg Delay: 18.14 ms
+     Avg Jitter: 24.55 ms
+     Throughput: 2.20 kbps
 
    Flow 92 (10.1.1.35 -> 10.1.1.3):
      TX Packets: 60
      RX Packets: 59
      Lost: 0
-     PDR: 0.9833
-     Avg Delay: 21.3923 ms
-     Avg Jitter: 30.8926 ms
-     Throughput: 2.3128 kbps
+     PDR: 0.98
+     Avg Delay: 21.39 ms
+     Avg Jitter: 30.89 ms
+     Throughput: 2.31 kbps
 
    Flow 93 (10.1.1.23 -> 10.1.1.40):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 20.8041 ms
-     Avg Jitter: 24.3684 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 20.80 ms
+     Avg Jitter: 24.37 ms
+     Throughput: 2.23 kbps
 
    Flow 94 (10.1.1.34 -> 10.1.1.3):
      TX Packets: 58
      RX Packets: 57
      Lost: 0
-     PDR: 0.9828
-     Avg Delay: 22.5024 ms
-     Avg Jitter: 26.1686 ms
-     Throughput: 2.2344 kbps
+     PDR: 0.98
+     Avg Delay: 22.50 ms
+     Avg Jitter: 26.17 ms
+     Throughput: 2.23 kbps
 
    Flow 95 (10.1.1.2 -> 10.1.1.40):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 31.6011 ms
-     Avg Jitter: 35.7865 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 31.60 ms
+     Avg Jitter: 35.79 ms
+     Throughput: 2.39 kbps
 
    Flow 96 (10.1.1.41 -> 10.1.1.40):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 22.2227 ms
-     Avg Jitter: 22.0629 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 22.22 ms
+     Avg Jitter: 22.06 ms
+     Throughput: 2.16 kbps
 
    Flow 97 (10.1.1.28 -> 10.1.1.3):
      TX Packets: 48
      RX Packets: 47
      Lost: 0
-     PDR: 0.9792
-     Avg Delay: 25.1150 ms
-     Avg Jitter: 23.8847 ms
-     Throughput: 1.8424 kbps
+     PDR: 0.98
+     Avg Delay: 25.11 ms
+     Avg Jitter: 23.88 ms
+     Throughput: 1.84 kbps
 
    Flow 98 (10.1.1.43 -> 10.1.1.3):
      TX Packets: 53
      RX Packets: 45
      Lost: 7
-     PDR: 0.8491
-     Avg Delay: 137.9529 ms
-     Avg Jitter: 64.0761 ms
-     Throughput: 1.7640 kbps
+     PDR: 0.85
+     Avg Delay: 137.95 ms
+     Avg Jitter: 64.08 ms
+     Throughput: 1.76 kbps
 
    Flow 99 (10.1.1.33 -> 10.1.1.3):
      TX Packets: 49
      RX Packets: 48
      Lost: 0
-     PDR: 0.9796
-     Avg Delay: 38.3867 ms
-     Avg Jitter: 32.3086 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.98
+     Avg Delay: 38.39 ms
+     Avg Jitter: 32.31 ms
+     Throughput: 1.88 kbps
 
    Flow 100 (10.1.1.47 -> 10.1.1.3):
      TX Packets: 54
      RX Packets: 49
      Lost: 3
-     PDR: 0.9074
-     Avg Delay: 76.9147 ms
-     Avg Jitter: 44.4762 ms
-     Throughput: 1.9208 kbps
+     PDR: 0.91
+     Avg Delay: 76.91 ms
+     Avg Jitter: 44.48 ms
+     Throughput: 1.92 kbps
 
    Flow 101 (10.1.1.37 -> 10.1.1.40):
      TX Packets: 38
      RX Packets: 25
      Lost: 7
-     PDR: 0.6579
-     Avg Delay: 292.2582 ms
-     Avg Jitter: 144.7801 ms
-     Throughput: 0.9800 kbps
+     PDR: 0.66
+     Avg Delay: 292.26 ms
+     Avg Jitter: 144.78 ms
+     Throughput: 0.98 kbps
 
    Flow 102 (10.1.1.18 -> 10.1.1.27):
      TX Packets: 43
      RX Packets: 43
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 12.3735 ms
-     Avg Jitter: 11.9357 ms
-     Throughput: 1.6856 kbps
+     PDR: 1.00
+     Avg Delay: 12.37 ms
+     Avg Jitter: 11.94 ms
+     Throughput: 1.69 kbps
 
    Flow 103 (10.1.1.42 -> 10.1.1.27):
      TX Packets: 43
      RX Packets: 37
      Lost: 6
-     PDR: 0.8605
-     Avg Delay: 217.3308 ms
-     Avg Jitter: 87.8321 ms
-     Throughput: 1.4504 kbps
+     PDR: 0.86
+     Avg Delay: 217.33 ms
+     Avg Jitter: 87.83 ms
+     Throughput: 1.45 kbps
 
    Flow 104 (10.1.1.16 -> 10.1.1.27):
      TX Packets: 46
      RX Packets: 46
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 16.4777 ms
-     Avg Jitter: 20.3567 ms
-     Throughput: 1.8032 kbps
+     PDR: 1.00
+     Avg Delay: 16.48 ms
+     Avg Jitter: 20.36 ms
+     Throughput: 1.80 kbps
 
    Flow 105 (10.1.1.49 -> 10.1.1.27):
      TX Packets: 42
      RX Packets: 42
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.9224 ms
-     Avg Jitter: 11.0786 ms
-     Throughput: 1.6464 kbps
+     PDR: 1.00
+     Avg Delay: 11.92 ms
+     Avg Jitter: 11.08 ms
+     Throughput: 1.65 kbps
 
    Flow 106 (10.1.1.29 -> 10.1.1.27):
      TX Packets: 56
      RX Packets: 0
      Lost: 13
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 107 (10.1.1.4 -> 10.1.1.27):
      TX Packets: 54
      RX Packets: 0
      Lost: 13
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 108 (10.1.1.17 -> 10.1.1.27):
      TX Packets: 37
      RX Packets: 35
      Lost: 1
-     PDR: 0.9459
-     Avg Delay: 132.7079 ms
-     Avg Jitter: 71.8043 ms
-     Throughput: 1.3720 kbps
+     PDR: 0.95
+     Avg Delay: 132.71 ms
+     Avg Jitter: 71.80 ms
+     Throughput: 1.37 kbps
 
    Flow 109 (10.1.1.37 -> 10.1.1.27):
      TX Packets: 37
      RX Packets: 35
      Lost: 0
-     PDR: 0.9459
-     Avg Delay: 69.0895 ms
-     Avg Jitter: 59.2717 ms
-     Throughput: 1.3720 kbps
+     PDR: 0.95
+     Avg Delay: 69.09 ms
+     Avg Jitter: 59.27 ms
+     Throughput: 1.37 kbps
 
    Flow 110 (10.1.1.32 -> 10.1.1.48):
      TX Packets: 52
      RX Packets: 52
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.5800 ms
-     Avg Jitter: 5.2534 ms
-     Throughput: 2.0384 kbps
+     PDR: 1.00
+     Avg Delay: 4.58 ms
+     Avg Jitter: 5.25 ms
+     Throughput: 2.04 kbps
 
    Flow 111 (10.1.1.4 -> 10.1.1.48):
      TX Packets: 48
      RX Packets: 48
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.6317 ms
-     Avg Jitter: 2.5137 ms
-     Throughput: 1.8816 kbps
+     PDR: 1.00
+     Avg Delay: 3.63 ms
+     Avg Jitter: 2.51 ms
+     Throughput: 1.88 kbps
 
    Flow 112 (10.1.1.29 -> 10.1.1.48):
      TX Packets: 22
      RX Packets: 22
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 134.7381 ms
-     Avg Jitter: 94.4526 ms
-     Throughput: 0.8624 kbps
+     PDR: 1.00
+     Avg Delay: 134.74 ms
+     Avg Jitter: 94.45 ms
+     Throughput: 0.86 kbps
 
    Flow 113 (10.1.1.26 -> 10.1.1.9):
      TX Packets: 39
      RX Packets: 39
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 14.4826 ms
-     Avg Jitter: 15.3099 ms
-     Throughput: 1.5288 kbps
+     PDR: 1.00
+     Avg Delay: 14.48 ms
+     Avg Jitter: 15.31 ms
+     Throughput: 1.53 kbps
 
    Flow 114 (10.1.1.5 -> 10.1.1.9):
      TX Packets: 33
      RX Packets: 0
      Lost: 9
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 115 (10.1.1.41 -> 10.1.1.23):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 29.1243 ms
-     Avg Jitter: 28.8342 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 29.12 ms
+     Avg Jitter: 28.83 ms
+     Throughput: 2.27 kbps
 
    Flow 116 (10.1.1.40 -> 10.1.1.23):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 31.9299 ms
-     Avg Jitter: 52.6821 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 31.93 ms
+     Avg Jitter: 52.68 ms
+     Throughput: 2.35 kbps
 
    Flow 117 (10.1.1.2 -> 10.1.1.23):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 32.5105 ms
-     Avg Jitter: 43.0641 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 32.51 ms
+     Avg Jitter: 43.06 ms
+     Throughput: 2.35 kbps
 
    Flow 118 (10.1.1.46 -> 10.1.1.23):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 31.5555 ms
-     Avg Jitter: 34.4632 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 31.56 ms
+     Avg Jitter: 34.46 ms
+     Throughput: 2.12 kbps
 
    Flow 119 (10.1.1.28 -> 10.1.1.23):
      TX Packets: 42
      RX Packets: 40
      Lost: 2
-     PDR: 0.9524
-     Avg Delay: 84.7522 ms
-     Avg Jitter: 46.6854 ms
-     Throughput: 1.5680 kbps
+     PDR: 0.95
+     Avg Delay: 84.75 ms
+     Avg Jitter: 46.69 ms
+     Throughput: 1.57 kbps
 
    Flow 120 (10.1.1.30 -> 10.1.1.23):
      TX Packets: 49
      RX Packets: 43
      Lost: 6
-     PDR: 0.8776
-     Avg Delay: 180.2428 ms
-     Avg Jitter: 85.1663 ms
-     Throughput: 1.6856 kbps
+     PDR: 0.88
+     Avg Delay: 180.24 ms
+     Avg Jitter: 85.17 ms
+     Throughput: 1.69 kbps
 
    Flow 121 (10.1.1.14 -> 10.1.1.23):
      TX Packets: 53
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 122 (10.1.1.19 -> 10.1.1.23):
      TX Packets: 54
      RX Packets: 0
      Lost: 14
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 123 (10.1.1.35 -> 10.1.1.23):
      TX Packets: 17
      RX Packets: 16
      Lost: 0
-     PDR: 0.9412
-     Avg Delay: 41.5832 ms
-     Avg Jitter: 37.3900 ms
-     Throughput: 0.6272 kbps
+     PDR: 0.94
+     Avg Delay: 41.58 ms
+     Avg Jitter: 37.39 ms
+     Throughput: 0.63 kbps
 
    Flow 124 (10.1.1.3 -> 10.1.1.23):
      TX Packets: 18
      RX Packets: 17
      Lost: 0
-     PDR: 0.9444
-     Avg Delay: 34.9427 ms
-     Avg Jitter: 33.0851 ms
-     Throughput: 0.6664 kbps
+     PDR: 0.94
+     Avg Delay: 34.94 ms
+     Avg Jitter: 33.09 ms
+     Throughput: 0.67 kbps
 
    Flow 125 (10.1.1.37 -> 10.1.1.29):
      TX Packets: 52
      RX Packets: 52
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 98.3228 ms
-     Avg Jitter: 90.2540 ms
-     Throughput: 2.0384 kbps
+     PDR: 1.00
+     Avg Delay: 98.32 ms
+     Avg Jitter: 90.25 ms
+     Throughput: 2.04 kbps
 
    Flow 126 (10.1.1.4 -> 10.1.1.29):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 2.1255 ms
-     Avg Jitter: 2.1225 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 2.13 ms
+     Avg Jitter: 2.12 ms
+     Throughput: 2.39 kbps
 
    Flow 127 (10.1.1.32 -> 10.1.1.29):
      TX Packets: 61
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 128 (10.1.1.48 -> 10.1.1.29):
      TX Packets: 59
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 129 (10.1.1.6 -> 10.1.1.10):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 21.3304 ms
-     Avg Jitter: 22.7073 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 21.33 ms
+     Avg Jitter: 22.71 ms
+     Throughput: 2.47 kbps
 
    Flow 130 (10.1.1.25 -> 10.1.1.10):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.1392 ms
-     Avg Jitter: 7.2447 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 8.14 ms
+     Avg Jitter: 7.24 ms
+     Throughput: 2.55 kbps
 
    Flow 131 (10.1.1.24 -> 10.1.1.10):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.0774 ms
-     Avg Jitter: 6.3360 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 8.08 ms
+     Avg Jitter: 6.34 ms
+     Throughput: 2.55 kbps
 
    Flow 132 (10.1.1.26 -> 10.1.1.5):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.3960 ms
-     Avg Jitter: 12.6676 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 10.40 ms
+     Avg Jitter: 12.67 ms
+     Throughput: 2.55 kbps
 
    Flow 133 (10.1.1.16 -> 10.1.1.5):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.9307 ms
-     Avg Jitter: 10.1529 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 8.93 ms
+     Avg Jitter: 10.15 ms
+     Throughput: 2.51 kbps
 
    Flow 134 (10.1.1.17 -> 10.1.1.5):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 6.2750 ms
-     Avg Jitter: 3.7326 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 6.27 ms
+     Avg Jitter: 3.73 ms
+     Throughput: 2.16 kbps
 
    Flow 135 (10.1.1.49 -> 10.1.1.5):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.1459 ms
-     Avg Jitter: 8.0618 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 10.15 ms
+     Avg Jitter: 8.06 ms
+     Throughput: 2.12 kbps
 
    Flow 136 (10.1.1.34 -> 10.1.1.47):
      TX Packets: 47
      RX Packets: 47
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 27.7105 ms
-     Avg Jitter: 30.7440 ms
-     Throughput: 1.8424 kbps
+     PDR: 1.00
+     Avg Delay: 27.71 ms
+     Avg Jitter: 30.74 ms
+     Throughput: 1.84 kbps
 
    Flow 137 (10.1.1.43 -> 10.1.1.47):
      TX Packets: 50
      RX Packets: 50
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.7337 ms
-     Avg Jitter: 14.7934 ms
-     Throughput: 1.9600 kbps
+     PDR: 1.00
+     Avg Delay: 11.73 ms
+     Avg Jitter: 14.79 ms
+     Throughput: 1.96 kbps
 
    Flow 138 (10.1.1.19 -> 10.1.1.14):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.8269 ms
-     Avg Jitter: 11.9764 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 10.83 ms
+     Avg Jitter: 11.98 ms
+     Throughput: 2.27 kbps
 
    Flow 139 (10.1.1.11 -> 10.1.1.14):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 21.9505 ms
-     Avg Jitter: 22.5781 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 21.95 ms
+     Avg Jitter: 22.58 ms
+     Throughput: 2.35 kbps
 
    Flow 140 (10.1.1.41 -> 10.1.1.14):
      TX Packets: 36
      RX Packets: 36
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 96.8787 ms
-     Avg Jitter: 52.3710 ms
-     Throughput: 1.4112 kbps
+     PDR: 1.00
+     Avg Delay: 96.88 ms
+     Avg Jitter: 52.37 ms
+     Throughput: 1.41 kbps
 
    Flow 141 (10.1.1.23 -> 10.1.1.14):
      TX Packets: 33
      RX Packets: 33
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 23.3940 ms
-     Avg Jitter: 21.4138 ms
-     Throughput: 1.2936 kbps
+     PDR: 1.00
+     Avg Delay: 23.39 ms
+     Avg Jitter: 21.41 ms
+     Throughput: 1.29 kbps
 
    Flow 142 (10.1.1.2 -> 10.1.1.14):
      TX Packets: 39
      RX Packets: 39
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 27.6000 ms
-     Avg Jitter: 33.8839 ms
-     Throughput: 1.5288 kbps
+     PDR: 1.00
+     Avg Delay: 27.60 ms
+     Avg Jitter: 33.88 ms
+     Throughput: 1.53 kbps
 
    Flow 143 (10.1.1.43 -> 10.1.1.39):
      TX Packets: 38
      RX Packets: 38
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 15.3055 ms
-     Avg Jitter: 21.6192 ms
-     Throughput: 1.4896 kbps
+     PDR: 1.00
+     Avg Delay: 15.31 ms
+     Avg Jitter: 21.62 ms
+     Throughput: 1.49 kbps
 
    Flow 144 (10.1.1.7 -> 10.1.1.21):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 1.0816 ms
-     Avg Jitter: 0.2256 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 1.08 ms
+     Avg Jitter: 0.23 ms
+     Throughput: 2.55 kbps
 
    Flow 145 (10.1.1.15 -> 10.1.1.21):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.5013 ms
-     Avg Jitter: 1.4501 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 3.50 ms
+     Avg Jitter: 1.45 ms
+     Throughput: 2.55 kbps
 
    Flow 146 (10.1.1.50 -> 10.1.1.21):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.9292 ms
-     Avg Jitter: 1.5457 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 3.93 ms
+     Avg Jitter: 1.55 ms
+     Throughput: 2.55 kbps
 
    Flow 147 (10.1.1.45 -> 10.1.1.44):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 23.5216 ms
-     Avg Jitter: 27.1860 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 23.52 ms
+     Avg Jitter: 27.19 ms
+     Throughput: 2.39 kbps
 
    Flow 148 (10.1.1.38 -> 10.1.1.44):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 5.8220 ms
-     Avg Jitter: 5.6959 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 5.82 ms
+     Avg Jitter: 5.70 ms
+     Throughput: 2.39 kbps
 
    Flow 149 (10.1.1.31 -> 10.1.1.44):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.5725 ms
-     Avg Jitter: 9.8465 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 11.57 ms
+     Avg Jitter: 9.85 ms
+     Throughput: 2.27 kbps
 
    Flow 150 (10.1.1.1 -> 10.1.1.44):
      TX Packets: 60
      RX Packets: 58
      Lost: 2
-     PDR: 0.9667
-     Avg Delay: 47.1634 ms
-     Avg Jitter: 22.2778 ms
-     Throughput: 2.2736 kbps
+     PDR: 0.97
+     Avg Delay: 47.16 ms
+     Avg Jitter: 22.28 ms
+     Throughput: 2.27 kbps
 
    Flow 151 (10.1.1.8 -> 10.1.1.44):
      TX Packets: 52
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 152 (10.1.1.28 -> 10.1.1.46):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 13.5077 ms
-     Avg Jitter: 11.5974 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 13.51 ms
+     Avg Jitter: 11.60 ms
+     Throughput: 2.16 kbps
 
    Flow 153 (10.1.1.30 -> 10.1.1.46):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 40.6253 ms
-     Avg Jitter: 41.0051 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 40.63 ms
+     Avg Jitter: 41.01 ms
+     Throughput: 2.27 kbps
 
    Flow 154 (10.1.1.41 -> 10.1.1.46):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.9458 ms
-     Avg Jitter: 23.6587 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 19.95 ms
+     Avg Jitter: 23.66 ms
+     Throughput: 2.16 kbps
 
    Flow 155 (10.1.1.3 -> 10.1.1.46):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 26.5211 ms
-     Avg Jitter: 26.1126 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 26.52 ms
+     Avg Jitter: 26.11 ms
+     Throughput: 2.23 kbps
 
    Flow 156 (10.1.1.35 -> 10.1.1.46):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 24.3439 ms
-     Avg Jitter: 25.0765 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 24.34 ms
+     Avg Jitter: 25.08 ms
+     Throughput: 2.23 kbps
 
    Flow 157 (10.1.1.23 -> 10.1.1.46):
      TX Packets: 56
      RX Packets: 56
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 23.2827 ms
-     Avg Jitter: 22.0738 ms
-     Throughput: 2.1952 kbps
+     PDR: 1.00
+     Avg Delay: 23.28 ms
+     Avg Jitter: 22.07 ms
+     Throughput: 2.20 kbps
 
    Flow 158 (10.1.1.34 -> 10.1.1.46):
      TX Packets: 57
      RX Packets: 52
      Lost: 5
-     PDR: 0.9123
-     Avg Delay: 120.7867 ms
-     Avg Jitter: 61.5638 ms
-     Throughput: 2.0384 kbps
+     PDR: 0.91
+     Avg Delay: 120.79 ms
+     Avg Jitter: 61.56 ms
+     Throughput: 2.04 kbps
 
    Flow 159 (10.1.1.40 -> 10.1.1.46):
      TX Packets: 53
      RX Packets: 53
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 32.8244 ms
-     Avg Jitter: 40.7565 ms
-     Throughput: 2.0776 kbps
+     PDR: 1.00
+     Avg Delay: 32.82 ms
+     Avg Jitter: 40.76 ms
+     Throughput: 2.08 kbps
 
    Flow 160 (10.1.1.12 -> 10.1.1.46):
      TX Packets: 39
      RX Packets: 32
      Lost: 3
-     PDR: 0.8205
-     Avg Delay: 37.6465 ms
-     Avg Jitter: 36.8061 ms
-     Throughput: 1.2544 kbps
+     PDR: 0.82
+     Avg Delay: 37.65 ms
+     Avg Jitter: 36.81 ms
+     Throughput: 1.25 kbps
 
    Flow 161 (10.1.1.13 -> 10.1.1.46):
      TX Packets: 33
      RX Packets: 31
      Lost: 1
-     PDR: 0.9394
-     Avg Delay: 93.1059 ms
-     Avg Jitter: 71.1937 ms
-     Throughput: 1.2152 kbps
+     PDR: 0.94
+     Avg Delay: 93.11 ms
+     Avg Jitter: 71.19 ms
+     Throughput: 1.22 kbps
 
    Flow 162 (10.1.1.42 -> 10.1.1.18):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 6.0398 ms
-     Avg Jitter: 6.1686 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 6.04 ms
+     Avg Jitter: 6.17 ms
+     Throughput: 2.43 kbps
 
    Flow 163 (10.1.1.27 -> 10.1.1.18):
      TX Packets: 59
      RX Packets: 59
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 27.0469 ms
-     Avg Jitter: 21.3339 ms
-     Throughput: 2.3128 kbps
+     PDR: 1.00
+     Avg Delay: 27.05 ms
+     Avg Jitter: 21.33 ms
+     Throughput: 2.31 kbps
 
    Flow 164 (10.1.1.25 -> 10.1.1.18):
      TX Packets: 60
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 165 (10.1.1.6 -> 10.1.1.18):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 22.3424 ms
-     Avg Jitter: 18.5697 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 22.34 ms
+     Avg Jitter: 18.57 ms
+     Throughput: 2.47 kbps
 
    Flow 166 (10.1.1.10 -> 10.1.1.18):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.9760 ms
-     Avg Jitter: 7.8833 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 8.98 ms
+     Avg Jitter: 7.88 ms
+     Throughput: 2.35 kbps
 
    Flow 167 (10.1.1.49 -> 10.1.1.18):
      TX Packets: 38
      RX Packets: 38
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.9564 ms
-     Avg Jitter: 10.4800 ms
-     Throughput: 1.4896 kbps
+     PDR: 1.00
+     Avg Delay: 9.96 ms
+     Avg Jitter: 10.48 ms
+     Throughput: 1.49 kbps
 
    Flow 168 (10.1.1.24 -> 10.1.1.18):
      TX Packets: 54
      RX Packets: 46
      Lost: 8
-     PDR: 0.8519
-     Avg Delay: 183.9265 ms
-     Avg Jitter: 71.6122 ms
-     Throughput: 1.8032 kbps
+     PDR: 0.85
+     Avg Delay: 183.93 ms
+     Avg Jitter: 71.61 ms
+     Throughput: 1.80 kbps
 
    Flow 169 (10.1.1.22 -> 10.1.1.18):
      TX Packets: 64
      RX Packets: 0
      Lost: 15
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 170 (10.1.1.17 -> 10.1.1.18):
      TX Packets: 30
      RX Packets: 29
      Lost: 1
-     PDR: 0.9667
-     Avg Delay: 87.4711 ms
-     Avg Jitter: 41.3344 ms
-     Throughput: 1.1368 kbps
+     PDR: 0.97
+     Avg Delay: 87.47 ms
+     Avg Jitter: 41.33 ms
+     Throughput: 1.14 kbps
 
    Flow 171 (10.1.1.8 -> 10.1.1.36):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.4309 ms
-     Avg Jitter: 7.2934 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 8.43 ms
+     Avg Jitter: 7.29 ms
+     Throughput: 2.27 kbps
 
    Flow 172 (10.1.1.31 -> 10.1.1.36):
      TX Packets: 48
      RX Packets: 48
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.8631 ms
-     Avg Jitter: 9.5212 ms
-     Throughput: 1.8816 kbps
+     PDR: 1.00
+     Avg Delay: 11.86 ms
+     Avg Jitter: 9.52 ms
+     Throughput: 1.88 kbps
 
    Flow 173 (10.1.1.20 -> 10.1.1.36):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.9816 ms
-     Avg Jitter: 12.5863 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 9.98 ms
+     Avg Jitter: 12.59 ms
+     Throughput: 2.51 kbps
 
    Flow 174 (10.1.1.1 -> 10.1.1.36):
      TX Packets: 40
      RX Packets: 35
      Lost: 5
-     PDR: 0.8750
-     Avg Delay: 161.1661 ms
-     Avg Jitter: 65.2937 ms
-     Throughput: 1.3720 kbps
+     PDR: 0.88
+     Avg Delay: 161.17 ms
+     Avg Jitter: 65.29 ms
+     Throughput: 1.37 kbps
 
    Flow 175 (10.1.1.38 -> 10.1.1.36):
      TX Packets: 33
      RX Packets: 0
      Lost: 10
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 176 (10.1.1.21 -> 10.1.1.7):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 1.3546 ms
-     Avg Jitter: 0.6824 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 1.35 ms
+     Avg Jitter: 0.68 ms
+     Throughput: 2.55 kbps
 
    Flow 177 (10.1.1.15 -> 10.1.1.7):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.9266 ms
-     Avg Jitter: 1.6460 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 3.93 ms
+     Avg Jitter: 1.65 ms
+     Throughput: 2.43 kbps
 
    Flow 178 (10.1.1.50 -> 10.1.1.7):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.8152 ms
-     Avg Jitter: 1.7976 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 3.82 ms
+     Avg Jitter: 1.80 ms
+     Throughput: 2.39 kbps
 
    Flow 179 (10.1.1.3 -> 10.1.1.35):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 25.8862 ms
-     Avg Jitter: 33.6597 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 25.89 ms
+     Avg Jitter: 33.66 ms
+     Throughput: 2.35 kbps
 
    Flow 180 (10.1.1.34 -> 10.1.1.35):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 25.1475 ms
-     Avg Jitter: 30.9726 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 25.15 ms
+     Avg Jitter: 30.97 ms
+     Throughput: 2.35 kbps
 
    Flow 181 (10.1.1.28 -> 10.1.1.35):
      TX Packets: 50
      RX Packets: 50
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 22.6604 ms
-     Avg Jitter: 17.4549 ms
-     Throughput: 1.9600 kbps
+     PDR: 1.00
+     Avg Delay: 22.66 ms
+     Avg Jitter: 17.45 ms
+     Throughput: 1.96 kbps
 
    Flow 182 (10.1.1.46 -> 10.1.1.35):
      TX Packets: 51
      RX Packets: 51
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 32.1468 ms
-     Avg Jitter: 33.7746 ms
-     Throughput: 1.9992 kbps
+     PDR: 1.00
+     Avg Delay: 32.15 ms
+     Avg Jitter: 33.77 ms
+     Throughput: 2.00 kbps
 
    Flow 183 (10.1.1.33 -> 10.1.1.35):
      TX Packets: 52
      RX Packets: 50
      Lost: 2
-     PDR: 0.9615
-     Avg Delay: 86.7317 ms
-     Avg Jitter: 57.8643 ms
-     Throughput: 1.9600 kbps
+     PDR: 0.96
+     Avg Delay: 86.73 ms
+     Avg Jitter: 57.86 ms
+     Throughput: 1.96 kbps
 
    Flow 184 (10.1.1.43 -> 10.1.1.35):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 22.4583 ms
-     Avg Jitter: 25.5701 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 22.46 ms
+     Avg Jitter: 25.57 ms
+     Throughput: 2.23 kbps
 
    Flow 185 (10.1.1.47 -> 10.1.1.35):
      TX Packets: 60
      RX Packets: 59
      Lost: 0
-     PDR: 0.9833
-     Avg Delay: 20.0636 ms
-     Avg Jitter: 25.3978 ms
-     Throughput: 2.3128 kbps
+     PDR: 0.98
+     Avg Delay: 20.06 ms
+     Avg Jitter: 25.40 ms
+     Throughput: 2.31 kbps
 
    Flow 186 (10.1.1.38 -> 10.1.1.1):
      TX Packets: 65
      RX Packets: 65
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 2.9166 ms
-     Avg Jitter: 3.0980 ms
-     Throughput: 2.5480 kbps
+     PDR: 1.00
+     Avg Delay: 2.92 ms
+     Avg Jitter: 3.10 ms
+     Throughput: 2.55 kbps
 
    Flow 187 (10.1.1.49 -> 10.1.1.17):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.4899 ms
-     Avg Jitter: 6.0773 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 4.49 ms
+     Avg Jitter: 6.08 ms
+     Throughput: 2.51 kbps
 
    Flow 188 (10.1.1.16 -> 10.1.1.17):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.6094 ms
-     Avg Jitter: 12.1311 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 11.61 ms
+     Avg Jitter: 12.13 ms
+     Throughput: 2.47 kbps
 
    Flow 189 (10.1.1.5 -> 10.1.1.17):
      TX Packets: 64
      RX Packets: 62
      Lost: 2
-     PDR: 0.9688
-     Avg Delay: 49.4936 ms
-     Avg Jitter: 26.7074 ms
-     Throughput: 2.4304 kbps
+     PDR: 0.97
+     Avg Delay: 49.49 ms
+     Avg Jitter: 26.71 ms
+     Throughput: 2.43 kbps
 
    Flow 190 (10.1.1.42 -> 10.1.1.17):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.4542 ms
-     Avg Jitter: 6.0767 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 8.45 ms
+     Avg Jitter: 6.08 ms
+     Throughput: 2.23 kbps
 
    Flow 191 (10.1.1.24 -> 10.1.1.17):
      TX Packets: 57
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 192 (10.1.1.25 -> 10.1.1.17):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 13.6580 ms
-     Avg Jitter: 10.9160 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 13.66 ms
+     Avg Jitter: 10.92 ms
+     Throughput: 2.23 kbps
 
    Flow 193 (10.1.1.10 -> 10.1.1.17):
      TX Packets: 53
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 194 (10.1.1.18 -> 10.1.1.17):
      TX Packets: 49
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 195 (10.1.1.6 -> 10.1.1.17):
      TX Packets: 53
      RX Packets: 53
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 28.7266 ms
-     Avg Jitter: 20.2318 ms
-     Throughput: 2.0776 kbps
+     PDR: 1.00
+     Avg Delay: 28.73 ms
+     Avg Jitter: 20.23 ms
+     Throughput: 2.08 kbps
 
    Flow 196 (10.1.1.1 -> 10.1.1.38):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 3.5297 ms
-     Avg Jitter: 3.7193 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 3.53 ms
+     Avg Jitter: 3.72 ms
+     Throughput: 2.51 kbps
 
    Flow 197 (10.1.1.31 -> 10.1.1.38):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.9264 ms
-     Avg Jitter: 11.6050 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 10.93 ms
+     Avg Jitter: 11.60 ms
+     Throughput: 2.35 kbps
 
    Flow 198 (10.1.1.44 -> 10.1.1.38):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.9680 ms
-     Avg Jitter: 7.0835 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 9.97 ms
+     Avg Jitter: 7.08 ms
+     Throughput: 2.35 kbps
 
    Flow 199 (10.1.1.8 -> 10.1.1.38):
      TX Packets: 58
      RX Packets: 58
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 6.5784 ms
-     Avg Jitter: 4.6488 ms
-     Throughput: 2.2736 kbps
+     PDR: 1.00
+     Avg Delay: 6.58 ms
+     Avg Jitter: 4.65 ms
+     Throughput: 2.27 kbps
 
    Flow 200 (10.1.1.45 -> 10.1.1.38):
      TX Packets: 34
      RX Packets: 34
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 21.7361 ms
-     Avg Jitter: 23.0494 ms
-     Throughput: 1.3328 kbps
+     PDR: 1.00
+     Avg Delay: 21.74 ms
+     Avg Jitter: 23.05 ms
+     Throughput: 1.33 kbps
 
    Flow 201 (10.1.1.36 -> 10.1.1.38):
      TX Packets: 49
      RX Packets: 44
      Lost: 5
-     PDR: 0.8980
-     Avg Delay: 132.3084 ms
-     Avg Jitter: 54.0391 ms
-     Throughput: 1.7248 kbps
+     PDR: 0.90
+     Avg Delay: 132.31 ms
+     Avg Jitter: 54.04 ms
+     Throughput: 1.72 kbps
 
    Flow 202 (10.1.1.21 -> 10.1.1.50):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.3660 ms
-     Avg Jitter: 2.1117 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 4.37 ms
+     Avg Jitter: 2.11 ms
+     Throughput: 2.43 kbps
 
    Flow 203 (10.1.1.15 -> 10.1.1.50):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.1636 ms
-     Avg Jitter: 2.0813 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 4.16 ms
+     Avg Jitter: 2.08 ms
+     Throughput: 2.43 kbps
 
    Flow 204 (10.1.1.7 -> 10.1.1.50):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 4.2375 ms
-     Avg Jitter: 1.7500 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 4.24 ms
+     Avg Jitter: 1.75 ms
+     Throughput: 2.43 kbps
 
    Flow 205 (10.1.1.23 -> 10.1.1.41):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.2702 ms
-     Avg Jitter: 23.9790 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 19.27 ms
+     Avg Jitter: 23.98 ms
+     Throughput: 2.39 kbps
 
    Flow 206 (10.1.1.40 -> 10.1.1.41):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 36.0310 ms
-     Avg Jitter: 42.9654 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 36.03 ms
+     Avg Jitter: 42.97 ms
+     Throughput: 2.35 kbps
 
    Flow 207 (10.1.1.2 -> 10.1.1.41):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 24.1508 ms
-     Avg Jitter: 27.6600 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 24.15 ms
+     Avg Jitter: 27.66 ms
+     Throughput: 2.39 kbps
 
    Flow 208 (10.1.1.46 -> 10.1.1.41):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 25.1232 ms
-     Avg Jitter: 26.7833 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 25.12 ms
+     Avg Jitter: 26.78 ms
+     Throughput: 2.12 kbps
 
    Flow 209 (10.1.1.28 -> 10.1.1.41):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.0669 ms
-     Avg Jitter: 22.6812 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 19.07 ms
+     Avg Jitter: 22.68 ms
+     Throughput: 2.16 kbps
 
    Flow 210 (10.1.1.30 -> 10.1.1.41):
      TX Packets: 49
      RX Packets: 49
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 42.4422 ms
-     Avg Jitter: 38.4850 ms
-     Throughput: 1.9208 kbps
+     PDR: 1.00
+     Avg Delay: 42.44 ms
+     Avg Jitter: 38.48 ms
+     Throughput: 1.92 kbps
 
    Flow 211 (10.1.1.14 -> 10.1.1.41):
      TX Packets: 54
      RX Packets: 52
      Lost: 0
-     PDR: 0.9630
-     Avg Delay: 29.6762 ms
-     Avg Jitter: 32.7417 ms
-     Throughput: 2.0384 kbps
+     PDR: 0.96
+     Avg Delay: 29.68 ms
+     Avg Jitter: 32.74 ms
+     Throughput: 2.04 kbps
 
    Flow 212 (10.1.1.35 -> 10.1.1.41):
      TX Packets: 40
      RX Packets: 37
      Lost: 1
-     PDR: 0.9250
-     Avg Delay: 103.5961 ms
-     Avg Jitter: 73.3228 ms
-     Throughput: 1.4504 kbps
+     PDR: 0.93
+     Avg Delay: 103.60 ms
+     Avg Jitter: 73.32 ms
+     Throughput: 1.45 kbps
 
    Flow 213 (10.1.1.3 -> 10.1.1.41):
      TX Packets: 39
      RX Packets: 38
      Lost: 1
-     PDR: 0.9744
-     Avg Delay: 111.5876 ms
-     Avg Jitter: 65.1937 ms
-     Throughput: 1.4896 kbps
+     PDR: 0.97
+     Avg Delay: 111.59 ms
+     Avg Jitter: 65.19 ms
+     Throughput: 1.49 kbps
 
    Flow 214 (10.1.1.33 -> 10.1.1.41):
      TX Packets: 40
      RX Packets: 0
      Lost: 10
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 215 (10.1.1.19 -> 10.1.1.41):
      TX Packets: 49
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 216 (10.1.1.34 -> 10.1.1.41):
      TX Packets: 24
      RX Packets: 22
      Lost: 0
-     PDR: 0.9167
-     Avg Delay: 123.1660 ms
-     Avg Jitter: 79.0880 ms
-     Throughput: 0.8624 kbps
+     PDR: 0.92
+     Avg Delay: 123.17 ms
+     Avg Jitter: 79.09 ms
+     Throughput: 0.86 kbps
 
    Flow 217 (10.1.1.8 -> 10.1.1.31):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 5.7436 ms
-     Avg Jitter: 4.9453 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 5.74 ms
+     Avg Jitter: 4.95 ms
+     Throughput: 2.51 kbps
 
    Flow 218 (10.1.1.38 -> 10.1.1.31):
      TX Packets: 64
      RX Packets: 63
      Lost: 0
-     PDR: 0.9844
-     Avg Delay: 9.0154 ms
-     Avg Jitter: 8.0557 ms
-     Throughput: 2.4696 kbps
+     PDR: 0.98
+     Avg Delay: 9.02 ms
+     Avg Jitter: 8.06 ms
+     Throughput: 2.47 kbps
 
    Flow 219 (10.1.1.1 -> 10.1.1.31):
      TX Packets: 64
      RX Packets: 64
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 7.7057 ms
-     Avg Jitter: 5.7681 ms
-     Throughput: 2.5088 kbps
+     PDR: 1.00
+     Avg Delay: 7.71 ms
+     Avg Jitter: 5.77 ms
+     Throughput: 2.51 kbps
 
    Flow 220 (10.1.1.36 -> 10.1.1.31):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.1134 ms
-     Avg Jitter: 8.2714 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 10.11 ms
+     Avg Jitter: 8.27 ms
+     Throughput: 2.35 kbps
 
    Flow 221 (10.1.1.44 -> 10.1.1.31):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.4129 ms
-     Avg Jitter: 11.4639 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 11.41 ms
+     Avg Jitter: 11.46 ms
+     Throughput: 2.35 kbps
 
    Flow 222 (10.1.1.45 -> 10.1.1.31):
      TX Packets: 43
      RX Packets: 42
      Lost: 1
-     PDR: 0.9767
-     Avg Delay: 77.6763 ms
-     Avg Jitter: 45.3948 ms
-     Throughput: 1.6464 kbps
+     PDR: 0.98
+     Avg Delay: 77.68 ms
+     Avg Jitter: 45.39 ms
+     Throughput: 1.65 kbps
 
    Flow 223 (10.1.1.20 -> 10.1.1.31):
      TX Packets: 44
      RX Packets: 38
      Lost: 6
-     PDR: 0.8636
-     Avg Delay: 160.4564 ms
-     Avg Jitter: 64.2609 ms
-     Throughput: 1.4896 kbps
+     PDR: 0.86
+     Avg Delay: 160.46 ms
+     Avg Jitter: 64.26 ms
+     Throughput: 1.49 kbps
 
    Flow 224 (10.1.1.10 -> 10.1.1.6):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.1958 ms
-     Avg Jitter: 9.3456 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 10.20 ms
+     Avg Jitter: 9.35 ms
+     Throughput: 2.47 kbps
 
    Flow 225 (10.1.1.25 -> 10.1.1.6):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 15.0373 ms
-     Avg Jitter: 13.8734 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 15.04 ms
+     Avg Jitter: 13.87 ms
+     Throughput: 2.47 kbps
 
    Flow 226 (10.1.1.24 -> 10.1.1.6):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 12.8216 ms
-     Avg Jitter: 11.5279 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 12.82 ms
+     Avg Jitter: 11.53 ms
+     Throughput: 2.47 kbps
 
    Flow 227 (10.1.1.42 -> 10.1.1.6):
      TX Packets: 51
      RX Packets: 51
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 13.4454 ms
-     Avg Jitter: 10.9227 ms
-     Throughput: 1.9992 kbps
+     PDR: 1.00
+     Avg Delay: 13.45 ms
+     Avg Jitter: 10.92 ms
+     Throughput: 2.00 kbps
 
    Flow 228 (10.1.1.18 -> 10.1.1.6):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 14.6282 ms
-     Avg Jitter: 11.5874 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 14.63 ms
+     Avg Jitter: 11.59 ms
+     Throughput: 2.12 kbps
 
    Flow 229 (10.1.1.22 -> 10.1.1.6):
      TX Packets: 57
      RX Packets: 49
      Lost: 0
-     PDR: 0.8596
-     Avg Delay: 21.7881 ms
-     Avg Jitter: 20.2744 ms
-     Throughput: 1.9208 kbps
+     PDR: 0.86
+     Avg Delay: 21.79 ms
+     Avg Jitter: 20.27 ms
+     Throughput: 1.92 kbps
 
    Flow 230 (10.1.1.49 -> 10.1.1.6):
      TX Packets: 33
      RX Packets: 33
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 17.1333 ms
-     Avg Jitter: 11.6350 ms
-     Throughput: 1.2936 kbps
+     PDR: 1.00
+     Avg Delay: 17.13 ms
+     Avg Jitter: 11.63 ms
+     Throughput: 1.29 kbps
 
    Flow 231 (10.1.1.17 -> 10.1.1.6):
      TX Packets: 32
      RX Packets: 0
      Lost: 9
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 232 (10.1.1.46 -> 10.1.1.30):
      TX Packets: 59
      RX Packets: 59
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 25.7124 ms
-     Avg Jitter: 29.5356 ms
-     Throughput: 2.3128 kbps
+     PDR: 1.00
+     Avg Delay: 25.71 ms
+     Avg Jitter: 29.54 ms
+     Throughput: 2.31 kbps
 
    Flow 233 (10.1.1.12 -> 10.1.1.30):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 29.2304 ms
-     Avg Jitter: 33.8347 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 29.23 ms
+     Avg Jitter: 33.83 ms
+     Throughput: 2.39 kbps
 
    Flow 234 (10.1.1.13 -> 10.1.1.30):
      TX Packets: 61
      RX Packets: 48
      Lost: 12
-     PDR: 0.7869
-     Avg Delay: 214.2150 ms
-     Avg Jitter: 103.7325 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.79
+     Avg Delay: 214.21 ms
+     Avg Jitter: 103.73 ms
+     Throughput: 1.88 kbps
 
    Flow 235 (10.1.1.40 -> 10.1.1.30):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 29.0776 ms
-     Avg Jitter: 32.3933 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 29.08 ms
+     Avg Jitter: 32.39 ms
+     Throughput: 2.12 kbps
 
    Flow 236 (10.1.1.23 -> 10.1.1.30):
      TX Packets: 52
      RX Packets: 52
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 69.3983 ms
-     Avg Jitter: 46.8055 ms
-     Throughput: 2.0384 kbps
+     PDR: 1.00
+     Avg Delay: 69.40 ms
+     Avg Jitter: 46.81 ms
+     Throughput: 2.04 kbps
 
    Flow 237 (10.1.1.41 -> 10.1.1.30):
      TX Packets: 48
      RX Packets: 45
      Lost: 3
-     PDR: 0.9375
-     Avg Delay: 133.6725 ms
-     Avg Jitter: 72.1998 ms
-     Throughput: 1.7640 kbps
+     PDR: 0.94
+     Avg Delay: 133.67 ms
+     Avg Jitter: 72.20 ms
+     Throughput: 1.76 kbps
 
    Flow 238 (10.1.1.28 -> 10.1.1.30):
      TX Packets: 36
      RX Packets: 36
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 97.6996 ms
-     Avg Jitter: 53.5387 ms
-     Throughput: 1.4112 kbps
+     PDR: 1.00
+     Avg Delay: 97.70 ms
+     Avg Jitter: 53.54 ms
+     Throughput: 1.41 kbps
 
    Flow 239 (10.1.1.3 -> 10.1.1.30):
      TX Packets: 40
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 240 (10.1.1.35 -> 10.1.1.30):
      TX Packets: 36
      RX Packets: 0
      Lost: 11
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 241 (10.1.1.2 -> 10.1.1.30):
      TX Packets: 47
      RX Packets: 46
      Lost: 0
-     PDR: 0.9787
-     Avg Delay: 41.5699 ms
-     Avg Jitter: 46.8757 ms
-     Throughput: 1.8032 kbps
+     PDR: 0.98
+     Avg Delay: 41.57 ms
+     Avg Jitter: 46.88 ms
+     Throughput: 1.80 kbps
 
    Flow 242 (10.1.1.34 -> 10.1.1.30):
      TX Packets: 38
      RX Packets: 0
      Lost: 12
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 243 (10.1.1.37 -> 10.1.1.30):
      TX Packets: 42
      RX Packets: 32
      Lost: 1
-     PDR: 0.7619
-     Avg Delay: 153.5190 ms
-     Avg Jitter: 97.6765 ms
-     Throughput: 1.2544 kbps
+     PDR: 0.76
+     Avg Delay: 153.52 ms
+     Avg Jitter: 97.68 ms
+     Throughput: 1.25 kbps
 
    Flow 244 (10.1.1.27 -> 10.1.1.37):
      TX Packets: 39
      RX Packets: 0
      Lost: 8
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 245 (10.1.1.43 -> 10.1.1.33):
      TX Packets: 55
      RX Packets: 55
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 15.2181 ms
-     Avg Jitter: 21.0884 ms
-     Throughput: 2.1560 kbps
+     PDR: 1.00
+     Avg Delay: 15.22 ms
+     Avg Jitter: 21.09 ms
+     Throughput: 2.16 kbps
 
    Flow 246 (10.1.1.28 -> 10.1.1.33):
      TX Packets: 49
      RX Packets: 49
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.8095 ms
-     Avg Jitter: 21.6246 ms
-     Throughput: 1.9208 kbps
+     PDR: 1.00
+     Avg Delay: 19.81 ms
+     Avg Jitter: 21.62 ms
+     Throughput: 1.92 kbps
 
    Flow 247 (10.1.1.35 -> 10.1.1.33):
      TX Packets: 51
      RX Packets: 51
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 27.5132 ms
-     Avg Jitter: 29.1298 ms
-     Throughput: 1.9992 kbps
+     PDR: 1.00
+     Avg Delay: 27.51 ms
+     Avg Jitter: 29.13 ms
+     Throughput: 2.00 kbps
 
    Flow 248 (10.1.1.3 -> 10.1.1.33):
      TX Packets: 48
      RX Packets: 48
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 30.4274 ms
-     Avg Jitter: 33.1644 ms
-     Throughput: 1.8816 kbps
+     PDR: 1.00
+     Avg Delay: 30.43 ms
+     Avg Jitter: 33.16 ms
+     Throughput: 1.88 kbps
 
    Flow 249 (10.1.1.34 -> 10.1.1.33):
      TX Packets: 42
      RX Packets: 36
      Lost: 6
-     PDR: 0.8571
-     Avg Delay: 170.0315 ms
-     Avg Jitter: 81.7299 ms
-     Throughput: 1.4112 kbps
+     PDR: 0.86
+     Avg Delay: 170.03 ms
+     Avg Jitter: 81.73 ms
+     Throughput: 1.41 kbps
 
    Flow 250 (10.1.1.39 -> 10.1.1.33):
      TX Packets: 57
      RX Packets: 51
      Lost: 4
-     PDR: 0.8947
-     Avg Delay: 34.6557 ms
-     Avg Jitter: 24.4058 ms
-     Throughput: 1.9992 kbps
+     PDR: 0.89
+     Avg Delay: 34.66 ms
+     Avg Jitter: 24.41 ms
+     Throughput: 2.00 kbps
 
    Flow 251 (10.1.1.46 -> 10.1.1.33):
      TX Packets: 24
      RX Packets: 24
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 104.9176 ms
-     Avg Jitter: 73.0992 ms
-     Throughput: 0.9408 kbps
+     PDR: 1.00
+     Avg Delay: 104.92 ms
+     Avg Jitter: 73.10 ms
+     Throughput: 0.94 kbps
 
    Flow 252 (10.1.1.11 -> 10.1.1.33):
      TX Packets: 59
      RX Packets: 0
      Lost: 14
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 253 (10.1.1.41 -> 10.1.1.33):
      TX Packets: 25
      RX Packets: 25
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 111.6408 ms
-     Avg Jitter: 70.2622 ms
-     Throughput: 0.9800 kbps
+     PDR: 1.00
+     Avg Delay: 111.64 ms
+     Avg Jitter: 70.26 ms
+     Throughput: 0.98 kbps
 
    Flow 254 (10.1.1.14 -> 10.1.1.33):
      TX Packets: 42
      RX Packets: 0
      Lost: 13
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 255 (10.1.1.49 -> 10.1.1.26):
      TX Packets: 34
      RX Packets: 30
      Lost: 4
-     PDR: 0.8824
-     Avg Delay: 175.5392 ms
-     Avg Jitter: 70.7152 ms
-     Throughput: 1.1760 kbps
+     PDR: 0.88
+     Avg Delay: 175.54 ms
+     Avg Jitter: 70.72 ms
+     Throughput: 1.18 kbps
 
    Flow 256 (10.1.1.17 -> 10.1.1.26):
      TX Packets: 34
      RX Packets: 34
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.0866 ms
-     Avg Jitter: 8.5917 ms
-     Throughput: 1.3328 kbps
+     PDR: 1.00
+     Avg Delay: 9.09 ms
+     Avg Jitter: 8.59 ms
+     Throughput: 1.33 kbps
 
    Flow 257 (10.1.1.47 -> 10.1.1.34):
      TX Packets: 61
      RX Packets: 58
      Lost: 2
-     PDR: 0.9508
-     Avg Delay: 62.0611 ms
-     Avg Jitter: 44.9767 ms
-     Throughput: 2.2736 kbps
+     PDR: 0.95
+     Avg Delay: 62.06 ms
+     Avg Jitter: 44.98 ms
+     Throughput: 2.27 kbps
 
    Flow 258 (10.1.1.28 -> 10.1.1.34):
      TX Packets: 52
      RX Packets: 51
      Lost: 0
-     PDR: 0.9808
-     Avg Delay: 27.6369 ms
-     Avg Jitter: 23.7774 ms
-     Throughput: 1.9992 kbps
+     PDR: 0.98
+     Avg Delay: 27.64 ms
+     Avg Jitter: 23.78 ms
+     Throughput: 2.00 kbps
 
    Flow 259 (10.1.1.46 -> 10.1.1.34):
      TX Packets: 49
      RX Packets: 49
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 32.8994 ms
-     Avg Jitter: 31.8008 ms
-     Throughput: 1.9208 kbps
+     PDR: 1.00
+     Avg Delay: 32.90 ms
+     Avg Jitter: 31.80 ms
+     Throughput: 1.92 kbps
 
    Flow 260 (10.1.1.43 -> 10.1.1.34):
      TX Packets: 57
      RX Packets: 56
      Lost: 0
-     PDR: 0.9825
-     Avg Delay: 15.4417 ms
-     Avg Jitter: 17.9399 ms
-     Throughput: 2.1952 kbps
+     PDR: 0.98
+     Avg Delay: 15.44 ms
+     Avg Jitter: 17.94 ms
+     Throughput: 2.20 kbps
 
    Flow 261 (10.1.1.33 -> 10.1.1.34):
      TX Packets: 49
      RX Packets: 48
      Lost: 0
-     PDR: 0.9796
-     Avg Delay: 32.9360 ms
-     Avg Jitter: 34.8506 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.98
+     Avg Delay: 32.94 ms
+     Avg Jitter: 34.85 ms
+     Throughput: 1.88 kbps
 
    Flow 262 (10.1.1.13 -> 10.1.1.12):
      TX Packets: 58
      RX Packets: 57
      Lost: 0
-     PDR: 0.9828
-     Avg Delay: 32.2450 ms
-     Avg Jitter: 41.4100 ms
-     Throughput: 2.2344 kbps
+     PDR: 0.98
+     Avg Delay: 32.25 ms
+     Avg Jitter: 41.41 ms
+     Throughput: 2.23 kbps
 
    Flow 263 (10.1.1.25 -> 10.1.1.24):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.7901 ms
-     Avg Jitter: 11.7378 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 10.79 ms
+     Avg Jitter: 11.74 ms
+     Throughput: 2.47 kbps
 
    Flow 264 (10.1.1.10 -> 10.1.1.24):
      TX Packets: 63
      RX Packets: 63
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 7.1738 ms
-     Avg Jitter: 6.3910 ms
-     Throughput: 2.4696 kbps
+     PDR: 1.00
+     Avg Delay: 7.17 ms
+     Avg Jitter: 6.39 ms
+     Throughput: 2.47 kbps
 
    Flow 265 (10.1.1.6 -> 10.1.1.24):
      TX Packets: 62
      RX Packets: 62
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 28.8646 ms
-     Avg Jitter: 30.2354 ms
-     Throughput: 2.4304 kbps
+     PDR: 1.00
+     Avg Delay: 28.86 ms
+     Avg Jitter: 30.24 ms
+     Throughput: 2.43 kbps
 
    Flow 266 (10.1.1.2 -> 10.1.1.19):
      TX Packets: 35
      RX Packets: 35
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 23.2216 ms
-     Avg Jitter: 28.8178 ms
-     Throughput: 1.3720 kbps
+     PDR: 1.00
+     Avg Delay: 23.22 ms
+     Avg Jitter: 28.82 ms
+     Throughput: 1.37 kbps
 
    Flow 267 (10.1.1.11 -> 10.1.1.19):
      TX Packets: 43
      RX Packets: 42
      Lost: 0
-     PDR: 0.9767
-     Avg Delay: 8.8222 ms
-     Avg Jitter: 10.8040 ms
-     Throughput: 1.6464 kbps
+     PDR: 0.98
+     Avg Delay: 8.82 ms
+     Avg Jitter: 10.80 ms
+     Throughput: 1.65 kbps
 
    Flow 268 (10.1.1.46 -> 10.1.1.40):
      TX Packets: 44
      RX Packets: 44
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 25.4907 ms
-     Avg Jitter: 30.7200 ms
-     Throughput: 1.7248 kbps
+     PDR: 1.00
+     Avg Delay: 25.49 ms
+     Avg Jitter: 30.72 ms
+     Throughput: 1.72 kbps
 
    Flow 269 (10.1.1.30 -> 10.1.1.40):
      TX Packets: 48
      RX Packets: 48
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 38.2040 ms
-     Avg Jitter: 39.6210 ms
-     Throughput: 1.8816 kbps
+     PDR: 1.00
+     Avg Delay: 38.20 ms
+     Avg Jitter: 39.62 ms
+     Throughput: 1.88 kbps
 
    Flow 270 (10.1.1.28 -> 10.1.1.40):
      TX Packets: 29
      RX Packets: 25
      Lost: 4
-     PDR: 0.8621
-     Avg Delay: 220.8840 ms
-     Avg Jitter: 97.6281 ms
-     Throughput: 0.9800 kbps
+     PDR: 0.86
+     Avg Delay: 220.88 ms
+     Avg Jitter: 97.63 ms
+     Throughput: 0.98 kbps
 
    Flow 271 (10.1.1.46 -> 10.1.1.13):
      TX Packets: 15
      RX Packets: 15
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 36.9845 ms
-     Avg Jitter: 48.5828 ms
-     Throughput: 0.5880 kbps
+     PDR: 1.00
+     Avg Delay: 36.98 ms
+     Avg Jitter: 48.58 ms
+     Throughput: 0.59 kbps
 
    Flow 272 (10.1.1.20 -> 10.1.1.9):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 5.5872 ms
-     Avg Jitter: 8.0862 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 5.59 ms
+     Avg Jitter: 8.09 ms
+     Throughput: 2.35 kbps
 
    Flow 273 (10.1.1.45 -> 10.1.1.9):
      TX Packets: 41
      RX Packets: 41
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 56.5766 ms
-     Avg Jitter: 43.1468 ms
-     Throughput: 1.6072 kbps
+     PDR: 1.00
+     Avg Delay: 56.58 ms
+     Avg Jitter: 43.15 ms
+     Throughput: 1.61 kbps
 
    Flow 274 (10.1.1.36 -> 10.1.1.9):
      TX Packets: 48
      RX Packets: 0
      Lost: 11
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 275 (10.1.1.42 -> 10.1.1.10):
      TX Packets: 48
      RX Packets: 48
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.2875 ms
-     Avg Jitter: 6.7239 ms
-     Throughput: 1.8816 kbps
+     PDR: 1.00
+     Avg Delay: 9.29 ms
+     Avg Jitter: 6.72 ms
+     Throughput: 1.88 kbps
 
    Flow 276 (10.1.1.18 -> 10.1.1.10):
      TX Packets: 43
      RX Packets: 43
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.9314 ms
-     Avg Jitter: 6.3083 ms
-     Throughput: 1.6856 kbps
+     PDR: 1.00
+     Avg Delay: 8.93 ms
+     Avg Jitter: 6.31 ms
+     Throughput: 1.69 kbps
 
    Flow 277 (10.1.1.17 -> 10.1.1.10):
      TX Packets: 38
      RX Packets: 36
      Lost: 2
-     PDR: 0.9474
-     Avg Delay: 138.8571 ms
-     Avg Jitter: 54.5760 ms
-     Throughput: 1.4112 kbps
+     PDR: 0.95
+     Avg Delay: 138.86 ms
+     Avg Jitter: 54.58 ms
+     Throughput: 1.41 kbps
 
    Flow 278 (10.1.1.49 -> 10.1.1.10):
      TX Packets: 37
      RX Packets: 37
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.2528 ms
-     Avg Jitter: 5.7136 ms
-     Throughput: 1.4504 kbps
+     PDR: 1.00
+     Avg Delay: 9.25 ms
+     Avg Jitter: 5.71 ms
+     Throughput: 1.45 kbps
 
    Flow 279 (10.1.1.33 -> 10.1.1.14):
      TX Packets: 33
      RX Packets: 33
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 57.8050 ms
-     Avg Jitter: 60.4497 ms
-     Throughput: 1.2936 kbps
+     PDR: 1.00
+     Avg Delay: 57.80 ms
+     Avg Jitter: 60.45 ms
+     Throughput: 1.29 kbps
 
    Flow 280 (10.1.1.28 -> 10.1.1.14):
      TX Packets: 26
      RX Packets: 26
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 20.9727 ms
-     Avg Jitter: 22.8174 ms
-     Throughput: 1.0192 kbps
+     PDR: 1.00
+     Avg Delay: 20.97 ms
+     Avg Jitter: 22.82 ms
+     Throughput: 1.02 kbps
 
    Flow 281 (10.1.1.2 -> 10.1.1.46):
      TX Packets: 38
      RX Packets: 37
      Lost: 1
-     PDR: 0.9737
-     Avg Delay: 40.4167 ms
-     Avg Jitter: 33.9663 ms
-     Throughput: 1.4504 kbps
+     PDR: 0.97
+     Avg Delay: 40.42 ms
+     Avg Jitter: 33.97 ms
+     Throughput: 1.45 kbps
 
    Flow 282 (10.1.1.33 -> 10.1.1.46):
      TX Packets: 44
      RX Packets: 36
      Lost: 6
-     PDR: 0.8182
-     Avg Delay: 235.7294 ms
-     Avg Jitter: 112.8733 ms
-     Throughput: 1.4112 kbps
+     PDR: 0.82
+     Avg Delay: 235.73 ms
+     Avg Jitter: 112.87 ms
+     Throughput: 1.41 kbps
 
    Flow 283 (10.1.1.26 -> 10.1.1.17):
      TX Packets: 60
      RX Packets: 0
      Lost: 11
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 284 (10.1.1.9 -> 10.1.1.36):
      TX Packets: 38
      RX Packets: 37
      Lost: 0
-     PDR: 0.9737
-     Avg Delay: 69.1673 ms
-     Avg Jitter: 43.0283 ms
-     Throughput: 1.4504 kbps
+     PDR: 0.97
+     Avg Delay: 69.17 ms
+     Avg Jitter: 43.03 ms
+     Throughput: 1.45 kbps
 
    Flow 285 (10.1.1.31 -> 10.1.1.1):
      TX Packets: 61
      RX Packets: 61
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 7.5151 ms
-     Avg Jitter: 6.1551 ms
-     Throughput: 2.3912 kbps
+     PDR: 1.00
+     Avg Delay: 7.52 ms
+     Avg Jitter: 6.16 ms
+     Throughput: 2.39 kbps
 
    Flow 286 (10.1.1.30 -> 10.1.1.12):
      TX Packets: 42
      RX Packets: 42
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 31.4761 ms
-     Avg Jitter: 33.9481 ms
-     Throughput: 1.6464 kbps
+     PDR: 1.00
+     Avg Delay: 31.48 ms
+     Avg Jitter: 33.95 ms
+     Throughput: 1.65 kbps
 
    Flow 287 (10.1.1.46 -> 10.1.1.12):
      TX Packets: 16
      RX Packets: 16
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 20.7070 ms
-     Avg Jitter: 26.7309 ms
-     Throughput: 0.6272 kbps
+     PDR: 1.00
+     Avg Delay: 20.71 ms
+     Avg Jitter: 26.73 ms
+     Throughput: 0.63 kbps
 
    Flow 288 (10.1.1.37 -> 10.1.1.12):
      TX Packets: 26
      RX Packets: 24
      Lost: 0
-     PDR: 0.9231
-     Avg Delay: 48.1770 ms
-     Avg Jitter: 58.0989 ms
-     Throughput: 0.9408 kbps
+     PDR: 0.92
+     Avg Delay: 48.18 ms
+     Avg Jitter: 58.10 ms
+     Throughput: 0.94 kbps
 
    Flow 289 (10.1.1.40 -> 10.1.1.12):
      TX Packets: 13
      RX Packets: 13
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 32.6175 ms
-     Avg Jitter: 29.2914 ms
-     Throughput: 0.5096 kbps
+     PDR: 1.00
+     Avg Delay: 32.62 ms
+     Avg Jitter: 29.29 ms
+     Throughput: 0.51 kbps
 
    Flow 290 (10.1.1.41 -> 10.1.1.35):
      TX Packets: 25
      RX Packets: 25
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 33.0610 ms
-     Avg Jitter: 26.2280 ms
-     Throughput: 0.9800 kbps
+     PDR: 1.00
+     Avg Delay: 33.06 ms
+     Avg Jitter: 26.23 ms
+     Throughput: 0.98 kbps
 
    Flow 291 (10.1.1.33 -> 10.1.1.43):
      TX Packets: 51
      RX Packets: 51
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 33.8748 ms
-     Avg Jitter: 33.5246 ms
-     Throughput: 1.9992 kbps
+     PDR: 1.00
+     Avg Delay: 33.87 ms
+     Avg Jitter: 33.52 ms
+     Throughput: 2.00 kbps
 
    Flow 292 (10.1.1.35 -> 10.1.1.43):
      TX Packets: 44
      RX Packets: 43
      Lost: 1
-     PDR: 0.9773
-     Avg Delay: 54.7103 ms
-     Avg Jitter: 39.5853 ms
-     Throughput: 1.6856 kbps
+     PDR: 0.98
+     Avg Delay: 54.71 ms
+     Avg Jitter: 39.59 ms
+     Throughput: 1.69 kbps
 
    Flow 293 (10.1.1.3 -> 10.1.1.43):
      TX Packets: 42
      RX Packets: 42
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 34.7059 ms
-     Avg Jitter: 32.3531 ms
-     Throughput: 1.6464 kbps
+     PDR: 1.00
+     Avg Delay: 34.71 ms
+     Avg Jitter: 32.35 ms
+     Throughput: 1.65 kbps
 
    Flow 294 (10.1.1.34 -> 10.1.1.43):
      TX Packets: 46
      RX Packets: 45
      Lost: 1
-     PDR: 0.9783
-     Avg Delay: 58.3269 ms
-     Avg Jitter: 40.7095 ms
-     Throughput: 1.7640 kbps
+     PDR: 0.98
+     Avg Delay: 58.33 ms
+     Avg Jitter: 40.71 ms
+     Throughput: 1.76 kbps
 
    Flow 295 (10.1.1.47 -> 10.1.1.43):
      TX Packets: 57
      RX Packets: 57
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.4821 ms
-     Avg Jitter: 22.1924 ms
-     Throughput: 2.2344 kbps
+     PDR: 1.00
+     Avg Delay: 19.48 ms
+     Avg Jitter: 22.19 ms
+     Throughput: 2.23 kbps
 
    Flow 296 (10.1.1.28 -> 10.1.1.43):
      TX Packets: 19
      RX Packets: 19
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 24.6183 ms
-     Avg Jitter: 11.5037 ms
-     Throughput: 0.7448 kbps
+     PDR: 1.00
+     Avg Delay: 24.62 ms
+     Avg Jitter: 11.50 ms
+     Throughput: 0.74 kbps
 
    Flow 297 (10.1.1.49 -> 10.1.1.42):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 11.3493 ms
-     Avg Jitter: 9.2313 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 11.35 ms
+     Avg Jitter: 9.23 ms
+     Throughput: 2.12 kbps
 
    Flow 298 (10.1.1.17 -> 10.1.1.42):
      TX Packets: 54
      RX Packets: 54
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 10.5362 ms
-     Avg Jitter: 8.6178 ms
-     Throughput: 2.1168 kbps
+     PDR: 1.00
+     Avg Delay: 10.54 ms
+     Avg Jitter: 8.62 ms
+     Throughput: 2.12 kbps
 
    Flow 299 (10.1.1.30 -> 10.1.1.34):
      TX Packets: 28
      RX Packets: 27
      Lost: 0
-     PDR: 0.9643
-     Avg Delay: 105.5981 ms
-     Avg Jitter: 67.1239 ms
-     Throughput: 1.0584 kbps
+     PDR: 0.96
+     Avg Delay: 105.60 ms
+     Avg Jitter: 67.12 ms
+     Throughput: 1.06 kbps
 
    Flow 300 (10.1.1.49 -> 10.1.1.25):
      TX Packets: 40
      RX Packets: 40
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 38.0122 ms
-     Avg Jitter: 23.1827 ms
-     Throughput: 1.5680 kbps
+     PDR: 1.00
+     Avg Delay: 38.01 ms
+     Avg Jitter: 23.18 ms
+     Throughput: 1.57 kbps
 
    Flow 301 (10.1.1.17 -> 10.1.1.25):
      TX Packets: 44
      RX Packets: 44
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 39.7478 ms
-     Avg Jitter: 21.5906 ms
-     Throughput: 1.7248 kbps
+     PDR: 1.00
+     Avg Delay: 39.75 ms
+     Avg Jitter: 21.59 ms
+     Throughput: 1.72 kbps
 
    Flow 302 (10.1.1.40 -> 10.1.1.28):
      TX Packets: 42
      RX Packets: 0
      Lost: 9
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 303 (10.1.1.2 -> 10.1.1.28):
      TX Packets: 42
      RX Packets: 0
      Lost: 9
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 304 (10.1.1.14 -> 10.1.1.28):
      TX Packets: 43
      RX Packets: 0
      Lost: 11
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 305 (10.1.1.42 -> 10.1.1.16):
      TX Packets: 26
      RX Packets: 26
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 15.3014 ms
-     Avg Jitter: 8.4317 ms
-     Throughput: 1.0192 kbps
+     PDR: 1.00
+     Avg Delay: 15.30 ms
+     Avg Jitter: 8.43 ms
+     Throughput: 1.02 kbps
 
    Flow 306 (10.1.1.14 -> 10.1.1.40):
      TX Packets: 34
      RX Packets: 29
      Lost: 1
-     PDR: 0.8529
-     Avg Delay: 21.1585 ms
-     Avg Jitter: 13.7399 ms
-     Throughput: 1.1368 kbps
+     PDR: 0.85
+     Avg Delay: 21.16 ms
+     Avg Jitter: 13.74 ms
+     Throughput: 1.14 kbps
 
    Flow 307 (10.1.1.12 -> 10.1.1.40):
      TX Packets: 28
      RX Packets: 0
      Lost: 7
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 308 (10.1.1.46 -> 10.1.1.3):
      TX Packets: 49
      RX Packets: 48
      Lost: 0
-     PDR: 0.9796
-     Avg Delay: 43.1799 ms
-     Avg Jitter: 41.6724 ms
-     Throughput: 1.8816 kbps
+     PDR: 0.98
+     Avg Delay: 43.18 ms
+     Avg Jitter: 41.67 ms
+     Throughput: 1.88 kbps
 
    Flow 309 (10.1.1.42 -> 10.1.1.24):
      TX Packets: 53
      RX Packets: 53
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 12.5239 ms
-     Avg Jitter: 7.4361 ms
-     Throughput: 2.0776 kbps
+     PDR: 1.00
+     Avg Delay: 12.52 ms
+     Avg Jitter: 7.44 ms
+     Throughput: 2.08 kbps
 
    Flow 310 (10.1.1.17 -> 10.1.1.24):
      TX Packets: 47
      RX Packets: 47
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 37.8657 ms
-     Avg Jitter: 20.8234 ms
-     Throughput: 1.8424 kbps
+     PDR: 1.00
+     Avg Delay: 37.87 ms
+     Avg Jitter: 20.82 ms
+     Throughput: 1.84 kbps
 
    Flow 311 (10.1.1.49 -> 10.1.1.24):
      TX Packets: 43
      RX Packets: 43
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 13.9965 ms
-     Avg Jitter: 11.2126 ms
-     Throughput: 1.6856 kbps
+     PDR: 1.00
+     Avg Delay: 14.00 ms
+     Avg Jitter: 11.21 ms
+     Throughput: 1.69 kbps
 
    Flow 312 (10.1.1.18 -> 10.1.1.24):
      TX Packets: 49
      RX Packets: 49
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 33.5645 ms
-     Avg Jitter: 17.3526 ms
-     Throughput: 1.9208 kbps
+     PDR: 1.00
+     Avg Delay: 33.56 ms
+     Avg Jitter: 17.35 ms
+     Throughput: 1.92 kbps
 
    Flow 313 (10.1.1.18 -> 10.1.1.22):
      TX Packets: 18
      RX Packets: 18
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 5.3675 ms
-     Avg Jitter: 3.4455 ms
-     Throughput: 0.7056 kbps
+     PDR: 1.00
+     Avg Delay: 5.37 ms
+     Avg Jitter: 3.45 ms
+     Throughput: 0.71 kbps
 
    Flow 314 (10.1.1.6 -> 10.1.1.22):
      TX Packets: 21
      RX Packets: 21
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 13.5745 ms
-     Avg Jitter: 12.8138 ms
-     Throughput: 0.8232 kbps
+     PDR: 1.00
+     Avg Delay: 13.57 ms
+     Avg Jitter: 12.81 ms
+     Throughput: 0.82 kbps
 
    Flow 315 (10.1.1.8 -> 10.1.1.1):
      TX Packets: 59
      RX Packets: 59
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 8.2388 ms
-     Avg Jitter: 7.2038 ms
-     Throughput: 2.3128 kbps
+     PDR: 1.00
+     Avg Delay: 8.24 ms
+     Avg Jitter: 7.20 ms
+     Throughput: 2.31 kbps
 
    Flow 316 (10.1.1.44 -> 10.1.1.1):
      TX Packets: 60
      RX Packets: 60
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 9.7444 ms
-     Avg Jitter: 8.0824 ms
-     Throughput: 2.3520 kbps
+     PDR: 1.00
+     Avg Delay: 9.74 ms
+     Avg Jitter: 8.08 ms
+     Throughput: 2.35 kbps
 
    Flow 317 (10.1.1.36 -> 10.1.1.1):
      TX Packets: 58
      RX Packets: 0
      Lost: 11
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 318 (10.1.1.45 -> 10.1.1.1):
      TX Packets: 38
      RX Packets: 38
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 16.8173 ms
-     Avg Jitter: 19.1604 ms
-     Throughput: 1.4952 kbps
+     PDR: 1.00
+     Avg Delay: 16.82 ms
+     Avg Jitter: 19.16 ms
+     Throughput: 1.50 kbps
 
    Flow 319 (10.1.1.30 -> 10.1.1.35):
      TX Packets: 29
      RX Packets: 29
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 47.3681 ms
-     Avg Jitter: 51.0389 ms
-     Throughput: 1.1368 kbps
+     PDR: 1.00
+     Avg Delay: 47.37 ms
+     Avg Jitter: 51.04 ms
+     Throughput: 1.14 kbps
 
    Flow 320 (10.1.1.23 -> 10.1.1.35):
      TX Packets: 19
      RX Packets: 0
      Lost: 4
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 321 (10.1.1.40 -> 10.1.1.14):
      TX Packets: 29
      RX Packets: 28
      Lost: 0
-     PDR: 0.9655
-     Avg Delay: 22.2273 ms
-     Avg Jitter: 22.7243 ms
-     Throughput: 1.0976 kbps
+     PDR: 0.97
+     Avg Delay: 22.23 ms
+     Avg Jitter: 22.72 ms
+     Throughput: 1.10 kbps
 
    Flow 322 (10.1.1.41 -> 10.1.1.34):
      TX Packets: 20
      RX Packets: 19
      Lost: 0
-     PDR: 0.9500
-     Avg Delay: 53.3435 ms
-     Avg Jitter: 40.7940 ms
-     Throughput: 0.7448 kbps
+     PDR: 0.95
+     Avg Delay: 53.34 ms
+     Avg Jitter: 40.79 ms
+     Throughput: 0.74 kbps
 
    Flow 323 (10.1.1.16 -> 10.1.1.42):
      TX Packets: 37
      RX Packets: 37
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 29.8044 ms
-     Avg Jitter: 25.5135 ms
-     Throughput: 1.4504 kbps
+     PDR: 1.00
+     Avg Delay: 29.80 ms
+     Avg Jitter: 25.51 ms
+     Throughput: 1.45 kbps
 
    Flow 324 (10.1.1.5 -> 10.1.1.45):
      TX Packets: 42
      RX Packets: 38
      Lost: 0
-     PDR: 0.9048
-     Avg Delay: 25.2036 ms
-     Avg Jitter: 26.2694 ms
-     Throughput: 1.4896 kbps
+     PDR: 0.90
+     Avg Delay: 25.20 ms
+     Avg Jitter: 26.27 ms
+     Throughput: 1.49 kbps
 
    Flow 325 (10.1.1.27 -> 10.1.1.29):
      TX Packets: 41
      RX Packets: 0
      Lost: 6
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 326 (10.1.1.33 -> 10.1.1.39):
      TX Packets: 20
      RX Packets: 20
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 17.6347 ms
-     Avg Jitter: 20.3366 ms
-     Throughput: 0.7840 kbps
+     PDR: 1.00
+     Avg Delay: 17.63 ms
+     Avg Jitter: 20.34 ms
+     Throughput: 0.78 kbps
 
    Flow 327 (10.1.1.3 -> 10.1.1.47):
      TX Packets: 31
      RX Packets: 31
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 40.1403 ms
-     Avg Jitter: 37.5802 ms
-     Throughput: 1.2152 kbps
+     PDR: 1.00
+     Avg Delay: 40.14 ms
+     Avg Jitter: 37.58 ms
+     Throughput: 1.22 kbps
 
    Flow 328 (10.1.1.35 -> 10.1.1.47):
      TX Packets: 31
      RX Packets: 31
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 33.7548 ms
-     Avg Jitter: 41.2335 ms
-     Throughput: 1.2152 kbps
+     PDR: 1.00
+     Avg Delay: 33.75 ms
+     Avg Jitter: 41.23 ms
+     Throughput: 1.22 kbps
 
    Flow 329 (10.1.1.27 -> 10.1.1.17):
      TX Packets: 40
      RX Packets: 40
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 19.2871 ms
-     Avg Jitter: 14.6866 ms
-     Throughput: 1.5680 kbps
+     PDR: 1.00
+     Avg Delay: 19.29 ms
+     Avg Jitter: 14.69 ms
+     Throughput: 1.57 kbps
 
    Flow 330 (10.1.1.23 -> 10.1.1.19):
      TX Packets: 25
      RX Packets: 25
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 14.9797 ms
-     Avg Jitter: 14.8052 ms
-     Throughput: 0.9800 kbps
+     PDR: 1.00
+     Avg Delay: 14.98 ms
+     Avg Jitter: 14.81 ms
+     Throughput: 0.98 kbps
 
    Flow 331 (10.1.1.41 -> 10.1.1.19):
      TX Packets: 24
      RX Packets: 24
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 20.1650 ms
-     Avg Jitter: 13.1610 ms
-     Throughput: 0.9408 kbps
+     PDR: 1.00
+     Avg Delay: 20.16 ms
+     Avg Jitter: 13.16 ms
+     Throughput: 0.94 kbps
 
    Flow 332 (10.1.1.9 -> 10.1.1.5):
      TX Packets: 41
      RX Packets: 0
      Lost: 6
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 333 (10.1.1.45 -> 10.1.1.5):
      TX Packets: 28
      RX Packets: 27
      Lost: 0
-     PDR: 0.9643
-     Avg Delay: 34.1577 ms
-     Avg Jitter: 31.1030 ms
-     Throughput: 1.0584 kbps
+     PDR: 0.96
+     Avg Delay: 34.16 ms
+     Avg Jitter: 31.10 ms
+     Throughput: 1.06 kbps
 
    Flow 334 (10.1.1.37 -> 10.1.1.13):
      TX Packets: 28
      RX Packets: 23
      Lost: 0
-     PDR: 0.8214
-     Avg Delay: 54.0192 ms
-     Avg Jitter: 59.0163 ms
-     Throughput: 0.9016 kbps
+     PDR: 0.82
+     Avg Delay: 54.02 ms
+     Avg Jitter: 59.02 ms
+     Throughput: 0.90 kbps
 
    Flow 335 (10.1.1.30 -> 10.1.1.3):
      TX Packets: 32
      RX Packets: 31
      Lost: 0
-     PDR: 0.9688
-     Avg Delay: 66.3171 ms
-     Avg Jitter: 57.1476 ms
-     Throughput: 1.2152 kbps
+     PDR: 0.97
+     Avg Delay: 66.32 ms
+     Avg Jitter: 57.15 ms
+     Throughput: 1.22 kbps
 
    Flow 336 (10.1.1.41 -> 10.1.1.3):
      TX Packets: 21
      RX Packets: 16
      Lost: 1
-     PDR: 0.7619
-     Avg Delay: 542.1375 ms
-     Avg Jitter: 226.3830 ms
-     Throughput: 0.6272 kbps
+     PDR: 0.76
+     Avg Delay: 542.14 ms
+     Avg Jitter: 226.38 ms
+     Throughput: 0.63 kbps
 
    Flow 337 (10.1.1.27 -> 10.1.1.4):
      TX Packets: 22
      RX Packets: 21
      Lost: 0
-     PDR: 0.9545
-     Avg Delay: 383.5698 ms
-     Avg Jitter: 146.0445 ms
-     Throughput: 0.8288 kbps
+     PDR: 0.95
+     Avg Delay: 383.57 ms
+     Avg Jitter: 146.04 ms
+     Throughput: 0.83 kbps
 
    Flow 338 (10.1.1.23 -> 10.1.1.3):
      TX Packets: 15
      RX Packets: 0
      Lost: 2
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 339 (10.1.1.30 -> 10.1.1.2):
      TX Packets: 24
      RX Packets: 24
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 21.4536 ms
-     Avg Jitter: 27.8896 ms
-     Throughput: 0.9408 kbps
+     PDR: 1.00
+     Avg Delay: 21.45 ms
+     Avg Jitter: 27.89 ms
+     Throughput: 0.94 kbps
 
    Flow 340 (10.1.1.37 -> 10.1.1.2):
      TX Packets: 30
      RX Packets: 0
      Lost: 2
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 341 (10.1.1.1 -> 10.1.1.26):
      TX Packets: 94
      RX Packets: 0
      Lost: 0
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 342 (10.1.1.2 -> 10.1.1.27):
      TX Packets: 94
      RX Packets: 0
      Lost: 30
-     PDR: 0.0000
-     Throughput: 0.0000 kbps
+     PDR: 0.00
+     Throughput: 0.00 kbps
 
    Flow 343 (10.1.1.3 -> 10.1.1.28):
      TX Packets: 94
      RX Packets: 94
      Lost: 0
-     PDR: 1.0000
-     Avg Delay: 26.9816 ms
-     Avg Jitter: 27.3787 ms
-     Throughput: 40.6080 kbps
+     PDR: 1.00
+     Avg Delay: 26.98 ms
+     Avg Jitter: 27.38 ms
+     Throughput: 40.61 kbps
 
 ========================================
 SIMULATION COMPLETE
@@ -48584,10 +49571,10 @@ IC-REP AND ICP ANALYSIS
 1. IC-REP PACKET STATISTICS:
    Total IC-REP sent: 16500
    Total IC-REP received: 14227
-   Average received power (sent): 0.0000 W
-   Average interference (sent): 0.0000 W
-   Average received power (recv): 0.0000 W
-   Average interference (recv): 0.0000 W
+   Average received power (sent): 0.00 W
+   Average interference (sent): 0.00 W
+   Average received power (recv): 0.00 W
+   Average interference (recv): 0.00 W
 
 2. IC-REP PACKETS BY SENDER:
    Node 10.1.1.1: 322 IC-REP packets sent
@@ -48643,9 +49630,9 @@ IC-REP AND ICP ANALYSIS
 
 3. ICP ENTRY UPDATES:
    Total ICP entry updates: 14227
-   Average created interference (I_c): 0.0000 W
-   Average received interference (I_j): 0.0000 W
-   Average aggregate interference (I_aggr): 0.0000 W
+   Average created interference (I_c): 0.00 W
+   Average received interference (I_j): 0.00 W
+   Average aggregate interference (I_aggr): 0.00 W
 
 4. ICP ENTRY UPDATES BY NODE:
    Node 10.1.1.1: 282 updates
@@ -48700,301 +49687,301 @@ IC-REP AND ICP ANALYSIS
    Node 10.1.1.50: 186 updates
 
 5. ICP ENTRY UPDATES BY NEIGHBOR:
-   Node 10.1.1.1 -> Neighbor 10.1.1.8: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.1 -> Neighbor 10.1.1.31: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.1 -> Neighbor 10.1.1.38: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.1 -> Neighbor 10.1.1.44: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.1 -> Neighbor 10.1.1.45: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.14: 45 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.19: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.23: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.30: 24 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.40: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.41: 44 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.2 -> Neighbor 10.1.1.46: 27 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.28: 47 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.30: 31 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.33: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.34: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.35: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.41: 16 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.43: 45 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.46: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.3 -> Neighbor 10.1.1.47: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.4 -> Neighbor 10.1.1.27: 20 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.4 -> Neighbor 10.1.1.29: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.4 -> Neighbor 10.1.1.32: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.4 -> Neighbor 10.1.1.37: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.4 -> Neighbor 10.1.1.48: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.5 -> Neighbor 10.1.1.16: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.5 -> Neighbor 10.1.1.17: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.5 -> Neighbor 10.1.1.26: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.5 -> Neighbor 10.1.1.45: 27 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.5 -> Neighbor 10.1.1.49: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.10: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.18: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.22: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.24: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.25: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.42: 51 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.6 -> Neighbor 10.1.1.49: 33 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.7 -> Neighbor 10.1.1.15: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.7 -> Neighbor 10.1.1.21: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.7 -> Neighbor 10.1.1.50: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.8 -> Neighbor 10.1.1.1: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.8 -> Neighbor 10.1.1.20: 33 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.8 -> Neighbor 10.1.1.31: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.8 -> Neighbor 10.1.1.36: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.8 -> Neighbor 10.1.1.38: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.8 -> Neighbor 10.1.1.44: 32 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.9 -> Neighbor 10.1.1.20: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.9 -> Neighbor 10.1.1.26: 39 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.9 -> Neighbor 10.1.1.45: 41 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.17: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.18: 43 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.24: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.25: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.42: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.10 -> Neighbor 10.1.1.49: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.11 -> Neighbor 10.1.1.14: 44 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.12 -> Neighbor 10.1.1.13: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.12 -> Neighbor 10.1.1.30: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.12 -> Neighbor 10.1.1.37: 24 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.12 -> Neighbor 10.1.1.40: 13 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.12 -> Neighbor 10.1.1.46: 16 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.13 -> Neighbor 10.1.1.12: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.13 -> Neighbor 10.1.1.30: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.13 -> Neighbor 10.1.1.37: 23 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.13 -> Neighbor 10.1.1.46: 15 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.2: 39 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.11: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.19: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.23: 33 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.28: 26 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.33: 33 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.40: 28 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.14 -> Neighbor 10.1.1.41: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.15 -> Neighbor 10.1.1.7: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.15 -> Neighbor 10.1.1.21: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.15 -> Neighbor 10.1.1.50: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.16 -> Neighbor 10.1.1.5: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.16 -> Neighbor 10.1.1.17: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.16 -> Neighbor 10.1.1.26: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.16 -> Neighbor 10.1.1.27: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.16 -> Neighbor 10.1.1.42: 26 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.16 -> Neighbor 10.1.1.49: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.5: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.6: 53 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.16: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.25: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.27: 40 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.42: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.17 -> Neighbor 10.1.1.49: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.10: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.17: 29 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.24: 46 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.27: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.42: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.18 -> Neighbor 10.1.1.49: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.19 -> Neighbor 10.1.1.2: 35 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.19 -> Neighbor 10.1.1.11: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.19 -> Neighbor 10.1.1.14: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.19 -> Neighbor 10.1.1.23: 25 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.19 -> Neighbor 10.1.1.41: 24 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.20 -> Neighbor 10.1.1.9: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.20 -> Neighbor 10.1.1.31: 28 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.20 -> Neighbor 10.1.1.36: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.21 -> Neighbor 10.1.1.7: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.21 -> Neighbor 10.1.1.15: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.21 -> Neighbor 10.1.1.50: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.22 -> Neighbor 10.1.1.6: 21 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.22 -> Neighbor 10.1.1.18: 18 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.2: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.3: 17 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.28: 40 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.30: 43 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.35: 16 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.40: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.41: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.23 -> Neighbor 10.1.1.46: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.6: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.10: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.17: 47 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.18: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.25: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.42: 53 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.24 -> Neighbor 10.1.1.49: 43 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.25 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.25 -> Neighbor 10.1.1.10: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.25 -> Neighbor 10.1.1.17: 44 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.25 -> Neighbor 10.1.1.18: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.25 -> Neighbor 10.1.1.24: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.25 -> Neighbor 10.1.1.49: 40 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.26 -> Neighbor 10.1.1.5: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.26 -> Neighbor 10.1.1.9: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.26 -> Neighbor 10.1.1.16: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.26 -> Neighbor 10.1.1.17: 34 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.26 -> Neighbor 10.1.1.45: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.26 -> Neighbor 10.1.1.49: 30 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.27 -> Neighbor 10.1.1.16: 46 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.27 -> Neighbor 10.1.1.17: 35 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.27 -> Neighbor 10.1.1.18: 43 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.27 -> Neighbor 10.1.1.37: 35 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.27 -> Neighbor 10.1.1.42: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.27 -> Neighbor 10.1.1.49: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.3: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.23: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.30: 43 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.33: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.34: 53 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.35: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.41: 50 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.43: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.28 -> Neighbor 10.1.1.46: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.29 -> Neighbor 10.1.1.4: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.29 -> Neighbor 10.1.1.37: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.2: 46 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.12: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.13: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.23: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.28: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.37: 32 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.40: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.41: 45 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.30 -> Neighbor 10.1.1.46: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.1: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.8: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.20: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.36: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.38: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.44: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.31 -> Neighbor 10.1.1.45: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.32 -> Neighbor 10.1.1.4: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.32 -> Neighbor 10.1.1.29: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.32 -> Neighbor 10.1.1.37: 22 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.32 -> Neighbor 10.1.1.48: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.3: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.28: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.34: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.35: 51 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.39: 51 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.41: 25 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.43: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.33 -> Neighbor 10.1.1.46: 24 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.3: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.28: 51 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.30: 27 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.33: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.35: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.41: 19 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.43: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.46: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.34 -> Neighbor 10.1.1.47: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.3: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.28: 50 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.30: 29 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.33: 50 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.34: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.41: 25 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.43: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.46: 51 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.35 -> Neighbor 10.1.1.47: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.36 -> Neighbor 10.1.1.1: 35 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.36 -> Neighbor 10.1.1.8: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.36 -> Neighbor 10.1.1.9: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.36 -> Neighbor 10.1.1.20: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.36 -> Neighbor 10.1.1.31: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.37 -> Neighbor 10.1.1.4: 59 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.37 -> Neighbor 10.1.1.12: 21 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.37 -> Neighbor 10.1.1.13: 21 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.37 -> Neighbor 10.1.1.29: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.37 -> Neighbor 10.1.1.30: 19 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.37 -> Neighbor 10.1.1.32: 45 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.38 -> Neighbor 10.1.1.1: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.38 -> Neighbor 10.1.1.8: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.38 -> Neighbor 10.1.1.31: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.38 -> Neighbor 10.1.1.36: 44 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.38 -> Neighbor 10.1.1.44: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.38 -> Neighbor 10.1.1.45: 34 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.39 -> Neighbor 10.1.1.33: 20 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.39 -> Neighbor 10.1.1.43: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.2: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.14: 29 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.23: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.28: 25 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.30: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.37: 25 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.41: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.40 -> Neighbor 10.1.1.46: 44 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.2: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.3: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.14: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.23: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.28: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.30: 49 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.34: 22 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.35: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.40: 60 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.41 -> Neighbor 10.1.1.46: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.10: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.16: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.17: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.18: 64 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.24: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.25: 63 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.27: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.42 -> Neighbor 10.1.1.49: 54 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.3: 42 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.28: 19 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.33: 51 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.34: 45 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.35: 43 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.39: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.43 -> Neighbor 10.1.1.47: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.44 -> Neighbor 10.1.1.1: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.44 -> Neighbor 10.1.1.31: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.44 -> Neighbor 10.1.1.38: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.44 -> Neighbor 10.1.1.45: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.45 -> Neighbor 10.1.1.5: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.45 -> Neighbor 10.1.1.9: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.45 -> Neighbor 10.1.1.26: 53 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.45 -> Neighbor 10.1.1.31: 38 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.45 -> Neighbor 10.1.1.38: 40 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.45 -> Neighbor 10.1.1.44: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.2: 37 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.3: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.12: 32 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.13: 31 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.23: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.28: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.30: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.33: 36 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.34: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.35: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.40: 53 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.46 -> Neighbor 10.1.1.41: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.47 -> Neighbor 10.1.1.3: 31 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.47 -> Neighbor 10.1.1.34: 47 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.47 -> Neighbor 10.1.1.35: 31 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.47 -> Neighbor 10.1.1.43: 50 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.48 -> Neighbor 10.1.1.4: 48 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.48 -> Neighbor 10.1.1.29: 22 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.48 -> Neighbor 10.1.1.32: 52 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.5: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.6: 58 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.17: 65 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.18: 57 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.24: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.25: 56 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.26: 55 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.27: 44 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.49 -> Neighbor 10.1.1.42: 61 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.50 -> Neighbor 10.1.1.7: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.50 -> Neighbor 10.1.1.15: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
-   Node 10.1.1.50 -> Neighbor 10.1.1.21: 62 updates (Avg I_c: 0.0000 W, Avg I_j: 0.0000 W)
+   Node 10.1.1.1 -> Neighbor 10.1.1.8: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.1 -> Neighbor 10.1.1.31: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.1 -> Neighbor 10.1.1.38: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.1 -> Neighbor 10.1.1.44: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.1 -> Neighbor 10.1.1.45: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.14: 45 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.19: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.23: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.30: 24 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.40: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.41: 44 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.2 -> Neighbor 10.1.1.46: 27 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.28: 47 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.30: 31 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.33: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.34: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.35: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.41: 16 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.43: 45 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.46: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.3 -> Neighbor 10.1.1.47: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.4 -> Neighbor 10.1.1.27: 20 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.4 -> Neighbor 10.1.1.29: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.4 -> Neighbor 10.1.1.32: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.4 -> Neighbor 10.1.1.37: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.4 -> Neighbor 10.1.1.48: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.5 -> Neighbor 10.1.1.16: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.5 -> Neighbor 10.1.1.17: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.5 -> Neighbor 10.1.1.26: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.5 -> Neighbor 10.1.1.45: 27 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.5 -> Neighbor 10.1.1.49: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.10: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.18: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.22: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.24: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.25: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.42: 51 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.6 -> Neighbor 10.1.1.49: 33 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.7 -> Neighbor 10.1.1.15: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.7 -> Neighbor 10.1.1.21: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.7 -> Neighbor 10.1.1.50: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.8 -> Neighbor 10.1.1.1: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.8 -> Neighbor 10.1.1.20: 33 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.8 -> Neighbor 10.1.1.31: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.8 -> Neighbor 10.1.1.36: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.8 -> Neighbor 10.1.1.38: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.8 -> Neighbor 10.1.1.44: 32 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.9 -> Neighbor 10.1.1.20: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.9 -> Neighbor 10.1.1.26: 39 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.9 -> Neighbor 10.1.1.45: 41 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.17: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.18: 43 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.24: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.25: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.42: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.10 -> Neighbor 10.1.1.49: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.11 -> Neighbor 10.1.1.14: 44 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.12 -> Neighbor 10.1.1.13: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.12 -> Neighbor 10.1.1.30: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.12 -> Neighbor 10.1.1.37: 24 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.12 -> Neighbor 10.1.1.40: 13 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.12 -> Neighbor 10.1.1.46: 16 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.13 -> Neighbor 10.1.1.12: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.13 -> Neighbor 10.1.1.30: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.13 -> Neighbor 10.1.1.37: 23 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.13 -> Neighbor 10.1.1.46: 15 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.2: 39 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.11: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.19: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.23: 33 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.28: 26 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.33: 33 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.40: 28 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.14 -> Neighbor 10.1.1.41: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.15 -> Neighbor 10.1.1.7: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.15 -> Neighbor 10.1.1.21: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.15 -> Neighbor 10.1.1.50: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.16 -> Neighbor 10.1.1.5: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.16 -> Neighbor 10.1.1.17: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.16 -> Neighbor 10.1.1.26: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.16 -> Neighbor 10.1.1.27: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.16 -> Neighbor 10.1.1.42: 26 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.16 -> Neighbor 10.1.1.49: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.5: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.6: 53 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.16: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.25: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.27: 40 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.42: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.17 -> Neighbor 10.1.1.49: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.10: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.17: 29 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.24: 46 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.27: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.42: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.18 -> Neighbor 10.1.1.49: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.19 -> Neighbor 10.1.1.2: 35 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.19 -> Neighbor 10.1.1.11: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.19 -> Neighbor 10.1.1.14: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.19 -> Neighbor 10.1.1.23: 25 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.19 -> Neighbor 10.1.1.41: 24 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.20 -> Neighbor 10.1.1.9: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.20 -> Neighbor 10.1.1.31: 28 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.20 -> Neighbor 10.1.1.36: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.21 -> Neighbor 10.1.1.7: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.21 -> Neighbor 10.1.1.15: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.21 -> Neighbor 10.1.1.50: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.22 -> Neighbor 10.1.1.6: 21 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.22 -> Neighbor 10.1.1.18: 18 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.2: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.3: 17 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.28: 40 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.30: 43 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.35: 16 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.40: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.41: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.23 -> Neighbor 10.1.1.46: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.6: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.10: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.17: 47 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.18: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.25: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.42: 53 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.24 -> Neighbor 10.1.1.49: 43 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.25 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.25 -> Neighbor 10.1.1.10: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.25 -> Neighbor 10.1.1.17: 44 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.25 -> Neighbor 10.1.1.18: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.25 -> Neighbor 10.1.1.24: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.25 -> Neighbor 10.1.1.49: 40 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.26 -> Neighbor 10.1.1.5: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.26 -> Neighbor 10.1.1.9: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.26 -> Neighbor 10.1.1.16: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.26 -> Neighbor 10.1.1.17: 34 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.26 -> Neighbor 10.1.1.45: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.26 -> Neighbor 10.1.1.49: 30 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.27 -> Neighbor 10.1.1.16: 46 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.27 -> Neighbor 10.1.1.17: 35 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.27 -> Neighbor 10.1.1.18: 43 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.27 -> Neighbor 10.1.1.37: 35 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.27 -> Neighbor 10.1.1.42: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.27 -> Neighbor 10.1.1.49: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.3: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.23: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.30: 43 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.33: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.34: 53 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.35: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.41: 50 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.43: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.28 -> Neighbor 10.1.1.46: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.29 -> Neighbor 10.1.1.4: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.29 -> Neighbor 10.1.1.37: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.2: 46 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.12: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.13: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.23: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.28: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.37: 32 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.40: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.41: 45 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.30 -> Neighbor 10.1.1.46: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.1: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.8: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.20: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.36: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.38: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.44: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.31 -> Neighbor 10.1.1.45: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.32 -> Neighbor 10.1.1.4: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.32 -> Neighbor 10.1.1.29: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.32 -> Neighbor 10.1.1.37: 22 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.32 -> Neighbor 10.1.1.48: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.3: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.28: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.34: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.35: 51 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.39: 51 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.41: 25 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.43: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.33 -> Neighbor 10.1.1.46: 24 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.3: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.28: 51 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.30: 27 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.33: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.35: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.41: 19 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.43: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.46: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.34 -> Neighbor 10.1.1.47: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.3: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.28: 50 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.30: 29 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.33: 50 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.34: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.41: 25 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.43: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.46: 51 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.35 -> Neighbor 10.1.1.47: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.36 -> Neighbor 10.1.1.1: 35 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.36 -> Neighbor 10.1.1.8: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.36 -> Neighbor 10.1.1.9: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.36 -> Neighbor 10.1.1.20: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.36 -> Neighbor 10.1.1.31: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.37 -> Neighbor 10.1.1.4: 59 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.37 -> Neighbor 10.1.1.12: 21 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.37 -> Neighbor 10.1.1.13: 21 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.37 -> Neighbor 10.1.1.29: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.37 -> Neighbor 10.1.1.30: 19 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.37 -> Neighbor 10.1.1.32: 45 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.38 -> Neighbor 10.1.1.1: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.38 -> Neighbor 10.1.1.8: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.38 -> Neighbor 10.1.1.31: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.38 -> Neighbor 10.1.1.36: 44 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.38 -> Neighbor 10.1.1.44: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.38 -> Neighbor 10.1.1.45: 34 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.39 -> Neighbor 10.1.1.33: 20 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.39 -> Neighbor 10.1.1.43: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.2: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.14: 29 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.23: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.28: 25 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.30: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.37: 25 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.41: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.40 -> Neighbor 10.1.1.46: 44 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.2: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.3: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.14: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.23: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.28: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.30: 49 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.34: 22 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.35: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.40: 60 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.41 -> Neighbor 10.1.1.46: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.6: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.10: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.16: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.17: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.18: 64 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.24: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.25: 63 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.27: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.42 -> Neighbor 10.1.1.49: 54 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.3: 42 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.28: 19 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.33: 51 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.34: 45 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.35: 43 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.39: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.43 -> Neighbor 10.1.1.47: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.44 -> Neighbor 10.1.1.1: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.44 -> Neighbor 10.1.1.31: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.44 -> Neighbor 10.1.1.38: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.44 -> Neighbor 10.1.1.45: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.45 -> Neighbor 10.1.1.5: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.45 -> Neighbor 10.1.1.9: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.45 -> Neighbor 10.1.1.26: 53 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.45 -> Neighbor 10.1.1.31: 38 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.45 -> Neighbor 10.1.1.38: 40 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.45 -> Neighbor 10.1.1.44: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.2: 37 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.3: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.12: 32 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.13: 31 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.23: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.28: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.30: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.33: 36 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.34: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.35: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.40: 53 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.46 -> Neighbor 10.1.1.41: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.47 -> Neighbor 10.1.1.3: 31 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.47 -> Neighbor 10.1.1.34: 47 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.47 -> Neighbor 10.1.1.35: 31 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.47 -> Neighbor 10.1.1.43: 50 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.48 -> Neighbor 10.1.1.4: 48 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.48 -> Neighbor 10.1.1.29: 22 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.48 -> Neighbor 10.1.1.32: 52 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.5: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.6: 58 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.17: 65 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.18: 57 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.24: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.25: 56 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.26: 55 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.27: 44 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.49 -> Neighbor 10.1.1.42: 61 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.50 -> Neighbor 10.1.1.7: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.50 -> Neighbor 10.1.1.15: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
+   Node 10.1.1.50 -> Neighbor 10.1.1.21: 62 updates (Avg I_c: 0.00 W, Avg I_j: 0.00 W)
 
 ========================================
 LOG FILES:

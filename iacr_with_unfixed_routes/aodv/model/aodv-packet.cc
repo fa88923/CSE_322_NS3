@@ -495,12 +495,28 @@ RreqHeader::GetMetric() const
     return m_metric;
 }
 
+// double
+// RreqHeader::GetCreatedInterference() const
+// {
+//     return m_createdInterference;
+// }
+
+// void RreqHeader::SetCreatedInterference(double interference)
+// {
+//     m_createdInterference = interference;
+// }
+
+// double RreqHeader::GetPrevMetric() const
+// {
+//     return m_prevMetric;
+// }
+
 bool
 RreqHeader::operator==(const RreqHeader& o) const
 {
     return (m_flags == o.m_flags && m_reserved == o.m_reserved && m_hopCount == o.m_hopCount &&
             m_requestID == o.m_requestID && m_dst == o.m_dst && m_dstSeqNo == o.m_dstSeqNo &&
-            m_origin == o.m_origin && m_originSeqNo == o.m_originSeqNo && m_metric == o.m_metric && m_prevMetric == o.m_prevMetric);
+            m_origin == o.m_origin && m_originSeqNo == o.m_originSeqNo && m_metric == o.m_metric && m_prevMetric == o.m_prevMetric && m_createdInterference == o.m_createdInterference);
 }
 
 //-----------------------------------------------------------------------------

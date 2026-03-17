@@ -509,6 +509,8 @@ class RoutingProtocol : public Ipv4RoutingProtocol
     /** Send RREQ
      * @param dst destination address
      */
+
+    double ComputeTotalCreatedInterference(const std::map<Ipv4Address, IcpEntry>& icpTable);
     void SendRequest(Ipv4Address dst);
     /** Send RREP
      * @param rreqHeader route request header
