@@ -24,7 +24,7 @@ rm -f aodv-comprehensive-*nodes-seed*-detailed.txt
 rm -f aodv-comprehensive-*nodes-seed*-latency.csv
 
 # Write CSV header
-echo "nNodes,Seed,NormalizedThroughput,OutageProbability,AvgDelayMs,StdDevDelayMs,JitterMs,P95DelayMs,P99DelayMs,ThroughputKbps,EnergyMJ,AvgHopCount,ControlOverhead,RouteDiscoveryMs,LinkBreaks" > aodv-comprehensive-results.csv
+echo "nNodes,nFlows,Seed,NormalizedThroughput,OutageProbability,AvgDelayMs,AvgEnergyMJ,TotalEnergyMJ" > aodv-comprehensive-results.csv
 
 # Node counts to test (matching paper)
 #NODE_COUNTS=(100 120 140 160 180 200)
@@ -44,27 +44,22 @@ do
     for seed in "${SEEDS[@]}"
     do
         echo "=========================================="
-        echo "Running simulation with $f flows, seed $seed..."
+        echo "Running simulation with $f flows, seed $seed, nodes $f..."
         echo "=========================================="
         
-        # Capture NS_LOG output directly to a file (not to console)
-        NS_LOG="AodvRoutingTable=logic:AodvRoutingProtocol=info" \
-            ./ns3 run "scratch/aodv-comprehensive-test --nNodes=$n --simTime=13.0 --nFlows=$f --RngRun=$seed" \
-            > /dev/null 2> "aodv-routing-table-${f}flows-seed${seed}-raw.log"
+        # Set up log filename with proper naming: nodes-flows-seed pattern
+        LOG_FILE="aodv-comprehensive-${f}nodes-${f}flows-seed${seed}-logs.log"
         
-        # Clean the routing log to remove binary/corrupted content and write directly to final file
-        if [ -f "aodv-routing-table-${f}flows-seed${seed}-raw.log" ]; then
-            echo "Cleaning routing table log for $f flows, seed $seed..."
-            strings "aodv-routing-table-${f}flows-seed${seed}-raw.log" | \
-                grep -E "ROUTE|METRIC|ICP Table updated" > "aodv-routing-table-${f}flows-seed${seed}.log"
-            rm -f "aodv-routing-table-${f}flows-seed${seed}-raw.log"
-            
-            CLEANED_LINES=$(wc -l < "aodv-routing-table-${f}flows-seed${seed}.log")
-            echo "✓ Routing log cleaned: $CLEANED_LINES lines"
-        fi
+        # Run simulation with AODV protocol logging enabled
+        export NS_LOG="AodvRoutingProtocol=all:*=prefix_time:*=prefix_node:*=prefix_func:*=prefix_level"
+        ./ns3 run "scratch/aodv-comprehensive-test --nNodes=$f --simTime=13.0 --nFlows=$f --RngRun=$seed" 2> "$LOG_FILE"
+        EXIT_CODE=$?
+        unset NS_LOG
         
-        if [ $? -eq 0 ]; then
+        if [ $EXIT_CODE -eq 0 ]; then
+            LINES=$(wc -l < "$LOG_FILE")
             echo "✓ Simulation completed successfully for $f flows, seed $seed"
+            echo "  Log file: $LOG_FILE ($LINES lines)"
             echo ""
         else
             echo "✗ Simulation failed for $f flows, seed $seed"
@@ -85,14 +80,10 @@ echo "Results saved to:"
 echo "  - aodv-comprehensive-results.csv"
 echo "  - aodv-comprehensive-<N>nodes-seed<S>-detailed.txt"
 echo "  - aodv-comprehensive-<N>nodes-seed<S>-latency.csv"
-echo "  - aodv-routing-table-<N>nodes-seed<S>.log (clean routing table changes)"
-echo "  - aodv-icrep-<N>nodes.log (IC-REP packets)"
-echo "  - aodv-icp-entries-<N>nodes.log (ICP entries)"
 echo ""
-echo "To analyze routing logs:"
-echo "  grep 'ROUTE CREATED' aodv-routing-table-<N>nodes-seed<S>.log"
-echo "  grep 'ROUTE UPDATE' aodv-routing-table-<N>nodes-seed<S>.log"
-echo "  grep 'METRIC UPDATE' aodv-routing-table-<N>nodes-seed<S>.log"
+echo "To enable detailed AODV protocol logging in future runs:"
+echo "  export NS_LOG='AodvRoutingProtocol=all:Aodv=all:*=prefix_time:*=prefix_node:*=prefix_func'"
+echo "  ./ns3 run 'scratch/aodv-comprehensive-test ...' 2> aodv-logs.log"
 echo ""
 echo "To analyze results:"
 echo "  python3 plot-comprehensive-results.py"

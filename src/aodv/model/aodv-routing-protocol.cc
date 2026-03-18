@@ -1382,7 +1382,7 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
     else
     {
         Ptr<NetDevice> dev = m_ipv4->GetNetDevice(m_ipv4->GetInterfaceForAddress(receiver));
-        if (toNeighbor.GetValidSeqNo() && (toNeighbor.GetHop() == 1) &&
+        if (toNeighbor.GetValidSeqNo() && //(toNeighbor.GetHop() == 1) &&
             (toNeighbor.GetOutputDevice() == dev))
         {
             toNeighbor.SetLifeTime(std::max(m_activeRouteTimeout, toNeighbor.GetLifeTime()));
@@ -1427,7 +1427,7 @@ double RoutingProtocol::GetMetricSelf(Ipv4Address sender, double totalCreatedInt
         receivedInterference = m_thermalNoiseW;
         metric = GetIcpMetric(createdInterference, receivedInterference);
     }
-    return metric;
+    return metric*100000000000.0; // Scale the metric to avoid very small values
 
 }
 
@@ -1450,7 +1450,7 @@ double RoutingProtocol::GetMetricNeighbour(Ipv4Address neighbor)
         receivedInterference = m_thermalNoiseW;
         metric = GetIcpMetric(createdInterference, receivedInterference);
     }
-    return metric;
+    return metric*100000000000.0;
 
 }
 
@@ -2038,10 +2038,10 @@ RoutingProtocol::ProcessHello(const RrepHeader& rrepHeader, Ipv4Address receiver
             /*hops=*/1,
             /*nextHop=*/rrepHeader.GetDst(),
             /*lifetime=*/rrepHeader.GetLifeTime());
-            newEntry.SetMetric(rrepHeader.GetPrevMetric());
+            //newEntry.SetMetric(rrepHeader.GetPrevMetric());
         m_routingTable.AddRoute(newEntry);
     }
-    else
+    else if(toNeighbor.GetNextHop() == rrepHeader.GetDst())     //if conditionta notun kore add korsi
     {
         toNeighbor.SetLifeTime(
             std::max(Time(m_allowedHelloLoss * m_helloInterval), toNeighbor.GetLifeTime()));
