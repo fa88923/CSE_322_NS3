@@ -327,9 +327,9 @@ class RoutingProtocol : public Ipv4RoutingProtocol
     std::map<Ipv4Address, IcpEntry> m_icpTable;
     std::map<Ipv4Address, IcpEntryOWN> m_icpTableOWN;
 
-    double GetIcpMetric(double created_interference, double received_interference, double delta = 0.8);
-    double GetMetricSelf(Ipv4Address sender, double totalCreatedInterferenceBySender);
-    double GetMetricNeighbour(Ipv4Address neighbor);
+    double GetIcpMetric(double created_interference, double received_interference, double hopCount, double delta = 0.8);
+    double GetMetricSelf(Ipv4Address sender, double totalCreatedInterferenceBySender, double hopCount);
+    double GetMetricNeighbour(Ipv4Address neighbor, double hopCount);
 
 
 

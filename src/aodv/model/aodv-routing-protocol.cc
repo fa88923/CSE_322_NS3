@@ -1403,13 +1403,14 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
     }
 }
 
-double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double delta)
+double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double hopCount, double delta)
 {
-    return delta * createdInterference + (1 - delta) * receivedInterference;
+    double lambda = 0.15; // Weighting factor for hop count in the metric
+    return (delta * createdInterference + (1 - delta) * receivedInterference)*100000000000.0 + lambda * hopCount;
 }
 
 
-double RoutingProtocol::GetMetricSelf(Ipv4Address sender, double totalCreatedInterferenceBySender)
+double RoutingProtocol::GetMetricSelf(Ipv4Address sender, double totalCreatedInterferenceBySender, double hopCount)
 {
     double createdInterference = 0.0;
     double receivedInterference = 0.0;
@@ -1419,19 +1420,19 @@ double RoutingProtocol::GetMetricSelf(Ipv4Address sender, double totalCreatedInt
     {
         createdInterference = totalCreatedInterferenceBySender - itNeighbor->second.createdInterference;
         receivedInterference = itNeighbor->second.receivedInterference;
-        metric = GetIcpMetric(createdInterference, receivedInterference);
+        metric = GetIcpMetric(createdInterference, receivedInterference, hopCount);
     }
     else
     {
         createdInterference = m_thermalNoiseW;
         receivedInterference = m_thermalNoiseW;
-        metric = GetIcpMetric(createdInterference, receivedInterference);
+        metric = GetIcpMetric(createdInterference, receivedInterference, hopCount);
     }
-    return metric*100000000000.0; // Scale the metric to avoid very small values
+    return metric; // Scale the metric to avoid very small values
 
 }
 
-double RoutingProtocol::GetMetricNeighbour(Ipv4Address neighbor)
+double RoutingProtocol::GetMetricNeighbour(Ipv4Address neighbor, double hopCount)
 {
     double createdInterference = 0.0;
     double receivedInterference = 0.0;
@@ -1442,15 +1443,15 @@ double RoutingProtocol::GetMetricNeighbour(Ipv4Address neighbor)
         createdInterference = getTotalCreatedInterference() - itNeighbor->second.createdInterference;
         
         receivedInterference = itNeighbor->second.receivedInterference;
-        metric = GetIcpMetric(createdInterference, receivedInterference);
+        metric = GetIcpMetric(createdInterference, receivedInterference, hopCount);
     }
     else
     {
         createdInterference = m_thermalNoiseW;
         receivedInterference = m_thermalNoiseW;
-        metric = GetIcpMetric(createdInterference, receivedInterference);
+        metric = GetIcpMetric(createdInterference, receivedInterference, hopCount);
     }
-    return metric*100000000000.0;
+    return metric;
 
 }
 
@@ -1478,9 +1479,13 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
     uint32_t id = rreqHeader.GetId();
     Ipv4Address origin = rreqHeader.GetOrigin();
 
+        // Increment RREQ hop count
+    uint8_t hop = rreqHeader.GetHopCount() + 1;
+    rreqHeader.SetHopCount(hop);
+
     double totalCreatedInterferenceBySender = rreqHeader.GetTotalCreatedInterference();
-    double LinkCostToPrev = GetMetricNeighbour(src);
-    double LinkCostToSelf = GetMetricSelf(src, totalCreatedInterferenceBySender);
+    double LinkCostToPrev = GetMetricNeighbour(src, hop);
+    double LinkCostToSelf = GetMetricSelf(src, totalCreatedInterferenceBySender, hop);
 
     double prevMetric = rreqHeader.GetPrevMetric() + LinkCostToPrev;
     rreqHeader.SetPrevMetric(prevMetric);
@@ -1502,9 +1507,7 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
         return;
     }
 
-    // Increment RREQ hop count
-    uint8_t hop = rreqHeader.GetHopCount() + 1;
-    rreqHeader.SetHopCount(hop);
+
 
     // Ipv4Address bestNeighbor;
     // double minMetric = GetMinNeighborMetric(bestNeighbor);
@@ -1868,7 +1871,7 @@ RoutingProtocol::RecvReply(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address send
     rrepHeader.SetHopCount(hop);
 
 
-    double LinkCostToPrev = GetMetricNeighbour(sender);
+    double LinkCostToPrev = GetMetricNeighbour(sender, hop);
 
     double metric = rrepHeader.GetPrevMetric() + LinkCostToPrev;
     rrepHeader.SetPrevMetric(metric);

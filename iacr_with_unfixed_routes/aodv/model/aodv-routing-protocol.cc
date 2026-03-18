@@ -1413,13 +1413,14 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
     }
 }
 
-double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double delta=0.5)
+double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double hopCount, double delta=0.5)
 {
-    return delta * createdInterference + (1 - delta) * receivedInterference;
+    double lambda = .15; // Weighting factor for hop count in the metric
+    return delta * createdInterference + (1 - delta) * receivedInterference + lambda * hopCount;
 }
 
 
-double RoutingProtocol::GetMetricSelf(Ipv4Address sender)
+double RoutingProtocol::GetMetricSelf(Ipv4Address sender, double hopCount)
 {
     double createdInterference = 0.0;
     double receivedInterference = 0.0;
@@ -1429,7 +1430,7 @@ double RoutingProtocol::GetMetricSelf(Ipv4Address sender)
     {
         createdInterference = itNeighbor->second.createdInterference;
         receivedInterference = itNeighbor->second.receivedInterference;
-        metric = GetIcpMetric(createdInterference, receivedInterference);
+        metric = GetIcpMetric(createdInterference, receivedInterference, hopCount);
     }
     else
     {
