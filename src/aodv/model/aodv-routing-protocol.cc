@@ -42,6 +42,9 @@
 #include "ns3/simulator.h"
 #include <cmath>
 
+#include "ns3/basic-energy-source.h"
+#include "ns3/energy-source.h"
+
 namespace ns3
 {
 
@@ -1403,8 +1406,68 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
     }
 }
 
+double
+RoutingProtocol::GetResidualEnergyFraction() const
+{
+    Ptr<Node> node = m_ipv4->GetObject<Node>();
+    if (!node)
+    {
+        return 1.0;
+    }
+
+    Ptr<ns3::energy::BasicEnergySource> source = node->GetObject<ns3::energy::BasicEnergySource>();
+    if (!source)
+    {
+        return 1.0; // fallback if no energy source is attached
+    }
+
+    double remaining = source->GetRemainingEnergy();
+    double initial = source->GetInitialEnergy();
+
+    if (initial <= 0.0)
+    {
+        return 1.0;
+    }
+
+    double frac = remaining / initial;
+    if (frac < 0.0)
+    {
+        frac = 0.0;
+    }
+    if (frac > 1.0)
+    {
+        frac = 1.0;
+    }
+    return frac;
+}
+
+double
+RoutingProtocol::GetDynamicDelta() const
+{
+    double e = GetResidualEnergyFraction();
+
+    double eth = m_energyThresholdFraction; 
+
+    double norm = 0.0;
+    if (e > eth)
+    {
+        norm = (e - eth) / (1.0 - eth);
+    }
+
+    if (norm < 0.0) norm = 0.0;
+    if (norm > 1.0) norm = 1.0;
+
+    double delta = m_deltaMin + (m_deltaMax - m_deltaMin) * norm;
+
+    if (delta < m_deltaMin) delta = m_deltaMin;
+    if (delta > m_deltaMax) delta = m_deltaMax;
+
+    return delta;
+}
+
 double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double delta)
 {
+    delta = GetDynamicDelta();
     return delta * createdInterference + (1 - delta) * receivedInterference;
 }
 
