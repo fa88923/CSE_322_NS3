@@ -1,2 +1,2 @@
 nNodes,nFlows,Seed,NormalizedThroughput,OutageProbability,AvgDelayMs,AvgEnergyMJ,TotalEnergyMJ
-25,25,1,0.185106,0.325213,298.493,11171.1,279278
+25,25,1,0.189362,0.251427,129.561,11213.7,280341

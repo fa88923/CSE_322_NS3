@@ -1250,6 +1250,57 @@ RoutingProtocol::SendTo(Ptr<Socket> socket, Ptr<Packet> packet, Ipv4Address dest
 }
 
 void
+RoutingProtocol::ForwardBestRreq(Ipv4Address origin, uint32_t id)
+{
+    auto key = std::make_pair(origin, id);
+    auto it = m_pendingRreqForward.find(key);
+    if (it == m_pendingRreqForward.end())
+    {
+        return; // already forwarded or purged
+    }
+
+    RreqHeader rreqHeader = it->second.header;
+    uint8_t    ttl        = it->second.ttl;
+
+    // Clean up — forward exactly once
+    m_pendingRreqForward.erase(key);
+    m_pendingRreqTimer.erase(key);
+
+    if (ttl < 1)
+    {
+        return; // TTL exhausted, do not forward
+    }
+
+    for (auto j = m_socketAddresses.begin(); j != m_socketAddresses.end(); ++j)
+    {
+        Ptr<Socket>           socket = j->first;
+        Ipv4InterfaceAddress  iface  = j->second;
+
+        Ptr<Packet>    packet = Create<Packet>();
+        SocketIpTtlTag ttlTag;
+        ttlTag.SetTtl(ttl);
+        packet->AddPacketTag(ttlTag);
+        packet->AddHeader(rreqHeader);
+        TypeHeader tHeader(AODVTYPE_RREQ);
+        packet->AddHeader(tHeader);
+
+        Ipv4Address destination;
+        if (iface.GetMask() == Ipv4Mask::GetOnes())
+            destination = Ipv4Address("255.255.255.255");
+        else
+            destination = iface.GetBroadcast();
+
+        m_lastBcastTime = Simulator::Now();
+        Simulator::Schedule(MilliSeconds(m_uniformRandomVariable->GetInteger(0, 10)),
+                            &RoutingProtocol::SendTo,
+                            this,
+                            socket,
+                            packet,
+                            destination);
+    }
+}
+
+void
 RoutingProtocol::ScheduleRreqRetry(Ipv4Address dst)
 {
     NS_LOG_FUNCTION(this << dst);
@@ -1705,7 +1756,7 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
         }
     }
 
-    SocketIpTtlTag tag;
+ SocketIpTtlTag tag;
     p->RemovePacketTag(tag);
     if (tag.GetTtl() < 2)
     {
@@ -1713,37 +1764,42 @@ RoutingProtocol::RecvRequest(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address sr
         return;
     }
 
-    for (auto j = m_socketAddresses.begin(); j != m_socketAddresses.end(); ++j)
-    {
-        Ptr<Socket> socket = j->first;
-        Ipv4InterfaceAddress iface = j->second;
-        Ptr<Packet> packet = Create<Packet>();
-        SocketIpTtlTag ttl;
-        ttl.SetTtl(tag.GetTtl() - 1);
-        packet->AddPacketTag(ttl);
-        packet->AddHeader(rreqHeader);
-        TypeHeader tHeader(AODVTYPE_RREQ);
-        packet->AddHeader(tHeader);
-        // Send to all-hosts broadcast if on /32 addr, subnet-directed otherwise
-        Ipv4Address destination;
-        if (iface.GetMask() == Ipv4Mask::GetOnes())
-        {
-            destination = Ipv4Address("255.255.255.255");
-        }
-        else
-        {
-            destination = iface.GetBroadcast();
-        }
-        m_lastBcastTime = Simulator::Now();
-        Simulator::Schedule(MilliSeconds(m_uniformRandomVariable->GetInteger(0, 10)),
-                            &RoutingProtocol::SendTo,
-                            this,
-                            socket,
-                            packet,
-                            destination);
-    }
-}
+    // Deferred best-metric forwarding.
+    // Instead of forwarding every RREQ that passes IsDuplicateWithMetric,
+    // collect all copies of (origin,id) arriving within a short window and
+    // forward only the best-metric one. This gives exactly one broadcast per
+    // route discovery per node (same as standard AODV) while still selecting
+    // the lowest-metric path.
+    auto key = std::make_pair(origin, id);
+    uint8_t forwardTtl = tag.GetTtl() - 1;
 
+    if (m_pendingRreqForward.find(key) == m_pendingRreqForward.end())
+    {
+        // First copy for this (origin,id) — store it and arm the timer
+        PendingRreq pending;
+        pending.header = rreqHeader;
+        pending.ttl    = forwardTtl;
+        m_pendingRreqForward[key] = pending;
+
+        // Use a Timer with CANCEL_ON_DESTROY so it is safe if node destructs
+        m_pendingRreqTimer[key] = Timer(Timer::CANCEL_ON_DESTROY);
+        m_pendingRreqTimer[key].SetFunction(&RoutingProtocol::ForwardBestRreq, this);
+        m_pendingRreqTimer[key].SetArguments(origin, id);
+        // Window must exceed maximum same-hop propagation time.
+        // At DsssRate1Mbps: ~1.5 ms per hop worst case. 4 ms is safe.
+        m_pendingRreqTimer[key].Schedule(MilliSeconds(4));
+    }
+    else if (metric < m_pendingRreqForward[key].header.GetMetric())
+    {
+        // A better-metric copy arrived within the window — replace
+        // (timer keeps running; forward will use this improved header)
+        PendingRreq pending;
+        pending.header = rreqHeader;
+        pending.ttl    = forwardTtl;
+        m_pendingRreqForward[key] = pending;
+    }
+    // Else: this copy is worse — discard silently
+}
 void
 RoutingProtocol::SendReply(const RreqHeader& rreqHeader, const RoutingTableEntry& toOrigin)
 {
@@ -1948,16 +2004,30 @@ RoutingProtocol::RecvReply(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address send
         rrepHeader.SetAckRequired(false);
     }
     NS_LOG_LOGIC("receiver " << receiver << " origin " << rrepHeader.GetOrigin());
-    if (IsMyOwnAddress(rrepHeader.GetOrigin()))
+if (IsMyOwnAddress(rrepHeader.GetOrigin()))
     {
-        if (toDst.GetFlag() == IN_SEARCH)
+        // Cancel retry timer unconditionally whenever a valid route is confirmed
+        // at the source. The old code conditioned this on toDst.GetFlag()==IN_SEARCH,
+        // but toDst is a snapshot taken before line 1933's Update(). If a previous
+        // RREP already flipped the flag to VALID, and this RREP has a better metric
+        // (triggering Update at line 1933), the timer is never cancelled — causing
+        // a spurious RREQ retry.
+        auto timerIt = m_addressReqTimer.find(dst);
+        if (timerIt != m_addressReqTimer.end())
         {
-            m_routingTable.Update(newEntry);
-            m_addressReqTimer[dst].Cancel();
-            m_addressReqTimer.erase(dst);
+            timerIt->second.Cancel();
+            m_addressReqTimer.erase(timerIt);
         }
-        m_routingTable.LookupRoute(dst, toDst);
-        SendPacketFromQueue(dst, toDst.GetRoute());
+
+        // Use LookupValidRoute — if the route update at line 1933 succeeded,
+        // this returns the fresh valid entry. If the RREP was rejected (worse
+        // metric), the route may still be IN_SEARCH with a null device; we
+        // must not call SendPacketFromQueue in that case.
+        RoutingTableEntry freshDst;
+        if (m_routingTable.LookupValidRoute(dst, freshDst))
+        {
+            SendPacketFromQueue(dst, freshDst.GetRoute());
+        }
         return;
     }
 
