@@ -89,7 +89,7 @@ class IdCache
         /// When record will expire
         Time m_expire;
 
-        double m_metric;
+           double m_metric{0.0};
     };
 
     /**

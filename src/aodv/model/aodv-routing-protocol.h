@@ -293,25 +293,24 @@ class RoutingProtocol : public Ipv4RoutingProtocol
 
   // ---------------- IACR INFORMATION COLLECTION ----------------
 
+    // AFTER:
     struct IcpEntry
     {
-    Ipv4Address neighbor;     // 1-hop neighbor
-    double createdInterference;   // Icj
-    double receivedInterference;  // Ij
-    double aggregateInterference; // Iaggr
-    Time lastUpdate;
+        Ipv4Address neighbor;
+        double createdInterference{0.0};
+        double receivedInterference{0.0};
+        double aggregateInterference{0.0};
+        Time lastUpdate;
     };
-
 
     struct IcpEntryOWN
     {
-    Ipv4Address neighbor;     // 1-hop neighbor
-    double createdInterference;   // Icj
-    double receivedInterference;  // Ij
-    double aggregateInterference; // Iaggr
-    Time lastUpdate;
+        Ipv4Address neighbor;
+        double createdInterference{0.0};
+        double receivedInterference{0.0};
+        double aggregateInterference{0.0};
+        Time lastUpdate;
     };
-
     double m_lastRxSignalW;
     double m_lastInterferenceW;
     double m_thermalNoiseW;
@@ -569,6 +568,18 @@ class RoutingProtocol : public Ipv4RoutingProtocol
     void RerrRateLimitTimerExpire();
     /// Map IP address + RREQ timer.
     std::map<Ipv4Address, Timer> m_addressReqTimer;
+
+    /// Pending best-metric RREQ for deferred forwarding
+struct PendingRreq
+{
+    RreqHeader header;
+    uint8_t    ttl;
+};
+std::map<std::pair<Ipv4Address, uint32_t>, PendingRreq> m_pendingRreqForward;
+std::map<std::pair<Ipv4Address, uint32_t>, Timer>        m_pendingRreqTimer;
+
+/// Forward the best-metric RREQ stored for (origin, id)
+void ForwardBestRreq(Ipv4Address origin, uint32_t id);
     /**
      * Handle route discovery process
      * @param dst the destination IP address
