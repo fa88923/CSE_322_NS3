@@ -1405,7 +1405,7 @@ RoutingProtocol::UpdateRouteToNeighbor(Ipv4Address sender, Ipv4Address receiver)
 
 double RoutingProtocol::GetIcpMetric(double createdInterference, double receivedInterference, double hopCount, double delta)
 {
-    double lambda = 0.15; // Weighting factor for hop count in the metric
+    double lambda = 0.1; // Weighting parameter for hop count in the metric
     return (delta * createdInterference + (1 - delta) * receivedInterference)*100000000000.0 + lambda * hopCount;
 }
 

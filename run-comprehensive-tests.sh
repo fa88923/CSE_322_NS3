@@ -32,10 +32,10 @@ echo "nNodes,nFlows,Seed,NormalizedThroughput,OutageProbability,AvgDelayMs,AvgEn
 #NODE_COUNTS=(210 220  230 240 250)
 # NODE_COUNTS=(100 120 140 160 180)
 #NODE_COUNTS=(100 120 140 160 180 200 210 220 230 240 250)
-FLOW_COUNTS=(25 30 35 40 45 50 55 60)
+FLOW_COUNTS=(100)
 # FLOW_COUNTS=(60)
-#SEEDS=(1 2 3 4 5)
-SEEDS=(1)
+SEEDS=(4 5)
+# SEEDS=(1)
 
 n=60
 # Run simulation for each node count and each seed
