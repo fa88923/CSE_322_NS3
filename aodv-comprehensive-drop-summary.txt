@@ -1,0 +1,18 @@
+========================================
+TRACKED DATA PACKET DROP SUMMARY
+========================================
+Total data packets sent: 7050
+Total tracked drops: 3751
+Drop rate: 53.2057%
+
+IP:NO_ROUTE = 683
+IP:ROUTE_ERROR = 1216
+MAC:EXPIRED_LIFETIME = 1001
+MAC:REACHED_RETRY_LIMIT = 21
+PHY:BUSY_DECODING_PREAMBLE = 152
+PHY:OTHER_PHY_DROP = 5
+PHY:PREAMBLE_DETECTION_PACKET_SWITCH = 12
+PHY:PREAMBLE_DETECT_FAILURE = 327
+PHY:RXING = 221
+PHY:TXING = 113
+========================================
