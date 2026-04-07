@@ -51,7 +51,7 @@ do
         LOG_FILE="aodv-comprehensive-${f}nodes-${f}flows-seed${seed}-logs.log"
         
         # Run simulation with AODV protocol logging enabled
-        export NS_LOG="AodvRoutingProtocol=all:*=prefix_time:*=prefix_node:*=prefix_func:*=prefix_level"
+        # export NS_LOG="AodvRoutingProtocol=all:*=prefix_time:*=prefix_node:*=prefix_func:*=prefix_level"
         ./ns3 run "scratch/aodv-comprehensive-test --nNodes=$f --simTime=13.0 --nFlows=$f --RngRun=$seed" 2> "$LOG_FILE"
         EXIT_CODE=$?
         unset NS_LOG

@@ -1,25 +1,5 @@
 #!/usr/bin/env bash
-# run_sweep.sh
-#
-# Runs the full AODV simulation campaign in one invocation and writes
-# separate CSV metric files for each sweep dimension and channel type.
-#
-# Usage:
-#   bash run_sweep.sh [wifi|lrwpan|both]
-#
-# Output examples:
-#   results/results_wifi_nodes.csv
-#   results/results_wifi_flows.csv
-#   results/results_wifi_pps.csv
-#   results/results_wifi_area.csv
-#   results/results_lrwpan_nodes.csv
-#   results/results_lrwpan_flows.csv
-#   results/results_lrwpan_pps.csv
-#   results/results_lrwpan_area.csv
-#
-# Each CSV row format (matching the "CSV," prefix in the simulation output):
-#   channelType,nNodes,nFlows,pps,areaMultiplier,pktSize,
-#   throughput_kbps,delay_s,pdr,dropRatio,totalEnergy_J,avgNodeEnergy_J,avgPerNodeTput_kbps
+
 
 set -euo pipefail
 
