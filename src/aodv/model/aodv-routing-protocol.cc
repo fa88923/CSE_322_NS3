@@ -2299,22 +2299,7 @@ RoutingProtocol::RecvIcReply(Ptr<Packet> p, Ipv4Address receiver, Ipv4Address se
                 << ": I_c=" << entry.createdInterference 
                 << "W, I_j=" << entry.receivedInterference 
                 << "W, I_aggr=" << entry.aggregateInterference << "W");
-    
-    // RoutingTableEntry neighborRoute;
-    // if (m_routingTable.LookupRoute(sender, neighborRoute))
-    // {
-    //     double newMetric = GetIcpMetric(entry.createdInterference, entry.receivedInterference);
-    //     double oldMetric = neighborRoute.GetMetric();
-        
-    //     neighborRoute.SetMetric(newMetric);
-    //     m_routingTable.Update(neighborRoute);
-        
-    //     NS_LOG_INFO("METRIC UPDATE from IC-REP: Neighbor " << sender 
-    //                 << " | OldMetric=" << oldMetric 
-    //                 << " | NewMetric=" << newMetric 
-    //                 << " | CreatedInterf=" << entry.createdInterference 
-    //                 << " | ReceivedInterf=" << entry.receivedInterference);
-    // }
+
 }
 
 void
