@@ -1418,7 +1418,7 @@ RoutingProtocol::GetResidualEnergyFraction() const
     Ptr<ns3::energy::BasicEnergySource> source = node->GetObject<ns3::energy::BasicEnergySource>();
     if (!source)
     {
-        return 1.0; // fallback if no energy source is attached
+        return 1.0;
     }
 
     double remaining = source->GetRemainingEnergy();
