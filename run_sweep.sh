@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-
 set -euo pipefail
 
-CHANNEL_ARG="${1:-both}"
+CHANNEL_ARG="${1:-lrwpan}"
 NS3_BIN="./ns3"
 SCRATCH="scratch/aodv_simulation"
 OUTDIR="results"
@@ -13,14 +12,7 @@ mkdir -p "$OUTDIR"
 NODE_VALS=(20 40 60 80 100)
 FLOW_VALS=(10 20 30 40 50)
 PPS_VALS=(100 200 300 400 500)
-
-# NODE_VALS=()
-# FLOW_VALS=()
-# PPS_VALS=()
 AREA_VALS=(1 2 3 4 5)
-PKT_SIZE=80
-SIM_TIME=50
-SEED=12345
 
 # ---- Baseline values (held fixed when varying another parameter) ----
 BASE_NODES=60
@@ -28,45 +20,37 @@ BASE_FLOWS=20
 BASE_PPS=200
 BASE_AREA=3
 
-CSV_HEADER="channelType,nNodes,nFlows,pps,areaMultiplier,pktSize,throughput_kbps,delay_s,pdr,dropRatio,totalEnergy_J,avgNodeEnergy_J,avgPerNodeTput_kbps"
+CSV_HEADER="nNodes,nFlows,nPktPerSec,areaMultiplier,throughput_kbps,delay_ms,pdr_percent,dropRatio_percent,avgNodeEnergy_J"
 
 run_sim() {
-    local ch=$1 nn=$2 nf=$3 pp=$4 am=$5
+    local nn=$1 nf=$2 pp=$3 am=$4
 
     local output
     local rc=0
     output=$("$NS3_BIN" run "$SCRATCH" -- \
-        --channelType="$ch" \
         --nNodes="$nn" \
         --nFlows="$nf" \
-        --pps="$pp" \
+        --nPktPerSec="$pp" \
         --areaMultiplier="$am" \
-        --pktSize="$PKT_SIZE" \
-        --simTime="$SIM_TIME" \
-        --seed="$SEED" \
         2>&1) || rc=$?
 
-    local row
-    row=$(printf '%s\n' "$output" | grep '^CSV,' | sed 's/^CSV,//' || true)
-    if [ -n "$row" ]; then
-        if [ "$rc" -ne 0 ]; then
-            echo "Simulation returned exit code $rc after emitting CSV for channel=$ch nNodes=$nn nFlows=$nf pps=$pp areaMultiplier=$am" >&2
-        fi
-        printf '%s\n' "$row"
-        return 0
-    fi
+    # Extract metrics from human-readable output
+    local throughput delay pdr dropRatio energy
+    throughput=$(printf '%s\n' "$output" | grep "Throughput" | sed 's/.*: \([^ ]*\).*/\1/')
+    delay=$(printf '%s\n' "$output" | grep "Delay" | sed 's/.*: \([^ ]*\).*/\1/')
+    pdr=$(printf '%s\n' "$output" | grep "PDR" | sed 's/.*: \([^ ]*\).*/\1/')
+    dropRatio=$(printf '%s\n' "$output" | grep "Drop Ratio" | sed 's/.*: \([^ ]*\).*/\1/')
+    energy=$(printf '%s\n' "$output" | grep "Avg Energy" | sed 's/.*: \([^ ]*\).*/\1/')
 
-    if [ "$rc" -ne 0 ]; then
-        echo "Simulation failed for channel=$ch nNodes=$nn nFlows=$nf pps=$pp areaMultiplier=$am" >&2
-        echo "$output" >&2
-        return "$rc"
-    fi
-
-    if [ -z "$row" ]; then
-        echo "Simulation completed but no CSV row found for channel=$ch nNodes=$nn nFlows=$nf pps=$pp areaMultiplier=$am" >&2
+    if [ -z "$throughput" ] || [ -z "$delay" ] || [ -z "$pdr" ]; then
+        echo "Failed to parse output for nNodes=$nn nFlows=$nf nPktPerSec=$pp areaMultiplier=$am" >&2
         echo "$output" >&2
         return 1
     fi
+
+    printf '%s,%s,%s,%s,%s,%s,%s,%s,%s\n' \
+        "$nn" "$nf" "$pp" "$am" \
+        "$throughput" "$delay" "$pdr" "$dropRatio" "$energy"
 }
 
 init_csv() {
@@ -75,27 +59,29 @@ init_csv() {
 }
 
 run_channel() {
-    local ch=$1
-
-    local nodes_file="$OUTDIR/results_${ch}_nodes.csv"
-    local flows_file="$OUTDIR/results_${ch}_flows.csv"
-    local pps_file="$OUTDIR/results_${ch}_pps.csv"
-    local area_file="$OUTDIR/results_${ch}_area.csv"
+    local nodes_file="$OUTDIR/results_lrwpan_nodes.csv"
+    local flows_file="$OUTDIR/results_lrwpan_flows.csv"
+    local pps_file="$OUTDIR/results_lrwpan_pps.csv"
+    local area_file="$OUTDIR/results_lrwpan_area.csv"
 
     init_csv "$nodes_file"
     init_csv "$flows_file"
     init_csv "$pps_file"
     init_csv "$area_file"
 
-    echo ">>> Channel: $ch"
+    echo ">>> LR-WPAN Static Network Sweep"
     echo ""
 
     echo "  [1/4] Varying nNodes -> $nodes_file"
     for nn in "${NODE_VALS[@]}"; do
         echo -n "    nNodes=$nn ... "
-        row=$(run_sim "$ch" "$nn" "$BASE_FLOWS" "$BASE_PPS" "$BASE_AREA")
-        echo "$row" >> "$nodes_file"
-        echo "done"
+        if row=$(run_sim "$nn" "$BASE_FLOWS" "$BASE_PPS" "$BASE_AREA"); then
+            echo "$row" >> "$nodes_file"
+            echo "done"
+        else
+            echo "failed"
+            return 1
+        fi
     done
 
     echo "  [2/4] Varying nFlows -> $flows_file"
@@ -105,27 +91,40 @@ run_channel() {
             continue
         fi
         echo -n "    nFlows=$nf ... "
-        row=$(run_sim "$ch" "$BASE_NODES" "$nf" "$BASE_PPS" "$BASE_AREA")
-        echo "$row" >> "$flows_file"
-        echo "done"
+        if row=$(run_sim "$BASE_NODES" "$nf" "$BASE_PPS" "$BASE_AREA"); then
+            echo "$row" >> "$flows_file"
+            echo "done"
+        else
+            echo "failed"
+            return 1
+        fi
     done
 
-    echo "  [3/4] Varying PPS -> $pps_file"
+    echo "  [3/4] Varying nPktPerSec (PPS) -> $pps_file"
     for pp in "${PPS_VALS[@]}"; do
         echo -n "    pps=$pp ... "
-        row=$(run_sim "$ch" "$BASE_NODES" "$BASE_FLOWS" "$pp" "$BASE_AREA")
-        echo "$row" >> "$pps_file"
-        echo "done"
+        if row=$(run_sim "$BASE_NODES" "$BASE_FLOWS" "$pp" "$BASE_AREA"); then
+            echo "$row" >> "$pps_file"
+            echo "done"
+        else
+            echo "failed"
+            return 1
+        fi
     done
 
     echo "  [4/4] Varying areaMultiplier -> $area_file"
     for am in "${AREA_VALS[@]}"; do
         echo -n "    areaMultiplier=$am ... "
-        row=$(run_sim "$ch" "$BASE_NODES" "$BASE_FLOWS" "$BASE_PPS" "$am")
-        echo "$row" >> "$area_file"
-        echo "done"
+        if row=$(run_sim "$BASE_NODES" "$BASE_FLOWS" "$BASE_PPS" "$am"); then
+            echo "$row" >> "$area_file"
+            echo "done"
+        else
+            echo "failed"
+            return 1
+        fi
     done
 
+    echo ""
     echo "  Saved: $nodes_file"
     echo "  Saved: $flows_file"
     echo "  Saved: $pps_file"
@@ -134,18 +133,11 @@ run_channel() {
 }
 
 case "$CHANNEL_ARG" in
-    wifi)
-        run_channel "wifi"
-        ;;
     lrwpan)
-        run_channel "lrwpan"
-        ;;
-    both)
-        run_channel "wifi"
-        run_channel "lrwpan"
+        run_channel
         ;;
     *)
-        echo "Usage: bash run_sweep.sh [wifi|lrwpan|both]"
+        echo "Usage: bash run_sweep.sh [lrwpan]"
         exit 1
         ;;
 esac

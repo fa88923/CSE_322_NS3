@@ -1,6 +1,6 @@
-channelType,nNodes,nFlows,pps,areaMultiplier,pktSize,throughput_kbps,delay_ms,pdr,dropRatio,avgEnergy_J
-lrwpan,20,10,200,3,80,0.11904,4000,60,40,0
-lrwpan,40,20,200,3,80,0.11904,4000,60,40,0
-lrwpan,60,20,200,3,80,0.11904,4000,60,40,0
-lrwpan,80,20,200,3,80,0.11904,4000,60,40,0
-lrwpan,100,20,200,3,80,0.11904,4000,60,40,0
+nNodes,nFlows,nPktPerSec,areaMultiplier,throughput_kbps,delay_ms,pdr_percent,dropRatio_percent,avgNodeEnergy_J
+20,20,200,3,9.4914,206.395,86.7094,13.2906,0
+40,20,200,3,6.72774,464.969,77.3443,22.6557,0
+60,20,200,3,8.23605,386.618,72.5371,27.4629,0
+80,20,200,3,10.2474,328.752,76.0888,23.9112,0
+100,20,200,3,14.5734,527.972,75.5713,24.4287,0
