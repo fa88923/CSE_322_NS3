@@ -6,3 +6,5 @@
 !subdir/
 !scratch-simulator.cc
 !CMakeLists.txt
+!aodv_simulation.cc
+!aodv-comprehensive-test.cc
