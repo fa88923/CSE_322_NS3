@@ -1,7 +1,0 @@
-INFORMATION PHASE: ProcessHello
-Power trace call attach: NotifyInterfaceUp
-AllPacketsReceive: RecvAodv
-RReq Send: SendRequest
-Rreq Received: RecvRequest     Metric calculation functions are above this
-RRep Sent : SendReply
-RRep received : RecvReply, ProcessHello
